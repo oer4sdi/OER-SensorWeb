@@ -1,0 +1,40 @@
+# Public OGC SensorThings API End Points
+
+## Sandbox Services
+
+| Owner | access | version | Endpoint URL |
+| --- | --- | --- | --- |
+| Fraunhofer IOSB | CRUD | 1.1 | https://ogc-demo.k8s.ilt-dmz.iosb.fraunhofer.de/v1.1/ |
+| SensorUp | CRUD | 1.0 | http://scratchpad.sensorup.com/OGCSensorThings/v1.0 |
+
+## Air
+| County | Owner | Domain | Info | Endpoint URL |
+| --- | --- | --- | --- | --- |
+|Europe | Fraunhofer IOSB | Air Quality | [info](https://datacoveeu.github.io/API4INSPIRE/datanests/ad-hoc.html) | https://airquality-frost.k8s.ilt-dmz.iosb.fraunhofer.de/v1.1/ |
+
+
+## Statistics
+| County | Owner | Domain | Info | Endpoint URL |
+| --- | --- | --- | --- | --- |
+|Europe | Fraunhofer IOSB | Demography | [info](https://datacoveeu.github.io/API4INSPIRE/datanests/ad-hoc.html) | https://demography.k8s.ilt-dmz.iosb.fraunhofer.de/v1.1 |
+|Europe Stuttgart| Inspire | Covid | | http://covidsta.hft-stuttgart.de/server/v1.1 |
+
+
+## Smart Cities
+| County | Owner | Domain | Info | Endpoint URL |
+| --- | --- | --- | --- | --- |
+|Germany | Freie und Hansestadt Hamburg, Landesbetrieb Geoinformation und Vermessung | Smart Cities | [info](http://www.urbandataplatform.hamburg/) | https://iot.hamburg.de/v1.1/ |
+|USA Toranto | | Smart Bike | [Sensorup](https://toronto-bike-snapshot.sensorup.com/display/v1.0) | https://toronto-bike-snapshot.sensorup.com/v1.0/|
+| Smart Citizens for Smart Cities YYC - Crowd-sourced Air Quality Sensing | https://api.smartcitizen.me/v0/ |
+
+
+## Water
+| County | Owner | Domain | Info | Endpoint URL |
+| --- | --- | --- | --- | --- |
+| UK | British Geological Survey | Ground water | [info](https://sensors.bgs.ac.uk/) | https://sensors.bgs.ac.uk/FROST-Server/v1.1 |
+| France | BRGM | Surface water quality | [info](https://www.sandre.eaufrance.fr/) | https://sensorthings-wq.brgm-rec.fr/FROST-Server/v1.0 |
+| France | BRGM | Surface water quantity | [info](https://www.sandre.eaufrance.fr/) | https://sta4hydrometry.brgm-rec.fr/FROST-Server/v1.1/ |
+| France | BRGM | Ground water quantity | [info](https://www.sandre.eaufrance.fr/) | https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/ |
+| USA | USGS | Surface, Atmospheric, and Groundwater data | [info](https://waterdata.usgs.gov/blog/api_catalog/) | https://labs.waterdata.usgs.gov/sta/v1.1/ |
+| USA | New Mexico Bureau of Geology and Mineral Resources | Groundwater quantity and quality | [info](https://catalog.newmexicowaterdata.org/dataset/collaborative-groundwater-monitoring-network) | https://st2.newmexicowaterdata.org/FROST-Server/v1.1 |
+| USA | New Mexico Environment Department | Drinking water quality | [info](https://dww.water.net.env.nm.gov/NMDWW/) | https://nmenv.newmexicowaterdata.org/FROST-Server/v1.1 |
