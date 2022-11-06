@@ -77,4 +77,17 @@ Each and every sensor data sources can have different formats and information. T
 Because IP-based environmental sensors are becoming more affordable, anyone can gather and refine detailed environmental information about the world around us, both locally and globally. This way citizens with any background can use these sensors to generate publically available data. Of course, as with everything based on the Internet, as the amount of information and the diversity of the sources producing it grows, so does the quality range of the available information. Organizations that previously deployed and maintained their own sensor networks with proprietary data and control interfaces built for their specific software and hardware systems are shifting to open standards. Even if they do not intend to publish their data on the Internet, they do intend to use IP-based networks for communication. The O&M concepts serve as the foundation for the EU-wide INSPIRE data models for meteorological, climatological, and air quality information, and the structure and capabilities of various environmental observation networks.
 
 
+#### UML Diagram of Observations
 
+| Entity | Description |
+| ------ | ----------- |
+| Observed Property / Phenomenon | A property measured by a sensor. Eg, Temperature, Co2 levels |
+| Feature of Interest (FoI) | an abstraction of a real world phenomena which has been georeferenced. Eg, Park(Place) |
+| Phenomenon Time | The time instant or period of when the Observation happens |
+| Result | The estimated value of an ObservedProperty from the Observation |
+| Result Time | The time of the Observation’s result was generated |
+| Result Quality | 	Describes the quality of the result owing to the fact that sensor data can be faulty to some extent |
+| Valid Time | The time period during which the result may be used. With real time sensor data available, the data is measured and replaced within seconds in some cases |
+| Process | The process that performs the measurement Eg, temperature sensor |
+
+#### QUIZ - (A drag and drop options that user use correctly mention the terms Eg question : When measuring the height of a tree, the height is the observed ObservableProperty, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest.) H5P format
