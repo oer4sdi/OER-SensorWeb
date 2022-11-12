@@ -104,6 +104,9 @@ To illustrate the mapping, an exemplary dataset from the hamburg smart city proj
 https://iot.hamburg.de/v1.1/?
 ```
 
+#### ADD picture of Observations
+
+
 The Observation model approaches data from the perspective of the data user, emphasizing the semantics of the feature-of-interest and its properties.
 
 ### Classification of observation by result type
