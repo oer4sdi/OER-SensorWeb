@@ -70,6 +70,9 @@ Some Standards are not considered to be OGC standards, nonetheless they are allo
 
 
 ## O&M model
+
+<img align='center' src='https://user-images.githubusercontent.com/94603960/201489207-bf9ca213-91a6-4502-8d46-ede5ed704f81.png'>
+
 Observation and Measurements standard defines models and XML schemas for observations as well as features involved in sampling when making observations. O&M creates a high-level framework for representing sensor system observations, measurements, procedures, and metadata, for the implementation of SWE-enabled architectures. 
 
 Each and every sensor data sources can have different formats and information. This pose an issue when exchanging sensor data. To overcome this interoperability issue, O&M becomes a common standardized data model for handling measurement events in various types of sensors, ranging from thermometers inside a closed process to satellites images of the Earth from space. O&M, in conjunction with other SWE framework open standards such as SensorML and Sensor Observation Service (SOS), provides a system-independent, Internet-enabled method of data exchange between different parts of sensor networks and other systems using sensor information.
@@ -78,6 +81,9 @@ Because IP-based environmental sensors are becoming more affordable, anyone can 
 
 
 #### UML Diagram of Observations
+<img align='center' src='https://user-images.githubusercontent.com/94603960/201489421-348a3829-6a78-433d-a0e8-2b35717fafda.png'> 
+
+An observation is part of a procedure that measured a specific observedProperty at a dedicated featureOfInterest for a specific phenomenonTime and saved the result. Since each measurement is flawed to a certain extent, the property resultQuality denotes the Quality of the measurement. We will learn about the specified terms definitions mentioned in this definition below.
 
 | Entity | Description |
 | ------ | ----------- |
@@ -91,3 +97,41 @@ Because IP-based environmental sensors are becoming more affordable, anyone can 
 | Process | The process that performs the measurement Eg, temperature sensor |
 
 #### QUIZ - (A drag and drop options that user use correctly mention the terms Eg question : When measuring the height of a tree, the height is the observed ObservableProperty, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest.) H5P format
+
+To illustrate the mapping, an exemplary dataset from the hamburg smart city project is presented subsequently.
+
+```
+https://iot.hamburg.de/v1.1/?
+```
+
+The Observation model approaches data from the perspective of the data user, emphasizing the semantics of the feature-of-interest and its properties.
+
+### Classification of observation by result type
+
+1. Discrete Observation
+
+![o m-types](https://user-images.githubusercontent.com/94603960/201489361-2a94b635-1e62-4cd0-ad7e-3d60d8210d05.png)
+
+Observations where the outcome of a single observation may have a single value or multiple values, but if there are multiple values, those values do not change over the course of the observation with respect to either space or time.
+
+2. Continous Observation
+
+Observations where the outcome of a single observation includes multiple values that change with time, space, or both during the course of the observation. The value of a corresponding observation result shall therefore be a function or coverage, respectively. The target feature may be subjected to numerous observations using various sampling methods, so the sampling methods are associated with the act of observation rather than being inherent in the feature-of-interest.
+
+To model the coverage, a domain geometry decomposition with specialized sub-geometries is defined to represent the associated feature.
+
+![o m-disctypes](https://user-images.githubusercontent.com/94603960/201489600-be68a35a-53bc-48f6-8427-d4ce3a6824b7.png)
+
+```
+Did you know that your feature of interest may not be the ultimate domain-specific feature whose properties are of interest in the observation. 
+
+LEARN WHY : Proximate vs. ultimate feature-of-interest 
+```
+
+### Sampling Features in an Observation
+
+<img align='left' src='https://user-images.githubusercontent.com/94603960/201488995-e767ff0e-429d-40a7-867b-d3ab86244472.png'> A **spatial sampling feature** is used when observations are made to estimate properties of a geospatial feature, particularly when the value of a property varies within the scope of the feature. The sampling feature may be extensive in one, two, or three spatial dimensions, depending on accessibility and the nature of the expected property variation. Because processing and visualization methods are frequently dependent on the sampling manifold's topological dimension, this provides a natural classification system for sampling features.
+
+
+
+
