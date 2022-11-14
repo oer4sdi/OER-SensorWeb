@@ -135,6 +135,26 @@ LEARN WHY : Proximate vs. ultimate feature-of-interest
 
 <img align='left' src='https://user-images.githubusercontent.com/94603960/201488995-e767ff0e-429d-40a7-867b-d3ab86244472.png'> A **spatial sampling feature** is used when observations are made to estimate properties of a geospatial feature, particularly when the value of a property varies within the scope of the feature. The sampling feature may be extensive in one, two, or three spatial dimensions, depending on accessibility and the nature of the expected property variation. Because processing and visualization methods are frequently dependent on the sampling manifold's topological dimension, this provides a natural classification system for sampling features.
 
+## Sensor Observation Service
+
+The Sensor Observation Service (SOS) defines a web service interface for retrieving observations and sensor metadata. The service interface also allows new observations to be published, as well as sensor registration and removal.
+
+Latest version specification can be downloaded from,
+
+> http://www.opengeospatial.org/standards/sos
+
+The SOS Implementation Standard is a key component of the SWE architecture, defining network-centric data representations and operations for accessing and integrating sensor data. This observation data may have been collected by in-situ sensors (e.g. river gauges), moving sensor platforms (e.g. satellites or
+unmanned aerial vehicles) or networks of static sensors (e.g. seismic arrays).
+
+The following list presents examples of SOS usage:
+
++ The US National Oceanic and Atmospheric Administration (NOAA) provides quality controlled ocean data and information through its Integrated Ocean Observing System (IOOS®) SOS: 
++ Wales Air’s Sensor Observation Service (SOS) provides a machine readable access point for air pollution measurements hosted on Air quality Wales: https://airquality.gov.wales/sos-waq/service?service=SOS&request=GetCapabilities
+
+![SOS](https://user-images.githubusercontent.com/94603960/201588754-4a0c348c-f3fc-43d4-bd4d-5cd16f794dbc.png)
+
+### SOS operations
+
 
 
 
