@@ -155,7 +155,7 @@ The following list presents examples of SOS usage:
 
 ### SOS operations
 
-![SOS-operations](https://user-images.githubusercontent.com/94603960/201594559-4917cbd7-b510-4446-8b3c-715cfa171e0e.jpg)
+<img src='https://user-images.githubusercontent.com/94603960/201594795-d5c693a2-0cd6-414a-82ee-5a2b4be53758.png' width='700' height='350'>
 
 
 
