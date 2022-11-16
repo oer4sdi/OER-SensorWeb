@@ -185,3 +185,28 @@ Github repository for OGC sensorthings API:
 The SensorThings API may simplify connections between devices-to-devices and devices-to-applications by utilizing efficient REST binding, including a reduced JSON encoding, and the MQTT protocol for sensor access making it a lightweight SWE approach. 
 
 The OGC SensorThings API data model consists of two parts: (1) the Sensing part and (2) the Tasking part. 
+
+The Sensing part allows IoT devices and applications to CREATE, READ, UPDATE, and DELETE (i.e., HTTP POST, GET, PATCH, and DELETE) IoT data and metadata in a SensorThings service.
+
+
+### SensorThings API - Sensing Part
+
+![SensorThingsAPI](https://user-images.githubusercontent.com/94603960/202159021-0e31f412-6f36-43c0-b5bf-10f73b63d77f.png)
+
+The Sensing part is designed based on the OGC/ISO Observation and Measurement (O&M) model. A Thing represents an IoT device or system. A Thing has a Location that is associated with one or more Datastreams. Each Datastream has many Observations from the Sensor and observes one ObservedProperty with one Sensor. Each Observation read by the Sensor identifies a single FeatureOfInterest. These relationships, when combined, provide a flexible standard way to describe and model any sensing system. It enables SensorThings to function as a unified data exchange system for heterogeneous devices across any organization. 
+
+<details><summary>TERMINOLOGIES</summary>
+<p>
+
+| Terms | Definitions |
+| ----- | ----------- |
+| Things | The OGC SensorThings API adheres to the ITU-T definition, which states that a thing is an object of the physical world (physical things) or the information world (virtual things) that can be identified and integrated into communication networks [ITU-T]. |
+| Location | The Location entity locates the Thing or the Things it associated with. A Thing’s Location entity is defined as the last known location of the Thing |
+| Historical Location | The times of the current (i.e., last known) and previous locations of the Thing |
+| DataStream | A Datastream groups a collection of Observations measuring the same ObservedProperty and produced by the same Sensor |
+
+</p>
+</details>
+
+
+
