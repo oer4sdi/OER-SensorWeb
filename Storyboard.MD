@@ -157,6 +157,31 @@ The following list presents examples of SOS usage:
 
 <img src='https://user-images.githubusercontent.com/94603960/201594795-d5c693a2-0cd6-414a-82ee-5a2b4be53758.png' width='700' height='350'>
 
+## Sensor Web and Internet of Things
 
+The terms Internet of Things and Web of Things refer to approaches to integrating smart devices into the Internet. The Internet of Things (IoT) is a network of physical objects—"things"—embedded with sensors, software, and other technologies for connecting and exchanging data with other devices and systems via the internet. In the context of Sensorweb, the ‘things’ here are ‘Sensors’. Physical things (e.g, Sensors) can share and collect data with minimal human intervention thanks to low-cost computing technologies.
 
+The Web of Things (WoT) is a set of standards developed by the World Wide Web Consortium (W3C) to improve the interoperability, and usability of the Internet of Things (IoT). From a technological standpoint, this means that the smart device (e.g., a sensor) is addressable via standard HTTP operations (GET, POST, PUT, etc.), enabling RESTful access to sensor data (Bröring et al, 2011 a). In short, WoT is a subset of IoT and is based on software standards like REST, HTTP, and URIs to allow devices to communicate with one another. 
 
+<details><summary>TERMINOLOGIES</summary>
+<p>
+
+***REST*** : REpresentational State Transfer, is an architectural style for providing standards between computer systems on the web, allowing systems to communicate more easily with one another.
+
+***HTTP*** : Hypertext Transfer Protocol is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes.(https://developer.mozilla.org/en-US/docs/Web/HTTP)
+
+***URI*** : A Uniform Resource Identifier is a unique sequence of characters that identifies a logical or physical resource used by web technologies. In short, URI is a unique id for the resources.
+
+</p>
+</details>
+
+The Open Geospatial Consortium's Sensor Web Enablement (SWE) framework is a well-established approach for integrating sensors with the Web. A smart device, according to Bröring et al. (2011 b), may respond to data requests using SWE-standardized formats. To be more specific, sensor metadata should be encoded using SensorML, and observation data as O&M. With these format constraints, any other application/component may retrieve the smart device's sensor data in an interoperable, standardized manner.  SWE specifications such as SOS; SPS, and SES are powerful for use cases that are broad and often complex(e.g. disaster management or early warning systems). However, use cases that do not require the full functionality of SWE's data altering, sensor discovery, tasking, and event handling may be easier to realize with the Web of Things approach by treating sensor objects as things. (Liang et al.) The SensorThings API is an open standard, builds on Web protocols and the OGC Sensor Web Enablement standards, and applies an easy-to-use REST-like style.
+
+The OGC SensorThings API is recommended for organizations that require web-based platforms to manage, store, share, and analyze IoT-based sensor observation data. Application developers can use this open standard to connect to various IoT devices and create innovative applications without having to worry about the heterogeneous protocols of various IoT devices, gateways, and services. (Liang et al, 2016)
+
+Github repository for OGC sensorthings API:
+> https://github.com/opengeospatial/sensorthings
+
+The SensorThings API may simplify connections between devices-to-devices and devices-to-applications by utilizing efficient REST binding, including a reduced JSON encoding, and the MQTT protocol for sensor access making it a lightweight SWE approach. 
+
+The OGC SensorThings API data model consists of two parts: (1) the Sensing part and (2) the Tasking part. 
