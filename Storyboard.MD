@@ -103,9 +103,9 @@ To illustrate the mapping, an exemplary dataset from the hamburg smart city proj
 ```
 https://iot.hamburg.de/v1.1/?
 ```
+<img src= 'https://user-images.githubusercontent.com/94603960/202925919-4f7c696d-aa65-4663-88c2-ce0d7486f28d.png' width='500'>
 
-#### ADD picture of Observations
-
+#### QUIZ observation examples - which of the entities are there in the examples shown.
 
 The Observation model approaches data from the perspective of the data user, emphasizing the semantics of the feature-of-interest and its properties.
 
@@ -117,6 +117,17 @@ The Observation model approaches data from the perspective of the data user, emp
 
 Observations where the outcome of a single observation may have a single value or multiple values, but if there are multiple values, those values do not change over the course of the observation with respect to either space or time.
 
+Example
+```
+A well known example would be Flip-a-Coin, where the odds are always 'HEAD' or 'TAIL'
+
+How about something in GeoSpatial Context?
+Buildings and Roads are features that have distinct boundaries or limits are considered discrete. 
+In mapping, discrete data can be shown as a point, line, or a polygon. Points could be cities, lines could be road 
+networks, and polygons could be provinces in a country.
+
+```
+
 2. Continous Observation
 
 Observations where the outcome of a single observation includes multiple values that change with time, space, or both during the course of the observation. The value of a corresponding observation result shall therefore be a function or coverage, respectively. The target feature may be subjected to numerous observations using various sampling methods, so the sampling methods are associated with the act of observation rather than being inherent in the feature-of-interest.
@@ -125,15 +136,23 @@ To model the coverage, a domain geometry decomposition with specialized sub-geom
 
 ![o m-disctypes](https://user-images.githubusercontent.com/94603960/201489600-be68a35a-53bc-48f6-8427-d4ce3a6824b7.png)
 
+What would be a best example for Continous Observation? 
 ```
-Did you know that your feature of interest may not be the ultimate domain-specific feature whose properties are of interest in the observation. 
+Weather is not predictable and is not good example for Continous Observation. 
+'Temperature' for example, changes over space and time. 
+Think of any continous Observation?
+```
+### Sampling Features in an Observation
+
+<img align='left' src='https://user-images.githubusercontent.com/94603960/201488995-e767ff0e-429d-40a7-867b-d3ab86244472.png' height='350'> A **spatial sampling feature** is used when observations are made to estimate properties of a geospatial feature, particularly when the value of a property varies within the scope of the feature. The sampling feature may be extensive in one, two, or three spatial dimensions, depending on accessibility and the nature of the expected property variation. Because processing and visualization methods are frequently dependent on the sampling manifold's topological dimension, this provides a natural classification system for sampling features.
+
+
+```
+Did you know that your feature of interest may not be the ultimate domain-specific feature whose properties 
+are of interest in the observation. 
 
 LEARN WHY : Proximate vs. ultimate feature-of-interest 
 ```
-
-### Sampling Features in an Observation
-
-<img align='left' src='https://user-images.githubusercontent.com/94603960/201488995-e767ff0e-429d-40a7-867b-d3ab86244472.png'> A **spatial sampling feature** is used when observations are made to estimate properties of a geospatial feature, particularly when the value of a property varies within the scope of the feature. The sampling feature may be extensive in one, two, or three spatial dimensions, depending on accessibility and the nature of the expected property variation. Because processing and visualization methods are frequently dependent on the sampling manifold's topological dimension, this provides a natural classification system for sampling features.
 
 ## Sensor Observation Service
 
