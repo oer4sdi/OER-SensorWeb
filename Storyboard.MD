@@ -44,7 +44,11 @@ The OGC's Sensor Web Enablement (SWE) standards enable developers to make all ty
 ### SWE OGC Standards
 The SWE framework includes multiple formats for interoperable sensor data exchange, as well as Web Service specifications for sensor data access. The list below provides an overview of key SWE standards. A sufficient description of the standard is included where applicable. 
 
-![sensors-19-04070-g003](https://user-images.githubusercontent.com/94603960/200171298-fe996d09-a0e8-4b29-8904-dd184529d417.png)
+<p align='center'>
+  <img src='https://user-images.githubusercontent.com/94603960/200171298-fe996d09-a0e8-4b29-8904-dd184529d417.png' width='400' height='250'>
+</p>
+
+The table below explains briefly about the OGC Standards, in the upcoming chapters we can discuss some of the concepts that are relevant for this course indepth.
 
 | OGC Standards | Description |
 |---------------|-------------|
@@ -70,8 +74,9 @@ Some Standards are not considered to be OGC standards, nonetheless they are allo
 
 
 ## O&M model
-
-<img align='center' src='https://user-images.githubusercontent.com/94603960/201489207-bf9ca213-91a6-4502-8d46-ede5ed704f81.png'>
+<p align='center'>
+  <img src='https://user-images.githubusercontent.com/94603960/201489207-bf9ca213-91a6-4502-8d46-ede5ed704f81.png'>
+</p>
 
 Observation and Measurements standard defines models and XML schemas for observations as well as features involved in sampling when making observations. O&M creates a high-level framework for representing sensor system observations, measurements, procedures, and metadata, for the implementation of SWE-enabled architectures. 
 
@@ -81,7 +86,9 @@ Because IP-based environmental sensors are becoming more affordable, anyone can 
 
 
 #### UML Diagram of Observations
-<img align='center' src='https://user-images.githubusercontent.com/94603960/201489421-348a3829-6a78-433d-a0e8-2b35717fafda.png'> 
+<p align='center'>
+  <img src='https://user-images.githubusercontent.com/94603960/201489421-348a3829-6a78-433d-a0e8-2b35717fafda.png'>
+</p>
 
 An observation is part of a procedure that measured a specific observedProperty at a dedicated featureOfInterest for a specific phenomenonTime and saved the result. Since each measurement is flawed to a certain extent, the property resultQuality denotes the Quality of the measurement. We will learn about the specified terms definitions mentioned in this definition below.
 
@@ -173,8 +180,9 @@ The following list presents examples of SOS usage:
 ![SOS](https://user-images.githubusercontent.com/94603960/201588754-4a0c348c-f3fc-43d4-bd4d-5cd16f794dbc.png)
 
 ### SOS operations
-
-<img src='https://user-images.githubusercontent.com/94603960/201594795-d5c693a2-0cd6-414a-82ee-5a2b4be53758.png' width='700' height='350'>
+<p align='center'>
+  <img src='https://user-images.githubusercontent.com/94603960/201594795-d5c693a2-0cd6-414a-82ee-5a2b4be53758.png' width='700' height='350'>
+</p>
 
 ## Sensor Web and Internet of Things
 
@@ -190,7 +198,7 @@ The Web of Things (WoT) is a set of standards developed by the World Wide Web Co
 ***HTTP*** : Hypertext Transfer Protocol is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes.(https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 ***URI*** : A Uniform Resource Identifier is a unique sequence of characters that identifies a logical or physical resource used by web technologies. In short, URI is a unique id for the resources.
-
+  
 </p>
 </details>
 
