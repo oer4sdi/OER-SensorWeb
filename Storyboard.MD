@@ -149,17 +149,6 @@ Weather is not predictable and is not good example for Continous Observation.
 'Temperature' for example, changes over space and time. 
 Think of any continous Observation?
 ```
-### Sampling Features in an Observation
-
-<img align='left' src='https://user-images.githubusercontent.com/94603960/201488995-e767ff0e-429d-40a7-867b-d3ab86244472.png' height='350'> A **spatial sampling feature** is used when observations are made to estimate properties of a geospatial feature, particularly when the value of a property varies within the scope of the feature. The sampling feature may be extensive in one, two, or three spatial dimensions, depending on accessibility and the nature of the expected property variation. Because processing and visualization methods are frequently dependent on the sampling manifold's topological dimension, this provides a natural classification system for sampling features.
-
-
-```
-Did you know that your feature of interest may not be the ultimate domain-specific feature whose properties 
-are of interest in the observation. 
-
-LEARN WHY : Proximate vs. ultimate feature-of-interest 
-```
 
 ## Sensor Observation Service
 
