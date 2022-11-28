@@ -215,7 +215,7 @@ The Sensing part allows IoT devices and applications to CREATE, READ, UPDATE, an
 
 ### SensorThings API - Sensing Part
 
-![SensorThingsAPI](https://user-images.githubusercontent.com/94603960/202159021-0e31f412-6f36-43c0-b5bf-10f73b63d77f.png)
+![sta-entity](https://user-images.githubusercontent.com/94603960/204211187-c0b85e20-eb8d-4521-97f4-18b7823645cb.png)
 
 The Sensing part is designed based on the OGC/ISO Observation and Measurement (O&M) model. A Thing represents an IoT device or system. A Thing has a Location that is associated with one or more Datastreams. Each Datastream has many Observations from the Sensor and observes one ObservedProperty with one Sensor. Each Observation read by the Sensor identifies a single FeatureOfInterest. These relationships, when combined, provide a flexible standard way to describe and model any sensing system. It enables SensorThings to function as a unified data exchange system for heterogeneous devices across any organization. 
 
@@ -232,5 +232,229 @@ The Sensing part is designed based on the OGC/ISO Observation and Measurement (O
 </p>
 </details>
 
+#### Entities
+a) Things
 
+A Thing has one or more Datastreams that collect Observations. A Thing without a Location and Datastream can be created, and there are options for creating Things with nested linked Location and Datastream.
 
+| Property | Description | Multiplicity and Use |
+| -------- | ----------- | -------------------- |
+| Name | A label for the Thing | One (Mandatory) |
+| Description | short description of the corresponding Thing entity | One (Mandatory) |
+| Properties | A JSON Object containing user-annotated properties as key-value pairs | Zero to One |
+
+Example of a Thing
+
+```
+{
+"description": "StadtRad-Station Ottenser Marktplatz / Platz der Republik",
+"@iot.id": 32,
+"name": "StadtRad-Station 401f6852-ef52-46fe-b5e1-8bbcc8c43fa6",
+"properties": {
+  "assetID": "401f6852-ef52-46fe-b5e1-8bbcc8c43fa6",
+  "keywords": [ "Fahrradverleihsystem", "Hamburg" ],
+  "language": "de",
+  "ownerThing": "DB Connect",
+  "infoLastUpdate": "2022-09-20T13:10:02.636Z",
+  "stationsNummer": "28708"
+ },
+"@iot.selfLink": "https://iot.hamburg.de/v1.1/Things(32)",
+"HistoricalLocations@iot.navigationLink": "https://iot.hamburg.de/v1.1/Things(32)/HistoricalLocations",
+"TaskingCapabilities@iot.navigationLink": "https://iot.hamburg.de/v1.1/Things(32)/TaskingCapabilities",
+"MultiDatastreams@iot.navigationLink": "https://iot.hamburg.de/v1.1/Things(32)/MultiDatastreams",
+"Locations@iot.navigationLink": "https://iot.hamburg.de/v1.1/Things(32)/Locations",
+"Datastreams@iot.navigationLink": "https://iot.hamburg.de/v1.1/Things(32)/Datastreams"
+},
+
+```
+b) Location
+
+The Location entity locates the Thing or Things with which it is associated. The Location entity of a Thing is defined as the Thing's last known location. The Location of a Thing may be the same as the FeatureOfInterest of the Thing's Observations. The primary location of interest in the context of the IoT is typically associated with the location of the Thing, particularly for in-situ sensing applications.
+
+| Property | Description | Multiplicity and Use |
+| -------- | ----------- | -------------------- |
+| Name | a label for Location entity | One (Mandatory) |
+| Description | short description of the corresponding Location entity | One (Mandatory) |
+| location | The location type is defined by GeoJSON encodingType | One (Mandatory) |
+
+Example of a Location
+
+```
+{
+"description": "",
+"encodingType": "application/vnd.geo+json",
+"@iot.id": 26518887,
+"location": {
+  "type": "Feature",
+  "geometry": {
+  "type": "Point",
+  "coordinates": [10.0080800000001,53.57392]
+   }
+},
+"name": "StadtRad-Station Schöne Aussicht / Karlstraße",
+"@iot.selfLink": "https://iot.hamburg.de/v1.1/Locations(26518887)",
+"HistoricalLocations@iot.navigationLink": "https://iot.hamburg.de/v1.1/Locations(26518887)/HistoricalLocations",
+"Things@iot.navigationLink": "https://iot.hamburg.de/v1.1/Locations(26518887)/Things"
+},
+
+```
+c) HistoricalLocation
+
+A Thing’s HistoricalLocation entity set provides the times of the current (i.e., last known) and previous locations of the Thing. The HistoricalLocation can also be created, updated and deleted.
+
+| Property | Description | Multiplicity and Use |
+| -------- | ----------- | -------------------- |
+| Time | Last known time of the Thing at the location | One (Mandatory) |
+
+d) DataStream
+
+A Datastream groups a collection of Observations measuring the same ObservedProperty and produced by the same Sensor.
+
+| Property | Description | Multiplicity and Use |
+| -------- | ----------- | -------------------- |
+| Name | A label for the Datastream entity | One (Mandatory) |
+| description | The description of the Datastream entity | One (Mandatory) |
+| unitOfMeasurement | A JSON Object containing three key-value pairs: name, symbol, definition for the symbol used | One (Mandatory) |
+| observationType | The type of Observation (with unique result type), which is used by the service to encode observations | One (Mandatory) |
+| observedArea | The spatial bounding box of the spatial extent of all FeaturesOfInterest that belong to the Observations associated with this Datastream | Zero to One (Optional) |
+| phenomenonTime | The temporal interval of the phenomenon times of all observations belonging to this Datastream | Zero to One (Optional) |
+| resultTime | The temporal interval of the result times of all observations belonging to this Datastream | Zero to One (Optional) |
+
+ObservationType has data types derived from Observation and Measurement Model. 
+
+Example for DataStream
+
+```
+{
+"description": "Die Rohdaten der verfügbaren E-Lastenräder an einer StadtRad-Station werden alle 5 Minuten abgefragt und aufsummiert.",
+"@iot.id": 258,
+"name": "E-Lastenräder an StadtRad-Station bda4b7e5-6dca-4fa0-a44a-87947463e9da",
+"observationType": "http://www.opengis.net/def/ogc-om/OM_CountObservation",
+"observedArea": {
+  "type": "LineString",
+  "coordinates": [[569252.323397734,5938171.45],
+                [10.0461978,53.5878083]]
+ },
+"phenomenonTime": "2019-07-26T09:00:43.631Z/2022-11-24T15:11:58.085Z",
+"properties": {
+  "topic": "Transport und Verkehr",
+  "metadata": "https://registry.gdi-de.org/id/de.hh/08d1158c-2b5b-49cb-91c3-0ca9fe22a955",
+  "layerName": "E-Lastenraeder",
+  "ownerData": "Freie und Hansestadt Hamburg",
+  "serviceName": "HH_STA_StadtRad",
+  "resultNature": "processed",
+  "infoLastUpdate": "2022-09-19T09:00:53.264Z",
+  "mediaMonitored": "transport"
+},
+"resultTime": "2019-07-26T09:03:10.429Z/2022-11-24T15:11:58.085Z",
+"@iot.selfLink": "https://iot.hamburg.de/v1.1/Datastreams(258)",
+"unitOfMeasurement": {
+  "name": null,
+  "symbol": null,
+  "definition": null
+},
+"ObservedProperty@iot.navigationLink": "https://iot.hamburg.de/v1.1/Datastreams(258)/ObservedProperty",
+"Sensor@iot.navigationLink": "https://iot.hamburg.de/v1.1/Datastreams(258)/Sensor",
+"Thing@iot.navigationLink": "https://iot.hamburg.de/v1.1/Datastreams(258)/Thing",
+"Observations@iot.navigationLink": "https://iot.hamburg.de/v1.1/Datastreams(258)/Observations"
+},
+
+```
+
+e) Sensor
+
+A Sensor is an instrument that observes a property or phenomenon with the goal of producing an estimate of the value of the property
+
+| Property | Description | Multiplicity and Use |
+| -------- | ----------- | -------------------- |
+| Name | a label for Sensor entity | One (Mandatory) |
+| Description | short description of the corresponding Sensor entity | One (Mandatory) |
+| metadata | The detailed description of the Sensor or system defined by encodingType. | One (Mandatory) |
+
+A sensor Metadata Encoding type can be either pdf or SensorML has described above. Most sensor manufacturers provide their sensor datasheets in a PDF format. As a result, PDF is a Sensor encodingType supported by SensorThings API. The second Sensor encodingType is SensorML.
+
+Example 
+
+```
+{
+"description": "A detector actively sensing or passively being activated to transmit a signal change request of a traffic participant (pedestrian, cyclist, motorized vehicle).",
+"encodingType": "NA",
+"@iot.id": 5653,
+"metadata": "Detectors serve to gain information on traffic. Various types of detectors are used for the different groups of road users. Amongst others these can be  inductive loops and infrared detectors for motor vehicles and bicycles or  touch sensors for requests by pedestrians and cyclists. ",
+"name": "Traffic participant detector",
+"@iot.selfLink": "https://iot.hamburg.de/v1.1/Sensors(5653)",
+"MultiDatastreams@iot.navigationLink": "https://iot.hamburg.de/v1.1/Sensors(5653)/MultiDatastreams",
+"Datastreams@iot.navigationLink": "https://iot.hamburg.de/v1.1/Sensors(5653)/Datastreams"
+},
+```
+f) ObservedProperty
+
+An ObservedProperty specifies the phenomenon of an Observation.
+
+| Property | Description | Multiplicity and Use |
+| -------- | ----------- | -------------------- |
+| Name | A label for the ObservedProperty | One (Mandatory) |
+| Description | short description of the Observed Property | One (Mandatory) |
+| definition | The URI of the ObservedProperty. | One (Mandatory) |
+
+Example
+
+```
+{
+"description": "This is a property of the velocity of the wind.",
+"definition": "http://www.qudt.org/qudt/owl/1.0.0/quantity/Instances.html#Speed",
+"@iot.id": 53,
+"name": "Wind speed",
+"@iot.selfLink": "https://iot.hamburg.de/v1.1/ObservedProperties(53)",
+"MultiDatastreams@iot.navigationLink": "https://iot.hamburg.de/v1.1/ObservedProperties(53)/MultiDatastreams",
+"Datastreams@iot.navigationLink": "https://iot.hamburg.de/v1.1/ObservedProperties(53)/Datastreams"
+},
+```
+
+g) Observation
+
+An Observation is the act of measuring or otherwise determining the value of a property [OGC 10-004r3 and ISO 19156:2011] Check out the Observation and Measurement Model that we discussed in this article.
+
+Example
+
+```
+{
+"@iot.id": "ec8aa218-9ff9-11ec-a31d-9b423eda208a",
+"phenomenonTime": "2022-03-06T05:00:00.000Z",
+"parameters": {
+  "masks": ["ICE","ESTIMATED"]
+},
+"result": null,
+"resultTime": null,
+"@iot.selfLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Observations('ec8aa218-9ff9-11ec-a31d-9b423eda208a')",
+"Datastream@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Observations('ec8aa218-9ff9-11ec-a31d-9b423eda208a')/Datastream",
+"FeatureOfInterest@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Observations('ec8aa218-9ff9-11ec-a31d-9b423eda208a')/FeatureOfInterest",
+"MultiDatastream@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Observations('ec8aa218-9ff9-11ec-a31d-9b423eda208a')/MultiDatastream"
+},
+```
+h) Feature of Interest
+
+An Observation results in a value being assigned to a phenomenon. The phenomenon is a property of a feature, the latter being the FeatureOfInterest of the Observation [OGC and ISO 19156:2011]. In the context of the Internet of Things, many Observations’ FeatureOfInterest can be the Location of the Thing. Example, the FeatureOfInterest can be the geographical area or volume that is being sensed.
+
+| Property | Description | Multiplicity and Use |
+| -------- | ----------- | -------------------- |
+| Name | A label for the FeatureOfInterest | One (Mandatory) |
+| Description | short description of the FeatureOfInterest | One (Mandatory) |
+| feature | The detailed description of the feature. The data type is defined by encodingType | One (Mandatory) |
+
+Example
+
+```
+{
+"description": "Generated from location 5891d7a8-2d1b-11ec-a8de-7be125e05952",
+"encodingType": "application/vnd.geo+json",
+"feature": {
+  "type": "Point",
+  "coordinates": [-96.2429583,30.2123138]
+},
+"@iot.id": "7a5bbcd4-2d23-11ec-b026-178e2d48f659",
+"name": "FoI for location 5891d7a8-2d1b-11ec-a8de-7be125e05952",
+"@iot.selfLink": "https://labs.waterdata.usgs.gov/sta/v1.1/FeaturesOfInterest('7a5bbcd4-2d23-11ec-b026-178e2d48f659')",
+"Observations@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/FeaturesOfInterest('7a5bbcd4-2d23-11ec-b026-178e2d48f659')/Observations"
+},
+```
