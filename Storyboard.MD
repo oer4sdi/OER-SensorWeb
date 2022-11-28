@@ -87,21 +87,28 @@ Because IP-based environmental sensors are becoming more affordable, anyone can 
 
 #### UML Diagram of Observations
 <p align='center'>
-  <img src='https://user-images.githubusercontent.com/94603960/201489421-348a3829-6a78-433d-a0e8-2b35717fafda.png'>
+  <img src='https://user-images.githubusercontent.com/94603960/204206653-b5fae81b-74f3-4ab5-aac2-6e885dc7c385.png'>
 </p>
 
-An observation is part of a procedure that measured a specific observedProperty at a dedicated featureOfInterest for a specific phenomenonTime and saved the result. Since each measurement is flawed to a certain extent, the property resultQuality denotes the Quality of the measurement. We will learn about the specified terms definitions mentioned in this definition below.
+An observation is part of a procedure that measured a specific observedProperty at a dedicated featureOfInterest for a specific phenomenonTime and saved the result. Since each measurement is flawed to a certain extent, the property resultQuality denotes the Quality of the measurement. We will learn about the entities and properties of observation mentioned in this definition below.
 
-| Entity | Description |
-| ------ | ----------- |
-| Observed Property / Phenomenon | A property measured by a sensor. Eg, Temperature, Co2 levels |
-| Feature of Interest (FoI) | an abstraction of a real world phenomena which has been georeferenced. Eg, Park(Place) |
-| Phenomenon Time | The time instant or period of when the Observation happens |
-| Result | The estimated value of an ObservedProperty from the Observation |
-| Result Time | The time of the Observation’s result was generated |
-| Result Quality | 	Describes the quality of the result owing to the fact that sensor data can be faulty to some extent |
+| Entity | Description | Examples |
+| ------ | ----------- | -------- |
+| Observed Property / Phenomenon | A property measured by a sensor | Temperature, Co2 levels |
+| Feature of Interest (FoI) | an abstraction of a real world phenomena which has been georeferenced | Park(Place) |
+| Phenomenon Time | The time instant or period of when the Observation happens | The time at which Co2 levels are measured |
+| Result | The estimated value of an ObservedProperty from the Observation | Atm Pressure: in Pa(pascal) |
+| Result Time | The time of the Observation’s result after processing was generated| The time at which Atm Pressure after processing |
+
+Table 1: Mandatory Properties of an Observation Model
+
+| Entity | Description | Examples |
+| ------ | ----------- | -------- |
+| Result Quality | 	Describes the quality of the result owing to the fact that sensor data can be faulty to some extent | 
 | Valid Time | The time period during which the result may be used. With real time sensor data available, the data is measured and replaced within seconds in some cases |
-| Process | The process that performs the measurement Eg, temperature sensor |
+| Process | The process that performs the measurement | Temperature sensor |
+
+Table 2: Optional Properties of an Observation Model
 
 #### QUIZ - (A drag and drop options that user use correctly mention the terms Eg question : When measuring the height of a tree, the height is the observed ObservableProperty, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest.) H5P format
 
@@ -112,26 +119,26 @@ https://iot.hamburg.de/v1.1/?
 ```
 <img src= 'https://user-images.githubusercontent.com/94603960/202925919-4f7c696d-aa65-4663-88c2-ce0d7486f28d.png' width='500'>
 
-#### QUIZ observation examples - which of the entities are there in the examples shown.
+#### QUIZ observation examples
 
-The Observation model approaches data from the perspective of the data user, emphasizing the semantics of the feature-of-interest and its properties.
+The Observation model approaches data from the perspective of the data user, emphasizing the semantics of the feature-of-interest and its properties. Whether the feature-of-interest is a discrete or continous observation.
 
 ### Classification of observation by result type
 
 1. Discrete Observation
 
-![o m-types](https://user-images.githubusercontent.com/94603960/201489361-2a94b635-1e62-4cd0-ad7e-3d60d8210d05.png)
+![o m-discrobs](https://user-images.githubusercontent.com/94603960/204206594-5803c760-8199-4d10-859d-165a7a80ac99.png)
 
 Observations where the outcome of a single observation may have a single value or multiple values, but if there are multiple values, those values do not change over the course of the observation with respect to either space or time.
 
 Example
 ```
-A well known example would be Flip-a-Coin, where the odds are always 'HEAD' or 'TAIL'
+A well known example would be Flip-a-Coin, where the odds are always 'HEAD' or 'TAIL' - This would be a Boolean type observation.
 
 How about something in GeoSpatial Context?
 Buildings and Roads are features that have distinct boundaries or limits are considered discrete. 
 In mapping, discrete data can be shown as a point, line, or a polygon. Points could be cities, lines could be road 
-networks, and polygons could be provinces in a country.
+networks, and polygons could be provinces in a country. This features would be Geometry type observation.
 
 ```
 
@@ -141,12 +148,13 @@ Observations where the outcome of a single observation includes multiple values 
 
 To model the coverage, a domain geometry decomposition with specialized sub-geometries is defined to represent the associated feature.
 
-![o m-disctypes](https://user-images.githubusercontent.com/94603960/201489600-be68a35a-53bc-48f6-8427-d4ce3a6824b7.png)
+![o m-contobs](https://user-images.githubusercontent.com/94603960/204206553-dacd1b3f-535d-4528-85cd-c07a9fcb9821.png)
 
 What would be a best example for Continous Observation? 
 ```
-Weather is not predictable and is not good example for Continous Observation. 
-'Temperature' for example, changes over space and time. 
+Weather is not predictable and is a good example for Continous Observation. 
+'Temperature' for example, changes over space and time. So depending on your analysis, if you want temperature from various sources(places) 
+that comes under a coverage.
 Think of any continous Observation?
 ```
 
