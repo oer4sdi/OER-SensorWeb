@@ -90,15 +90,17 @@ Because IP-based environmental sensors are becoming more affordable, anyone can 
   <img src='https://user-images.githubusercontent.com/94603960/204206653-b5fae81b-74f3-4ab5-aac2-6e885dc7c385.png'>
 </p>
 
-An observation is part of a procedure that measured a specific observedProperty at a dedicated featureOfInterest for a specific phenomenonTime and saved the result. Since each measurement is flawed to a certain extent, the property resultQuality denotes the Quality of the measurement. We will learn about the entities and properties of observation mentioned in this definition below.
+According to OGC Standards[1], an observation is an act associated with the process that measures an observed property at a specific feature of interest for a specific phenomenon time and records the results. We will learn about the entities and properties of observation mentioned in this definition below.
 
 | Entity | Description | Examples |
 | ------ | ----------- | -------- |
-| Observed Property / Phenomenon | A property measured by a sensor | Temperature, Co2 levels |
+| Observed Property / Phenomenon | A property measured by a sensor | Temperature |
 | Feature of Interest (FoI) | an abstraction of a real world phenomena which has been georeferenced | Park(Place) |
-| Phenomenon Time | The time instant or period of when the Observation happens | The time at which Co2 levels are measured |
-| Result | The estimated value of an ObservedProperty from the Observation | Atm Pressure: in Pa(pascal) |
-| Result Time | The time of the Observation’s result after processing was generated| The time at which Atm Pressure after processing |
+| Phenomenon Time | The time instant or period of when the Observation happens | 2022-03-06T05:00:00.000Z |
+| Result | The estimated value of an ObservedProperty from the Observation | 12°c |
+| Result Time | The time of the Observation’s result after processing was generated| 2022-03-07T05:00:00.000Z |
+
+Note: The temporal parameter in geospatial context is phenomenon time. If the Sensor is capable of post processing, then the time at which a result is posted following post processing would be Result Time.
 
 Table 1: Mandatory Properties of an Observation Model
 
