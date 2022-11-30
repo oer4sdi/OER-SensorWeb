@@ -157,7 +157,6 @@ as a point, line, or a polygon. Points could be cities, lines could be road netw
 This features would be Geometry type observation.
 
 ```
-
 2. Observations whose result is varies
 
 Observations where the outcome of a observation includes multiple values that change with time, space, or both during the course of the observation. The value of a corresponding observation result shall therefore be a function or coverage(domain extent is the spatiotemporal extent of the feature), respectively. The target feature may be subjected to numerous observations using various sampling methods, so the sampling methods are associated with the act of observation rather than being inherent in the feature-of-interest. To model the coverage, a domain geometry decomposition with specialized sub-geometries is defined to represent the associated feature.
@@ -195,25 +194,11 @@ The following list presents examples of SOS usage:
   <img src='https://user-images.githubusercontent.com/94603960/201594795-d5c693a2-0cd6-414a-82ee-5a2b4be53758.png' width='700' height='350'>
 </p>
 
+# SensorThings API
+
 ## Sensor Web and Internet of Things
 
-The terms Internet of Things and Web of Things refer to approaches to integrating smart devices into the Internet. The Internet of Things (IoT) is a network of physical objects—"things"—embedded with sensors, software, and other technologies for connecting and exchanging data with other devices and systems via the internet. In the context of Sensorweb, the ‘things’ here are ‘Sensors’. Physical things (e.g, Sensors) can share and collect data with minimal human intervention thanks to low-cost computing technologies.
-
-The Web of Things (WoT) is a set of standards developed by the World Wide Web Consortium (W3C) to improve the interoperability, and usability of the Internet of Things (IoT). From a technological standpoint, this means that the smart device (e.g., a sensor) is addressable via standard HTTP operations (GET, POST, PUT, etc.), enabling RESTful access to sensor data (Bröring et al, 2011 a). In short, WoT is a subset of IoT and is based on software standards like REST, HTTP, and URIs to allow devices to communicate with one another. 
-
-<details><summary>TERMINOLOGIES</summary>
-<p>
-
-***REST*** : REpresentational State Transfer, is an architectural style for providing standards between computer systems on the web, allowing systems to communicate more easily with one another.
-
-***HTTP*** : Hypertext Transfer Protocol is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes.(https://developer.mozilla.org/en-US/docs/Web/HTTP)
-
-***URI*** : A Uniform Resource Identifier is a unique sequence of characters that identifies a logical or physical resource used by web technologies. In short, URI is a unique id for the resources.
-  
-</p>
-</details>
-
-# SensorThings API
+The terms Internet of Things and Web of Things refer to approaches to integrating smart devices into the Internet. The Internet of Things (IoT) is a network of physical objects—"things"—embedded with sensors, software, and other technologies for connecting and exchanging data with other devices and systems via the internet. In the context of Sensorweb, the `things` here are `Sensors`. Physical things (e.g, Sensors) can share and collect data with minimal human intervention thanks to low-cost computing technologies. The Web of Things (WoT) is a set of standards developed by the World Wide Web Consortium (W3C) to improve the interoperability, and usability of the Internet of Things (IoT). From a technological standpoint, this means that the smart device (e.g., a sensor) is addressable via standard HTTP operations (GET, POST, PUT, etc.), enabling [RESTful](https://www.codecademy.com/article/what-is-rest) access to sensor data (Bröring et al, 2011 a). In short, WoT is a subset of IoT and is based on software standards like REST, HTTP, and URIs to allow devices to communicate with one another.
 
 The Open Geospatial Consortium's Sensor Web Enablement (SWE) framework is a well-established approach for integrating sensors with the Web. A smart device, according to Bröring et al. (2011 b), may respond to data requests using SWE-standardized formats. To be more specific, sensor metadata should be encoded using SensorML, and observation data as O&M. With these format constraints, any other application/component may retrieve the smart device's sensor data in an interoperable, standardized manner.  SWE specifications such as SOS; SPS, and SES are powerful for use cases that are broad and often complex(e.g. disaster management or early warning systems). However, use cases that do not require the full functionality of SWE's data altering, sensor discovery, tasking, and event handling may be easier to realize with the Web of Things approach by treating sensor objects as things. (Liang et al.) The SensorThings API is an open standard, builds on Web protocols and the OGC Sensor Web Enablement standards, and applies an easy-to-use REST-like style.
 
@@ -224,117 +209,124 @@ Github repository for OGC sensorthings API:
 
 The SensorThings API may simplify connections between devices-to-devices and devices-to-applications by utilizing efficient REST binding, including a reduced JSON encoding, and the MQTT protocol for sensor access making it a lightweight SWE approach. 
 
-The OGC SensorThings API data model consists of two parts: (1) the Sensing part and (2) the Tasking part. 
+The OGC SensorThings API data model consists of two parts: (1) the Sensing part and (2) the Tasking part. The Sensing part allows IoT devices and applications to CREATE, READ, UPDATE, and DELETE (i.e., HTTP POST, GET, PATCH, and DELETE) IoT data and metadata in a SensorThings service.
 
-The Sensing part allows IoT devices and applications to CREATE, READ, UPDATE, and DELETE (i.e., HTTP POST, GET, PATCH, and DELETE) IoT data and metadata in a SensorThings service.
-
-
-### SensorThings API - Sensing Part
+## SensorThings API - Sensing Part
 
 ![sta-entity](https://user-images.githubusercontent.com/94603960/204211187-c0b85e20-eb8d-4521-97f4-18b7823645cb.png)
 
 The Sensing part is designed based on the OGC/ISO Observation and Measurement (O&M) model. A Thing represents an IoT device or system. A Thing has a Location that is associated with one or more Datastreams. Each Datastream has many Observations from the Sensor and observes one ObservedProperty with one Sensor. Each Observation read by the Sensor identifies a single FeatureOfInterest. These relationships, when combined, provide a flexible standard way to describe and model any sensing system. It enables SensorThings to function as a unified data exchange system for heterogeneous devices across any organization. 
 
-<details><summary>TERMINOLOGIES</summary>
-<p>
+| Terms | Definitions | Example |
+| ----- | ----------- | ------- |
+| `Things` | The OGC SensorThings API adheres to the ITU-T definition, which states that a thing is an object of the physical world (physical things) or the information world (virtual things) that can be identified and integrated into communication networks [ITU-T] | Temperature Monitoring System |
+| `Location` | The Location entity locates the Thing or the Things it associated with. A Thing’s Location entity is defined as the last known location of the Thing | Park |
+| `Historical Location` | The times of the current (i.e., last known) and previous locations of the Thing | `2021-10-14T18:51:47.342Z` |
+| `DataStream` | A Datastream groups a collection of Observations measuring the same ObservedProperty and produced by the same Sensor |
+| `ObservedProperty` | An ObservedProperty specifies the phenomenon of an Observation | Temperature |
+| `Sensor` | an instrument that observes a property or phenomenon | Temperature Sensor |
+| `Observation` | an act associated with the process that measures an observed property at a specific feature of interest for a specific phenomenon time and records the results |
 
-| Terms | Definitions |
-| ----- | ----------- |
-| Things | The OGC SensorThings API adheres to the ITU-T definition, which states that a thing is an object of the physical world (physical things) or the information world (virtual things) that can be identified and integrated into communication networks [ITU-T]. |
-| Location | The Location entity locates the Thing or the Things it associated with. A Thing’s Location entity is defined as the last known location of the Thing |
-| Historical Location | The times of the current (i.e., last known) and previous locations of the Thing |
-| DataStream | A Datastream groups a collection of Observations measuring the same ObservedProperty and produced by the same Sensor |
 
-</p>
-</details>
+Lets take a look into this URL again:
+
+> https://labs.waterdata.usgs.gov/sta/v1.1/
 
 #### Entities
+
+Each Entity has some mandatory elements to be specified.
+| Property | Description | Example |
+| 
 a) Things
 
 A Thing has one or more Datastreams that collect Observations. A Thing without a Location and Datastream can be created, and there are options for creating Things with nested linked Location and Datastream.
 
-| Property | Description | Multiplicity and Use |
-| -------- | ----------- | -------------------- |
-| Name | A label for the Thing | One (Mandatory) |
-| Description | short description of the corresponding Thing entity | One (Mandatory) |
-| Properties | A JSON Object containing user-annotated properties as key-value pairs | Zero to One |
+| Property | Description | Multiplicity and Use | Example |
+| -------- | ----------- | -------------------- | ------- |
+| `Name` | A label for the Thing | One (Mandatory) | USGS-340422107370801 |
+| `Description` | short description of the corresponding Thing entity | One (Mandatory) | Well |
+| `Properties` | A JSON Object containing user-annotated properties as key-value pairs | Zero to One | State |
 
 Example of a Thing
 
 ```
 {
-"description": "StadtRad-Station Ottenser Marktplatz / Platz der Republik",
-"@iot.id": 32,
-"name": "StadtRad-Station 401f6852-ef52-46fe-b5e1-8bbcc8c43fa6",
+"description": "Well",
+"@iot.id": "USGS-340422107370801",
+"name": "USGS-340422107370801",
 "properties": {
-  "assetID": "401f6852-ef52-46fe-b5e1-8bbcc8c43fa6",
-  "keywords": [ "Fahrradverleihsystem", "Hamburg" ],
-  "language": "de",
-  "ownerThing": "DB Connect",
-  "infoLastUpdate": "2022-09-20T13:10:02.636Z",
-  "stationsNummer": "28708"
- },
-"@iot.selfLink": "https://iot.hamburg.de/v1.1/Things(32)",
-"HistoricalLocations@iot.navigationLink": "https://iot.hamburg.de/v1.1/Things(32)/HistoricalLocations",
-"TaskingCapabilities@iot.navigationLink": "https://iot.hamburg.de/v1.1/Things(32)/TaskingCapabilities",
-"MultiDatastreams@iot.navigationLink": "https://iot.hamburg.de/v1.1/Things(32)/MultiDatastreams",
-"Locations@iot.navigationLink": "https://iot.hamburg.de/v1.1/Things(32)/Locations",
-"Datastreams@iot.navigationLink": "https://iot.hamburg.de/v1.1/Things(32)/Datastreams"
+  "state": "New Mexico",
+  "monitoringLocationAltitudeLandSurface": "6981"
 },
+"@iot.selfLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Things('USGS-340422107370801')",
+"Locations@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Things('USGS-340422107370801')/Locations",
+"MultiDatastreams@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Things('USGS-340422107370801')/MultiDatastreams",
+"HistoricalLocations@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Things('USGS-340422107370801')/HistoricalLocations",
+"TaskingCapabilities@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Things('USGS-340422107370801')/TaskingCapabilities",
+"Datastreams@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Things('USGS-340422107370801')/Datastreams"
+}
 
 ```
 b) Location
 
 The Location entity locates the Thing or Things with which it is associated. The Location entity of a Thing is defined as the Thing's last known location. The Location of a Thing may be the same as the FeatureOfInterest of the Thing's Observations. The primary location of interest in the context of the IoT is typically associated with the location of the Thing, particularly for in-situ sensing applications.
 
-| Property | Description | Multiplicity and Use |
-| -------- | ----------- | -------------------- |
-| Name | a label for Location entity | One (Mandatory) |
-| Description | short description of the corresponding Location entity | One (Mandatory) |
-| location | The location type is defined by GeoJSON encodingType | One (Mandatory) |
+| Property | Description | Multiplicity and Use | Examples |
+| -------- | ----------- | -------------------- | -------- |
+| Name | a label for Location entity | One (Mandatory) | USGS-340422107370801 |
+| Description | short description of the corresponding Location entity | One (Mandatory) | Well |
+| EncodingType | GeoJSON | one (Mandatory) | GeoJSON |
+| location | The location type is defined by encodingType | One (Mandatory) | type, coordinates |
 
 Example of a Location
 
 ```
 {
-"description": "",
+"description": "Well",
 "encodingType": "application/vnd.geo+json",
-"@iot.id": 26518887,
+"@iot.id": "c88aafd6-2d1f-11ec-a798-3b0d4f0899e6",
 "location": {
-  "type": "Feature",
-  "geometry": {
   "type": "Point",
-  "coordinates": [10.0080800000001,53.57392]
-   }
+  "coordinates": [-107.61885,34.07285]
 },
-"name": "StadtRad-Station Schöne Aussicht / Karlstraße",
-"@iot.selfLink": "https://iot.hamburg.de/v1.1/Locations(26518887)",
-"HistoricalLocations@iot.navigationLink": "https://iot.hamburg.de/v1.1/Locations(26518887)/HistoricalLocations",
-"Things@iot.navigationLink": "https://iot.hamburg.de/v1.1/Locations(26518887)/Things"
-},
+"name": "USGS-340422107370801",
+"@iot.selfLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Locations('c88aafd6-2d1f-11ec-a798-3b0d4f0899e6')",
+"HistoricalLocations@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Locations('c88aafd6-2d1f-11ec-a798-3b0d4f0899e6')/HistoricalLocations",
+"Things@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Locations('c88aafd6-2d1f-11ec-a798-3b0d4f0899e6')/Things"
+}
 
 ```
 c) HistoricalLocation
 
 A Thing’s HistoricalLocation entity set provides the times of the current (i.e., last known) and previous locations of the Thing. The HistoricalLocation can also be created, updated and deleted.
 
-| Property | Description | Multiplicity and Use |
-| -------- | ----------- | -------------------- |
-| Time | Last known time of the Thing at the location | One (Mandatory) |
+| Property | Description | Multiplicity and Use | Example |
+| -------- | ----------- | -------------------- | ------- |
+| Time | Last known time of the Thing at the location | One (Mandatory) | 2021-10-14T18:51:47.342Z |
+
+```
+{
+"@iot.id": "c88af4fa-2d1f-11ec-a798-4b21ccc3d035",
+"@iot.selfLink": "https://labs.waterdata.usgs.gov/sta/v1.1/HistoricalLocations('c88af4fa-2d1f-11ec-a798-4b21ccc3d035')",
+"time": "2021-10-14T18:51:47.342Z",
+"Locations@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/HistoricalLocations('c88af4fa-2d1f-11ec-a798-4b21ccc3d035')/Locations",
+"Thing@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/HistoricalLocations('c88af4fa-2d1f-11ec-a798-4b21ccc3d035')/Thing"
+}
+```
 
 d) DataStream
 
 A Datastream groups a collection of Observations measuring the same ObservedProperty and produced by the same Sensor.
 
-| Property | Description | Multiplicity and Use |
-| -------- | ----------- | -------------------- |
-| Name | A label for the Datastream entity | One (Mandatory) |
-| description | The description of the Datastream entity | One (Mandatory) |
-| unitOfMeasurement | A JSON Object containing three key-value pairs: name, symbol, definition for the symbol used | One (Mandatory) |
-| observationType | The type of Observation (with unique result type), which is used by the service to encode observations | One (Mandatory) |
-| observedArea | The spatial bounding box of the spatial extent of all FeaturesOfInterest that belong to the Observations associated with this Datastream | Zero to One (Optional) |
-| phenomenonTime | The temporal interval of the phenomenon times of all observations belonging to this Datastream | Zero to One (Optional) |
-| resultTime | The temporal interval of the result times of all observations belonging to this Datastream | Zero to One (Optional) |
+| Property | Description | Multiplicity and Use | Example |
+| -------- | ----------- | -------------------- | ------- |
+| Name | A label for the Datastream entity | One (Mandatory) | 40c9fdb920924c43b1afdc4f24ce54ea |
+| description | The description of the Datastream entity | One (Mandatory) | Water level, depth LSD / USGS-340422107370801-40c9fdb920924c43b1afdc4f24ce54ea |
+| unitOfMeasurement | A JSON Object containing three key-value pairs: name, symbol, definition for the symbol used | One (Mandatory) | name, symbol |
+| observationType | The type of Observation (with unique result type), which is used by the service to encode observations | One (Mandatory) | Instantaneous |
+| observedArea | The spatial bounding box of the spatial extent of all FeaturesOfInterest that belong to the Observations associated with this Datastream | Zero to One (Optional) | here, Type and coordinates in Geojson encoding |
+| phenomenonTime | The temporal interval of the phenomenon times of all observations belonging to this Datastream | Zero to One (Optional) | 2021-08-15T19:00:00.000Z/2022-05-26T17:00:00.000Z |
+| resultTime | The temporal interval of the result times of all observations belonging to this Datastream | Zero to One (Optional) | null |
 
 ObservationType has data types derived from Observation and Measurement Model. 
 
@@ -342,38 +334,31 @@ Example for DataStream
 
 ```
 {
-"description": "Die Rohdaten der verfügbaren E-Lastenräder an einer StadtRad-Station werden alle 5 Minuten abgefragt und aufsummiert.",
-"@iot.id": 258,
-"name": "E-Lastenräder an StadtRad-Station bda4b7e5-6dca-4fa0-a44a-87947463e9da",
-"observationType": "http://www.opengis.net/def/ogc-om/OM_CountObservation",
+"description": "Water level, depth LSD / USGS-340422107370801-40c9fdb920924c43b1afdc4f24ce54ea",
+"@iot.id": "40c9fdb920924c43b1afdc4f24ce54ea",
+"name": "40c9fdb920924c43b1afdc4f24ce54ea",
+"observationType": "Instantaneous",
 "observedArea": {
-  "type": "LineString",
-  "coordinates": [[569252.323397734,5938171.45],
-                [10.0461978,53.5878083]]
- },
-"phenomenonTime": "2019-07-26T09:00:43.631Z/2022-11-24T15:11:58.085Z",
+  "type": "Point",
+  "coordinates": [-107.61885,34.07285]
+},
+"phenomenonTime": "2021-08-15T19:00:00.000Z/2022-05-26T17:00:00.000Z",
 "properties": {
-  "topic": "Transport und Verkehr",
-  "metadata": "https://registry.gdi-de.org/id/de.hh/08d1158c-2b5b-49cb-91c3-0ca9fe22a955",
-  "layerName": "E-Lastenraeder",
-  "ownerData": "Freie und Hansestadt Hamburg",
-  "serviceName": "HH_STA_StadtRad",
-  "resultNature": "processed",
-  "infoLastUpdate": "2022-09-19T09:00:53.264Z",
-  "mediaMonitored": "transport"
+  "ParameterCode": "72019",
+  "StatisticCode": "00011"
 },
-"resultTime": "2019-07-26T09:03:10.429Z/2022-11-24T15:11:58.085Z",
-"@iot.selfLink": "https://iot.hamburg.de/v1.1/Datastreams(258)",
+"resultTime": null,
+"@iot.selfLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('40c9fdb920924c43b1afdc4f24ce54ea')",
 "unitOfMeasurement": {
-  "name": null,
-  "symbol": null,
-  "definition": null
+  "name": "Feet",
+  "symbol": "ft",
+  "definition": ""
 },
-"ObservedProperty@iot.navigationLink": "https://iot.hamburg.de/v1.1/Datastreams(258)/ObservedProperty",
-"Sensor@iot.navigationLink": "https://iot.hamburg.de/v1.1/Datastreams(258)/Sensor",
-"Thing@iot.navigationLink": "https://iot.hamburg.de/v1.1/Datastreams(258)/Thing",
-"Observations@iot.navigationLink": "https://iot.hamburg.de/v1.1/Datastreams(258)/Observations"
-},
+"Observations@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('40c9fdb920924c43b1afdc4f24ce54ea')/Observations",
+"Sensor@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('40c9fdb920924c43b1afdc4f24ce54ea')/Sensor",
+"ObservedProperty@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('40c9fdb920924c43b1afdc4f24ce54ea')/ObservedProperty",
+"Thing@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('40c9fdb920924c43b1afdc4f24ce54ea')/Thing"
+}
 
 ```
 
@@ -381,10 +366,10 @@ e) Sensor
 
 A Sensor is an instrument that observes a property or phenomenon with the goal of producing an estimate of the value of the property
 
-| Property | Description | Multiplicity and Use |
-| -------- | ----------- | -------------------- |
-| Name | a label for Sensor entity | One (Mandatory) |
-| Description | short description of the corresponding Sensor entity | One (Mandatory) |
+| Property | Description | Multiplicity and Use | Example |
+| -------- | ----------- | -------------------- | ------- |
+| Name | a label for Sensor entity | One (Mandatory) | USGS_Sensor |
+| Description | short description of the corresponding Sensor entity | One (Mandatory) | The USGS Sensor |
 | metadata | The detailed description of the Sensor or system defined by encodingType. | One (Mandatory) |
 
 A sensor Metadata Encoding type can be either pdf or SensorML has described above. Most sensor manufacturers provide their sensor datasheets in a PDF format. As a result, PDF is a Sensor encodingType supported by SensorThings API. The second Sensor encodingType is SensorML.
@@ -393,38 +378,39 @@ Example
 
 ```
 {
-"description": "A detector actively sensing or passively being activated to transmit a signal change request of a traffic participant (pedestrian, cyclist, motorized vehicle).",
-"encodingType": "NA",
-"@iot.id": 5653,
-"metadata": "Detectors serve to gain information on traffic. Various types of detectors are used for the different groups of road users. Amongst others these can be  inductive loops and infrared detectors for motor vehicles and bicycles or  touch sensors for requests by pedestrians and cyclists. ",
-"name": "Traffic participant detector",
-"@iot.selfLink": "https://iot.hamburg.de/v1.1/Sensors(5653)",
-"MultiDatastreams@iot.navigationLink": "https://iot.hamburg.de/v1.1/Sensors(5653)/MultiDatastreams",
-"Datastreams@iot.navigationLink": "https://iot.hamburg.de/v1.1/Sensors(5653)/Datastreams"
-},
+"description": "The USGS Sensor",
+"encodingType": "",
+"@iot.id": "USGS_Sensor",
+"metadata": "",
+"name": "USGS_Sensor",
+"properties": {},
+"@iot.selfLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Sensors('USGS_Sensor')",
+"MultiDatastreams@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Sensors('USGS_Sensor')/MultiDatastreams",
+"Datastreams@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Sensors('USGS_Sensor')/Datastreams"
+}
 ```
 f) ObservedProperty
 
 An ObservedProperty specifies the phenomenon of an Observation.
 
-| Property | Description | Multiplicity and Use |
-| -------- | ----------- | -------------------- |
-| Name | A label for the ObservedProperty | One (Mandatory) |
-| Description | short description of the Observed Property | One (Mandatory) |
+| Property | Description | Multiplicity and Use | Example |
+| -------- | ----------- | -------------------- | ------- |
+| Name | A label for the ObservedProperty | One (Mandatory) | Depth to water level, feet below land surface |
+| Description | short description of the Observed Property | One (Mandatory) | Physical |
 | definition | The URI of the ObservedProperty. | One (Mandatory) |
 
 Example
 
 ```
 {
-"description": "This is a property of the velocity of the wind.",
-"definition": "http://www.qudt.org/qudt/owl/1.0.0/quantity/Instances.html#Speed",
-"@iot.id": 53,
-"name": "Wind speed",
-"@iot.selfLink": "https://iot.hamburg.de/v1.1/ObservedProperties(53)",
-"MultiDatastreams@iot.navigationLink": "https://iot.hamburg.de/v1.1/ObservedProperties(53)/MultiDatastreams",
-"Datastreams@iot.navigationLink": "https://iot.hamburg.de/v1.1/ObservedProperties(53)/Datastreams"
-},
+"description": "Physical",
+"definition": "",
+"@iot.id": "72019",
+"name": "Depth to water level, feet below land surface",
+"@iot.selfLink": "https://labs.waterdata.usgs.gov/sta/v1.1/ObservedProperties('72019')",
+"Datastreams@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/ObservedProperties('72019')/Datastreams",
+"MultiDatastreams@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/ObservedProperties('72019')/MultiDatastreams"
+}
 ```
 
 g) Observation
@@ -435,28 +421,25 @@ Example
 
 ```
 {
-"@iot.id": "ec8aa218-9ff9-11ec-a31d-9b423eda208a",
-"phenomenonTime": "2022-03-06T05:00:00.000Z",
-"parameters": {
-  "masks": ["ICE","ESTIMATED"]
-},
-"result": null,
+"@iot.id": "0ce7bd6c-7e0c-11ec-a1c2-d357d8a6e8ba",
+"phenomenonTime": "2022-01-20T10:00:00.000Z",
+"result": "179.30",
 "resultTime": null,
-"@iot.selfLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Observations('ec8aa218-9ff9-11ec-a31d-9b423eda208a')",
-"Datastream@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Observations('ec8aa218-9ff9-11ec-a31d-9b423eda208a')/Datastream",
-"FeatureOfInterest@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Observations('ec8aa218-9ff9-11ec-a31d-9b423eda208a')/FeatureOfInterest",
-"MultiDatastream@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Observations('ec8aa218-9ff9-11ec-a31d-9b423eda208a')/MultiDatastream"
+"@iot.selfLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Observations('0ce7bd6c-7e0c-11ec-a1c2-d357d8a6e8ba')",
+"FeatureOfInterest@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Observations('0ce7bd6c-7e0c-11ec-a1c2-d357d8a6e8ba')/FeatureOfInterest",
+"Datastream@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Observations('0ce7bd6c-7e0c-11ec-a1c2-d357d8a6e8ba')/Datastream",
+"MultiDatastream@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Observations('0ce7bd6c-7e0c-11ec-a1c2-d357d8a6e8ba')/MultiDatastream"
 },
 ```
 h) Feature of Interest
 
 An Observation results in a value being assigned to a phenomenon. The phenomenon is a property of a feature, the latter being the FeatureOfInterest of the Observation [OGC and ISO 19156:2011]. In the context of the Internet of Things, many Observations’ FeatureOfInterest can be the Location of the Thing. Example, the FeatureOfInterest can be the geographical area or volume that is being sensed.
 
-| Property | Description | Multiplicity and Use |
-| -------- | ----------- | -------------------- |
-| Name | A label for the FeatureOfInterest | One (Mandatory) |
-| Description | short description of the FeatureOfInterest | One (Mandatory) |
-| feature | The detailed description of the feature. The data type is defined by encodingType | One (Mandatory) |
+| Property | Description | Multiplicity and Use | Example |
+| -------- | ----------- | -------------------- | ------- |
+| Name | A label for the FeatureOfInterest | One (Mandatory) | FoI for location 5891d7a8-2d1b-11ec-a8de-7be125e05952 |
+| Description | short description of the FeatureOfInterest | One (Mandatory) | Generated from location 5891d7a8-2d1b-11ec-a8de-7be125e05952 |
+| feature | The detailed description of the feature. The data type is defined by encodingType | One (Mandatory) | type, coordinate |
 
 Example
 
@@ -474,6 +457,18 @@ Example
 "Observations@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/FeaturesOfInterest('7a5bbcd4-2d23-11ec-b026-178e2d48f659')/Observations"
 },
 ```
+
+<details><summary>TERMINOLOGIES</summary>
+<p>
+
+***REST*** : REpresentational State Transfer, is an architectural style for providing standards between computer systems on the web, allowing systems to communicate more easily with one another.
+
+***HTTP*** : Hypertext Transfer Protocol is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes.(https://developer.mozilla.org/en-US/docs/Web/HTTP)
+
+***URI*** : A Uniform Resource Identifier is a unique sequence of characters that identifies a logical or physical resource used by web technologies. In short, URI is a unique id for the resources.
+  
+</p>
+</details>
 
 # Practical Session
 
