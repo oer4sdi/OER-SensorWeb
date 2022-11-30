@@ -87,27 +87,32 @@ Some Standards are not considered to be OGC standards, nonetheless they are allo
   <img src='https://user-images.githubusercontent.com/94603960/201489207-bf9ca213-91a6-4502-8d46-ede5ed704f81.png'>
 </p>
 
-Observation and Measurements standard defines models and XML schemas for observations as well as features involved in sampling when making observations. O&M creates a high-level framework for representing sensor system observations, measurements, procedures, and metadata, for the implementation of SWE-enabled architectures. 
+Fig : The simplified version of the Observation and Measurements (O&M) model's general schema diagram from Best practises documentation[1]
 
-Each and every sensor data sources can have different formats and information. This pose an issue when exchanging sensor data. To overcome this interoperability issue, O&M becomes a common standardized data model for handling measurement events in various types of sensors, ranging from thermometers inside a closed process to satellites images of the Earth from space. O&M, in conjunction with other SWE framework open standards such as SensorML and Sensor Observation Service (SOS), provides a system-independent, Internet-enabled method of data exchange between different parts of sensor networks and other systems using sensor information.
+> Observation and Measurements standard defines models and XML schemas for observations as well as features involved in sampling when making observations.
 
-Because IP-based environmental sensors are becoming more affordable, anyone can gather and refine detailed environmental information about the world around us, both locally and globally. This way citizens with any background can use these sensors to generate publically available data. Of course, as with everything based on the Internet, as the amount of information and the diversity of the sources producing it grows, so does the quality range of the available information. Organizations that previously deployed and maintained their own sensor networks with proprietary data and control interfaces built for their specific software and hardware systems are shifting to open standards. Even if they do not intend to publish their data on the Internet, they do intend to use IP-based networks for communication. The O&M concepts serve as the foundation for the EU-wide INSPIRE data models for meteorological, climatological, and air quality information, and the structure and capabilities of various environmental observation networks.
+Because [IP-based](https://en.wikipedia.org/wiki/Internet_Protocol) sensors are becoming more affordable, anyone can gather and refine detailed environmental information about the world around us, both locally and globally. This way citizens with any background can use these sensors to generate publically available data. Of course, as with everything based on the Internet, as the amount of information and the diversity of the sources producing it grows, so does the quality range of the available information. Organizations that previously deployed and maintained their own sensor networks with proprietary data and control interfaces tailored to their specific software and hardware systems are transitioning to open standards. Even if they do not intend to publish their data on the Internet, they do intend to communicate via IP-based networks.
 
+Each and every sensor data sources can have different formats and information. This pose an issue when exchanging sensor data. To overcome this interoperability issue, O&M becomes a common standardized data model for handling measurement events in various types of sensors, ranging from thermometers inside a closed process to satellites images of the Earth from space. O&M creates a high-level framework for representing sensor observations, measurements, procedures, and metadata, for the implementation of SWE-enabled architectures. O&M, in conjunction with other SWE framework open standards such as SensorML and Sensor Observation Service (SOS), provides a system-independent, internet-enabled method of data exchange between different parts of sensor networks and other systems using sensor information.
+
+Did you Know ? 
+> The O&M concepts serve as the foundation for the EU-wide INSPIRE data models for meteorological, climatological, and air quality information, and the structure and capabilities of various environmental observation networks.
 
 #### UML Diagram of Observations
 <p align='center'>
   <img src='https://user-images.githubusercontent.com/94603960/204206653-b5fae81b-74f3-4ab5-aac2-6e885dc7c385.png'>
 </p>
+Fig : The simplified version of Observation Entity diagram from Best Practises documentation[1]
 
-According to OGC Standards[1], an observation is an act associated with the process that measures an observed property at a specific feature of interest for a specific phenomenon time and records the results. We will learn about the entities and properties of observation mentioned in this definition below.
+According to OGC Standards[2], an observation is an act associated with the process that measures an observed property at a specific feature of interest for a specific phenomenon time and records the results. The entities and properties of observation mentioned in this definition will be discussed further below. To define each entity separately, we will use a generic example: `temperature`.
 
-| Entity | Description | Examples |
+| Entity | Description | Example |
 | ------ | ----------- | -------- |
-| Observed Property / Phenomenon | A property measured by a sensor | Temperature |
-| Feature of Interest (FoI) | an abstraction of a real world phenomena which has been georeferenced | Park(Place) |
-| Phenomenon Time | The time instant or period of when the Observation happens | 2022-03-06T05:00:00.000Z |
-| Result | The estimated value of an ObservedProperty from the Observation | 12°c |
-| Result Time | The time of the Observation’s result after processing was generated| 2022-03-07T05:00:00.000Z |
+| `Observed Property / Phenomenon` | a property measured by a sensor | Temperature |
+| `Feature of Interest (FoI)` | an abstraction of a real world phenomena which has been georeferenced | Park |
+| `Phenomenon Time` | the time instant or period of when the Observation happens | 2022-03-06T05:00:00.000Z |
+| `Result` | the estimated value of an ObservedProperty from the Observation | 12°c |
+| `Result Time` | the time of the Observation’s result after processing was generated| 2022-03-07T05:00:00.000Z |
 
 Note: The temporal parameter in geospatial context is phenomenon time. If the Sensor is capable of post processing, then the time at which a result is posted following post processing would be Result Time.
 
@@ -115,22 +120,17 @@ Table 1: Mandatory Properties of an Observation Model
 
 | Entity | Description | Examples |
 | ------ | ----------- | -------- |
-| Result Quality | 	Describes the quality of the result owing to the fact that sensor data can be faulty to some extent | 
-| Valid Time | The time period during which the result may be used. With real time sensor data available, the data is measured and replaced within seconds in some cases |
-| Process | The process that performs the measurement | Temperature sensor |
+| `Result Quality` | 	Describes the quality of the result owing to the fact that sensor data can be faulty to some extent | 
+| `Valid Time` | The time period during which the result may be used. With real time sensor data available, the data is measured and replaced within seconds in some cases | 2022-03-07T05:00:00.000Z |
+| `Process` | The process that performs the measurement | Temperature sensor measuring Temperature |
 
 Table 2: Optional Properties of an Observation Model
 
-#### QUIZ - (A drag and drop options that user use correctly mention the terms Eg question : When measuring the height of a tree, the height is the observed ObservableProperty, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest.) H5P format
+To illustrate the mapping, an exemplary dataset from the USGS is presented subsequently.
 
-To illustrate the mapping, an exemplary dataset from the hamburg smart city project is presented subsequently.
+> https://labs.waterdata.usgs.gov/sta/v1.1/Observations
 
-```
-https://iot.hamburg.de/v1.1/?
-```
-<img src= 'https://user-images.githubusercontent.com/94603960/202925919-4f7c696d-aa65-4663-88c2-ce0d7486f28d.png' width='500'>
-
-#### QUIZ observation examples
+#### QUIZ - (A drag and drop options that user use correctly mention the terms Eg question : When measuring the height of a tree, the height is the observed ObservableProperty, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest.) H5P format #### QUIZ observation examples
 
 The Observation model approaches data from the perspective of the data user, emphasizing the semantics of the feature-of-interest and its properties. Whether the feature-of-interest is a discrete or continous observation.
 
@@ -473,3 +473,7 @@ Example
 ```
 
 # Practical Session
+
+## Reference
+[1] Best Practices for Using Sensor Web Technology by 52north, https://52north.github.io/sensor-web-tutorial/
+[2] 
