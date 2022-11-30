@@ -100,74 +100,77 @@ Did you Know ?
 
 #### UML Diagram of Observations
 <p align='center'>
-  <img src='https://user-images.githubusercontent.com/94603960/204206653-b5fae81b-74f3-4ab5-aac2-6e885dc7c385.png'>
+  <img src='https://user-images.githubusercontent.com/94603960/204206653-b5fae81b-74f3-4ab5-aac2-6e885dc7c385.png' height='300'>
 </p>
 Fig : The simplified version of Observation Entity diagram from Best Practises documentation[1]
 
-According to OGC Standards[2], an observation is an act associated with the process that measures an observed property at a specific feature of interest for a specific phenomenon time and records the results. The entities and properties of observation mentioned in this definition will be discussed further below. To define each entity separately, we will use a generic example: `temperature`.
+According to OGC Standards[2],
+> an observation is an act associated with the process that measures an observed property at a specific feature of interest for a specific phenomenon time and records the results. 
+
+To define each entity separately, we will use a generic example: `temperature`. Table 1: Mandatory Properties of an Observation Model
 
 | Entity | Description | Example |
-| ------ | ----------- | -------- |
+| ------ | ----------- | --------------- |
 | `Observed Property / Phenomenon` | a property measured by a sensor | Temperature |
 | `Feature of Interest (FoI)` | an abstraction of a real world phenomena which has been georeferenced | Park |
-| `Phenomenon Time` | the time instant or period of when the Observation happens | 2022-03-06T05:00:00.000Z |
-| `Result` | the estimated value of an ObservedProperty from the Observation | 12°c |
-| `Result Time` | the time of the Observation’s result after processing was generated| 2022-03-07T05:00:00.000Z |
+| `Phenomenon Time` | the time instant or period of when the observation happens | 2022-03-06T05:00:00.000Z |
+| `Result` | the estimated value of an observedproperty from the Observation | 12°c |
+| `Result Time` | the time of the observation’s result after processing was generated| 2022-03-07T05:00:00.000Z |
 
 Note: The temporal parameter in geospatial context is phenomenon time. If the Sensor is capable of post processing, then the time at which a result is posted following post processing would be Result Time.
 
-Table 1: Mandatory Properties of an Observation Model
-
+Table 2: Optional Properties of an Observation Model
 | Entity | Description | Examples |
 | ------ | ----------- | -------- |
-| `Result Quality` | 	Describes the quality of the result owing to the fact that sensor data can be faulty to some extent | 
-| `Valid Time` | The time period during which the result may be used. With real time sensor data available, the data is measured and replaced within seconds in some cases | 2022-03-07T05:00:00.000Z |
-| `Process` | The process that performs the measurement | Temperature sensor measuring Temperature |
+| `Result Quality` | describes the quality of the result owing to the fact that sensor data can be faulty to some extent | 
+| `Valid Time` | the time period during which the result may be used. With real time sensor data available, the data is measured and replaced within seconds in some cases | 2022-03-07T05:00:00.000Z |
+| `Parameter` | describe any event-specific parameter(could be an environmental, an instrument setting or input) | Altitude |
+| `Process` | The process that performs the measurement |  change in resistance of the electric current in a sensor measures temperature |
 
-Table 2: Optional Properties of an Observation Model
+Note:
+1. The Parameter is not a feature of interest or an observation procedure. A `park` may be the feature of interest in the temperature case, but since temperature varies with altitude, `altitude` may be an event-specific parameter.
+2. A human observer, a simulator, or a process or algorithm applied are all examples of Process instances.
 
-To illustrate the mapping, an exemplary dataset from the USGS is presented subsequently.
+Look at the exemplary dataset from the USGS hoisted in the FROST Server.
 
 > https://labs.waterdata.usgs.gov/sta/v1.1/Observations
 
 #### QUIZ - (A drag and drop options that user use correctly mention the terms Eg question : When measuring the height of a tree, the height is the observed ObservableProperty, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest.) H5P format #### QUIZ observation examples
 
+### Classification of observation by result type
 The Observation model approaches data from the perspective of the data user, emphasizing the semantics of the feature-of-interest and its properties. Whether the feature-of-interest is a discrete or continous observation.
 
-### Classification of observation by result type
+1. Observations whose result is constant
 
-1. Discrete Observation
+Observations where the outcome of a observation may have a single value or multiple values, but if there are multiple values, those values do not change over the course of the observation with respect to either space or time.
 
 ![o m-discrobs](https://user-images.githubusercontent.com/94603960/204206594-5803c760-8199-4d10-859d-165a7a80ac99.png)
 
-Observations where the outcome of a single observation may have a single value or multiple values, but if there are multiple values, those values do not change over the course of the observation with respect to either space or time.
-
-Example
+Example,
 ```
 A well known example would be Flip-a-Coin, where the odds are always 'HEAD' or 'TAIL' - This would be a Boolean type observation.
 
 How about something in GeoSpatial Context?
-Buildings and Roads are features that have distinct boundaries or limits are considered discrete. 
-In mapping, discrete data can be shown as a point, line, or a polygon. Points could be cities, lines could be road 
-networks, and polygons could be provinces in a country. This features would be Geometry type observation.
+
+Buildings and Roads are features that have distinct boundaries or limits are considered discrete. In mapping, discrete data can be shown 
+as a point, line, or a polygon. Points could be cities, lines could be road networks, and polygons could be provinces in a country. 
+This features would be Geometry type observation.
 
 ```
 
-2. Continous Observation
+2. Observations whose result is varies
 
-Observations where the outcome of a single observation includes multiple values that change with time, space, or both during the course of the observation. The value of a corresponding observation result shall therefore be a function or coverage, respectively. The target feature may be subjected to numerous observations using various sampling methods, so the sampling methods are associated with the act of observation rather than being inherent in the feature-of-interest.
-
-To model the coverage, a domain geometry decomposition with specialized sub-geometries is defined to represent the associated feature.
+Observations where the outcome of a observation includes multiple values that change with time, space, or both during the course of the observation. The value of a corresponding observation result shall therefore be a function or coverage(domain extent is the spatiotemporal extent of the feature), respectively. The target feature may be subjected to numerous observations using various sampling methods, so the sampling methods are associated with the act of observation rather than being inherent in the feature-of-interest. To model the coverage, a domain geometry decomposition with specialized sub-geometries is defined to represent the associated feature.
 
 ![o m-contobs](https://user-images.githubusercontent.com/94603960/204206553-dacd1b3f-535d-4528-85cd-c07a9fcb9821.png)
 
 What would be a best example for Continous Observation? 
 ```
-Weather is not predictable and is a good example for Continous Observation. 
-'Temperature' for example, changes over space and time. So depending on your analysis, if you want temperature from various sources(places) 
-that comes under a coverage.
-Think of any continous Observation?
+Weather is unpredictable and is a good example for continous observation. 
+'Temperature' for example, changes over space and time. Here temperature is a discretePointCoverage observation.
+Think of any continous observation?
 ```
+#### Quiz ( What is discrete and contimous obs)
 
 ## Sensor Observation Service
 
@@ -476,4 +479,7 @@ Example
 
 ## Reference
 [1] Best Practices for Using Sensor Web Technology by 52north, https://52north.github.io/sensor-web-tutorial/
-[2] 
+[2] OGC Abstract Specification - Geographic information — Observations and measurements,Cox, Simon (2013), http://portal.opengeospatial.org/files/?artifact_id=41579.
+
+
+
