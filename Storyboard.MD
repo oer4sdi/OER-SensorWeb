@@ -1,5 +1,14 @@
 # SensorWeb (Work in Progress!)
 
+##### Table of Contents  
+1. [Understanding the Concepts](#understanding-the-Concepts)  
+2. [O&M model](#0&m-model)
+3. [SensorThings API](#sensorthings-API)
+4. [Practical Session](#practical-session)
+
+
+# Understanding the Concepts
+
 ## Spatial Data Infrastructure
 
 The ability to access, process, and integrate data from various sources for mapping, visualisation, and other forms of representation and analysis is known as Interoperability. Often organisations such as the European Union share the data among themselves to insure data interoperability. But without specific standards, interoperability is not possible. To ensure the specific needs of each data and its formats, we have Spatial Data Infrastructure (SDI).
@@ -73,7 +82,7 @@ Some Standards are not considered to be OGC standards, nonetheless they are allo
 #### Sensor data sources - deals with what sources are they? and which is ideal? how the above standards helps? ( QUIZ cum explanation ) - H5P format
 
 
-## O&M model
+# O&M model
 <p align='center'>
   <img src='https://user-images.githubusercontent.com/94603960/201489207-bf9ca213-91a6-4502-8d46-ede5ed704f81.png'>
 </p>
@@ -200,6 +209,8 @@ The Web of Things (WoT) is a set of standards developed by the World Wide Web Co
   
 </p>
 </details>
+
+# SensorThings API
 
 The Open Geospatial Consortium's Sensor Web Enablement (SWE) framework is a well-established approach for integrating sensors with the Web. A smart device, according to Bröring et al. (2011 b), may respond to data requests using SWE-standardized formats. To be more specific, sensor metadata should be encoded using SensorML, and observation data as O&M. With these format constraints, any other application/component may retrieve the smart device's sensor data in an interoperable, standardized manner.  SWE specifications such as SOS; SPS, and SES are powerful for use cases that are broad and often complex(e.g. disaster management or early warning systems). However, use cases that do not require the full functionality of SWE's data altering, sensor discovery, tasking, and event handling may be easier to realize with the Web of Things approach by treating sensor objects as things. (Liang et al.) The SensorThings API is an open standard, builds on Web protocols and the OGC Sensor Web Enablement standards, and applies an easy-to-use REST-like style.
 
@@ -460,3 +471,5 @@ Example
 "Observations@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/FeaturesOfInterest('7a5bbcd4-2d23-11ec-b026-178e2d48f659')/Observations"
 },
 ```
+
+# Practical Session
