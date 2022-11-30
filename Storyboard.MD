@@ -2,7 +2,7 @@
 
 ##### Table of Contents  
 1. [Understanding the Concepts](#understanding-the-Concepts)  
-2. [O&M model](#0&m-model)
+2. [O&M model](#o&m-model)
 3. [SensorThings API](#sensorthings-API)
 4. [Practical Session](#practical-session)
 
@@ -471,6 +471,9 @@ Example link : https://labs.waterdata.usgs.gov/sta/v1.1/FeaturesOfInterest('7a5b
   
 </p>
 </details>
+
+### SensorThings API - Query Operations
+
 
 # Practical Session
 
