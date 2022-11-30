@@ -221,33 +221,36 @@ The Sensing part is designed based on the OGC/ISO Observation and Measurement (O
 | ----- | ----------- | ------- |
 | `Things` | The OGC SensorThings API adheres to the ITU-T definition, which states that a thing is an object of the physical world (physical things) or the information world (virtual things) that can be identified and integrated into communication networks [ITU-T] | Temperature Monitoring System |
 | `Location` | The Location entity locates the Thing or the Things it associated with. A Thing’s Location entity is defined as the last known location of the Thing | Park |
-| `Historical Location` | The times of the current (i.e., last known) and previous locations of the Thing | `2021-10-14T18:51:47.342Z` |
+| `Historical Location` | The times of the current (i.e., last known) and previous locations of the Thing | 2021-10-14T18:51:47.342Z |
 | `DataStream` | A Datastream groups a collection of Observations measuring the same ObservedProperty and produced by the same Sensor |
 | `ObservedProperty` | An ObservedProperty specifies the phenomenon of an Observation | Temperature |
 | `Sensor` | an instrument that observes a property or phenomenon | Temperature Sensor |
 | `Observation` | an act associated with the process that measures an observed property at a specific feature of interest for a specific phenomenon time and records the results |
 
-
-Lets take a look into this URL again:
-
+Lets take a look into this ROOT URL again:
 > https://labs.waterdata.usgs.gov/sta/v1.1/
 
-#### Entities
+### Entities
 
-Each Entity has some mandatory elements to be specified.
-| Property | Description | Example |
-| 
-a) Things
-
-A Thing has one or more Datastreams that collect Observations. A Thing without a Location and Datastream can be created, and there are options for creating Things with nested linked Location and Datastream.
+Common Property of an Entity:
 
 | Property | Description | Multiplicity and Use | Example |
 | -------- | ----------- | -------------------- | ------- |
-| `Name` | A label for the Thing | One (Mandatory) | USGS-340422107370801 |
-| `Description` | short description of the corresponding Thing entity | One (Mandatory) | Well |
-| `Properties` | A JSON Object containing user-annotated properties as key-value pairs | Zero to One | State |
+| `id` | ID is a system-generated unique identifier of an entity | One (Mandatory) | USGS-340422107370801 |
+| `selfLink` | unique URL of an entity | One (Mandatory) | https://labs.waterdata.usgs.gov/sta/v1.1/Things('USGS-340422107370801') |
+| `navigationLink` | relative URL that connects relevant information about the entity | One to Many (Mandatory) | Locations@iot.navigationLink |
 
-Example of a Thing
+a) Things
+
+A Thing has one or more Datastreams in which Observations are collected. It is possible to create Things with nested linked Location and Datastream as well as Things without a Location and Datastream. A thing has many to many relationship with Locations. 
+
+| Property | Description | Multiplicity and Use | Example |
+| -------- | ----------- | -------------------- | ------- |
+| `name` | A label for the Thing | One (Mandatory) | USGS-340422107370801 |
+| `description` | short description of the corresponding Thing entity | One (Mandatory) | Well |
+| `properties` | A JSON Object containing user-annotated properties as key-value pairs | Zero to One | State |
+
+Example link : https://labs.waterdata.usgs.gov/sta/v1.1/Things('USGS-340422107370801')
 
 ```
 {
@@ -269,16 +272,16 @@ Example of a Thing
 ```
 b) Location
 
-The Location entity locates the Thing or Things with which it is associated. The Location entity of a Thing is defined as the Thing's last known location. The Location of a Thing may be the same as the FeatureOfInterest of the Thing's Observations. The primary location of interest in the context of the IoT is typically associated with the location of the Thing, particularly for in-situ sensing applications.
+The Location entity is responsible for locating the Thing or Things with which it is associated. A Thing's Location entity is defined as the Thing's last known location. There is a chance that a thing's location matches its observations' feature of interest. For IoT applications, especially those involving in-situ sensing, the Thing's location is typically the primary location of interest.
 
 | Property | Description | Multiplicity and Use | Examples |
 | -------- | ----------- | -------------------- | -------- |
-| Name | a label for Location entity | One (Mandatory) | USGS-340422107370801 |
-| Description | short description of the corresponding Location entity | One (Mandatory) | Well |
-| EncodingType | GeoJSON | one (Mandatory) | GeoJSON |
-| location | The location type is defined by encodingType | One (Mandatory) | type, coordinates |
+| `name` | a label for Location entity | One (Mandatory) | USGS-340422107370801 |
+| `description` | short description of the corresponding Location entity | One (Mandatory) | Well |
+| `encodingType` | GeoJSON encoding type of location property | one (Mandatory) | application/vnd.geo+json |
+| `location` | Geographical Position of an entity is defined by encodingType | One (Mandatory) | type, coordinates |
 
-Example of a Location
+Example link : https://labs.waterdata.usgs.gov/sta/v1.1/Locations('c88aafd6-2d1f-11ec-a798-3b0d4f0899e6')
 
 ```
 {
@@ -302,8 +305,9 @@ A Thing’s HistoricalLocation entity set provides the times of the current (i.e
 
 | Property | Description | Multiplicity and Use | Example |
 | -------- | ----------- | -------------------- | ------- |
-| Time | Last known time of the Thing at the location | One (Mandatory) | 2021-10-14T18:51:47.342Z |
+| `time` | Last known time of the Thing at the location | One (Mandatory) | 2021-10-14T18:51:47.342Z |
 
+Example link : https://labs.waterdata.usgs.gov/sta/v1.1/HistoricalLocations('c88af4fa-2d1f-11ec-a798-4b21ccc3d035')
 ```
 {
 "@iot.id": "c88af4fa-2d1f-11ec-a798-4b21ccc3d035",
@@ -316,21 +320,21 @@ A Thing’s HistoricalLocation entity set provides the times of the current (i.e
 
 d) DataStream
 
-A Datastream groups a collection of Observations measuring the same ObservedProperty and produced by the same Sensor.
+A Datastream groups a collection of Observations measuring the same ObservedProperty that are produced by the same Sensor.
 
 | Property | Description | Multiplicity and Use | Example |
 | -------- | ----------- | -------------------- | ------- |
-| Name | A label for the Datastream entity | One (Mandatory) | 40c9fdb920924c43b1afdc4f24ce54ea |
-| description | The description of the Datastream entity | One (Mandatory) | Water level, depth LSD / USGS-340422107370801-40c9fdb920924c43b1afdc4f24ce54ea |
-| unitOfMeasurement | A JSON Object containing three key-value pairs: name, symbol, definition for the symbol used | One (Mandatory) | name, symbol |
-| observationType | The type of Observation (with unique result type), which is used by the service to encode observations | One (Mandatory) | Instantaneous |
-| observedArea | The spatial bounding box of the spatial extent of all FeaturesOfInterest that belong to the Observations associated with this Datastream | Zero to One (Optional) | here, Type and coordinates in Geojson encoding |
-| phenomenonTime | The temporal interval of the phenomenon times of all observations belonging to this Datastream | Zero to One (Optional) | 2021-08-15T19:00:00.000Z/2022-05-26T17:00:00.000Z |
-| resultTime | The temporal interval of the result times of all observations belonging to this Datastream | Zero to One (Optional) | null |
+| `name` | A label for the Datastream entity | One (Mandatory) | 40c9fdb920924c43b1afdc4f24ce54ea |
+| `description` | The description of the Datastream entity | One (Mandatory) | Water level, depth LSD / USGS-340422107370801-40c9fdb920924c43b1afdc4f24ce54ea |
+| `unitOfMeasurement` | A JSON Object containing three key-value pairs: name, symbol, definition for the symbol used | One (Mandatory) | name, symbol |
+| `observationType` | The type of Observation (with unique result type), which is used by the service to encode observations | One (Mandatory) | Instantaneous |
+| `observedArea` | The spatial bounding box of the spatial extent of all FeaturesOfInterest that belong to the Observations associated with this Datastream | Zero to One (Optional) | here, Type and coordinates in Geojson encoding |
+| `phenomenonTime` | The temporal interval of the phenomenon times of all observations belonging to this Datastream | Zero to One (Optional) | 2021-08-15T19:00:00.000Z/2022-05-26T17:00:00.000Z |
+| `resultTime` | The temporal interval of the result times of all observations belonging to this Datastream | Zero to One (Optional) | null |
 
-ObservationType has data types derived from Observation and Measurement Model. 
+ObservationType has data types derived from Observation and Measurement Model. Check out the 'Classification of observation by result type' section of this article. 
 
-Example for DataStream
+Example link : https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('40c9fdb920924c43b1afdc4f24ce54ea')
 
 ```
 {
@@ -359,7 +363,6 @@ Example for DataStream
 "ObservedProperty@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('40c9fdb920924c43b1afdc4f24ce54ea')/ObservedProperty",
 "Thing@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('40c9fdb920924c43b1afdc4f24ce54ea')/Thing"
 }
-
 ```
 
 e) Sensor
@@ -368,14 +371,13 @@ A Sensor is an instrument that observes a property or phenomenon with the goal o
 
 | Property | Description | Multiplicity and Use | Example |
 | -------- | ----------- | -------------------- | ------- |
-| Name | a label for Sensor entity | One (Mandatory) | USGS_Sensor |
-| Description | short description of the corresponding Sensor entity | One (Mandatory) | The USGS Sensor |
-| metadata | The detailed description of the Sensor or system defined by encodingType. | One (Mandatory) |
+| `name` | a label for Sensor entity | One (Mandatory) | USGS_Sensor |
+| `description` | short description of the corresponding Sensor entity | One (Mandatory) | The USGS Sensor |
+| `metadata` | The detailed description of the Sensor or system defined by encodingType. | One (Mandatory) |
 
 A sensor Metadata Encoding type can be either pdf or SensorML has described above. Most sensor manufacturers provide their sensor datasheets in a PDF format. As a result, PDF is a Sensor encodingType supported by SensorThings API. The second Sensor encodingType is SensorML.
 
-Example 
-
+Example link : https://labs.waterdata.usgs.gov/sta/v1.1/Sensors('USGS_Sensor')
 ```
 {
 "description": "The USGS Sensor",
@@ -395,11 +397,11 @@ An ObservedProperty specifies the phenomenon of an Observation.
 
 | Property | Description | Multiplicity and Use | Example |
 | -------- | ----------- | -------------------- | ------- |
-| Name | A label for the ObservedProperty | One (Mandatory) | Depth to water level, feet below land surface |
-| Description | short description of the Observed Property | One (Mandatory) | Physical |
-| definition | The URI of the ObservedProperty. | One (Mandatory) |
+| `name` | A label for the ObservedProperty | One (Mandatory) | Depth to water level, feet below land surface |
+| `description` | short description of the Observed Property | One (Mandatory) | Physical |
+| `definition` | The URI of the ObservedProperty. | One (Mandatory) | 
 
-Example
+Example link : https://labs.waterdata.usgs.gov/sta/v1.1/ObservedProperties('72019')
 
 ```
 {
@@ -417,8 +419,7 @@ g) Observation
 
 An Observation is the act of measuring or otherwise determining the value of a property [OGC 10-004r3 and ISO 19156:2011] Check out the Observation and Measurement Model that we discussed in this article.
 
-Example
-
+Example link : https://labs.waterdata.usgs.gov/sta/v1.1/Observations('0ce7bd6c-7e0c-11ec-a1c2-d357d8a6e8ba')
 ```
 {
 "@iot.id": "0ce7bd6c-7e0c-11ec-a1c2-d357d8a6e8ba",
@@ -431,17 +432,18 @@ Example
 "MultiDatastream@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Observations('0ce7bd6c-7e0c-11ec-a1c2-d357d8a6e8ba')/MultiDatastream"
 },
 ```
+
 h) Feature of Interest
 
 An Observation results in a value being assigned to a phenomenon. The phenomenon is a property of a feature, the latter being the FeatureOfInterest of the Observation [OGC and ISO 19156:2011]. In the context of the Internet of Things, many Observations’ FeatureOfInterest can be the Location of the Thing. Example, the FeatureOfInterest can be the geographical area or volume that is being sensed.
 
 | Property | Description | Multiplicity and Use | Example |
 | -------- | ----------- | -------------------- | ------- |
-| Name | A label for the FeatureOfInterest | One (Mandatory) | FoI for location 5891d7a8-2d1b-11ec-a8de-7be125e05952 |
-| Description | short description of the FeatureOfInterest | One (Mandatory) | Generated from location 5891d7a8-2d1b-11ec-a8de-7be125e05952 |
-| feature | The detailed description of the feature. The data type is defined by encodingType | One (Mandatory) | type, coordinate |
+| `name` | A label for the FeatureOfInterest | One (Mandatory) | FoI for location 5891d7a8-2d1b-11ec-a8de-7be125e05952 |
+| `description` | short description of the FeatureOfInterest | One (Mandatory) | Generated from location 5891d7a8-2d1b-11ec-a8de-7be125e05952 |
+| `feature` | The detailed description of the feature. The data type is defined by encodingType | One (Mandatory) | type, coordinate |
 
-Example
+Example link : https://labs.waterdata.usgs.gov/sta/v1.1/FeaturesOfInterest('7a5bbcd4-2d23-11ec-b026-178e2d48f659')
 
 ```
 {
