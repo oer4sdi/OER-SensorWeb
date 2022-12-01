@@ -493,13 +493,13 @@ The use of query options allows for the refinement of requests in order to obtai
 
 | Operations | Description | Result |
 | ---------- | ----------- | --- |
-| `$expand` | to request inline information for related entities in the entity collection requested | https://labs.waterdata.usgs.gov/sta/v1.1/Things?$expand=Datastreams |
-| `$select` | requests the service to return only the properties explicitly requested by the client | https://labs.waterdata.usgs.gov/sta/v1.1/Observations?$select=result,resultTime |
-| `$orderby` | sort the response based on properties of requested entity in the specified order | |
-| `$top` | specifies the limit on the number of items returned from a collection of entities | https://labs.waterdata.usgs.gov/sta/v1.1/Observations?$top=5 |
-| `$skip` | provides the number of the collection's items that must be excluded from the outcome for the query | https://labs.waterdata.usgs.gov/sta/v1.1/Observations?$skip=5 |
-| `$count` | to retrieve the total number of items in a collection matching the requested entity | https://labs.waterdata.usgs.gov/sta/v1.1/Things?$count=true |
-| `$filter` | filters a collection of entities that are addressed by a request URL| |
+| `$expand` | to request inline information for related entities in the entity collection requested | /v1.1/Things?$expand=Datastreams |
+| `$select` | requests the service to return only the properties explicitly requested by the client | /v1.1/Observations?$select=result,resultTime |
+| `$orderby` | sort the response based on properties of requested entity in the specified order | /v1.1/Observations?$orderby=result |
+| `$top` | specifies the limit on the number of items returned from a collection of entities | /v1.1/Observations?$top=5 |
+| `$skip` | provides the number of the collection's items that must be excluded from the outcome for the query | /v1.1/Observations?$skip=5 |
+| `$count` | to retrieve the total number of items in a collection matching the requested entity | /v1.1/Things?$count=true |
+| `$filter` | filters a collection of entities that are addressed by a request URL| v1.1/Observations?$filter=Datastream/id eq 1 |
 
 # Practical Session
 
