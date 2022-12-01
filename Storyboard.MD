@@ -246,7 +246,7 @@ Clients can address to different types of resources by appending the resource pa
 The resource path follows the service root URI and can be used to access various entities.
 
 | Usage of Resource Path |  URI | Description |
-| -------- | ----------- | -------------------- |
+| ---------------------- | ---- | ----------- |
 | no resource path | https://labs.waterdata.usgs.gov/sta/v1.1/ | List all the Entity types in a JSON format |
 | address an entity set | https://labs.waterdata.usgs.gov/sta/v1.1/Observations | List the Observed Properties of all entities |
 | addresses to an specific entity | https://labs.waterdata.usgs.gov/sta/v1.1/Observations('991a6f6c-db7e-11ec-808f-d73c88214e23') | List only the specified entity from a collection of entity set |
@@ -256,7 +256,7 @@ The resource path follows the service root URI and can be used to access various
 Each and every entity set holds one or more relationship with other entity set. This relationship can be accessed via navigation and association links. The service then returns one or many entities that hold a certain relationship with the specified entity.
 
 | Usage of Resource Path |  URI | Description |
-| -------- | ----------- | -------------------- |
+| ---------------------- | ---- | ------------|
 | address to a navigation property | https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('0dbbd0a0480c46bd91e67181455231ca')/Observations | request the linked entities by addressing to a navigation property of an entity |
 | address to an association property | https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('0dbbd0a0480c46bd91e67181455231ca')/Observations/$ref | request the linked entities’ selfLinks by addressing to an association link of an entity |
 
