@@ -196,7 +196,7 @@ The following list presents examples of SOS usage:
 
 # SensorThings API
 
-## Sensor Web and Internet of Things
+## Fundamental Concepts
 
 The terms Internet of Things and Web of Things refer to approaches to integrating smart devices into the Internet. The Internet of Things (IoT) is a network of physical objects—"things"—embedded with sensors, software, and other technologies for connecting and exchanging data with other devices and systems via the internet. In the context of Sensorweb, the `things` here are `Sensors`. Physical things (e.g, Sensors) can share and collect data with minimal human intervention thanks to low-cost computing technologies. The Web of Things (WoT) is a set of standards developed by the World Wide Web Consortium (W3C) to improve the interoperability, and usability of the Internet of Things (IoT). From a technological standpoint, this means that the smart device (e.g., a sensor) is addressable via standard HTTP operations (GET, POST, PUT, etc.), enabling [RESTful](https://www.codecademy.com/article/what-is-rest) access to sensor data (Bröring et al, 2011 a). In short, WoT is a subset of IoT and is based on software standards like REST, HTTP, and URIs to allow devices to communicate with one another.
 
@@ -227,8 +227,40 @@ The Sensing part is designed based on the OGC/ISO Observation and Measurement (O
 | `Sensor` | an instrument that observes a property or phenomenon | Temperature Sensor |
 | `Observation` | an act associated with the process that measures an observed property at a specific feature of interest for a specific phenomenon time and records the results |
 
-Lets take a look into this ROOT URL again:
+Lets take a look into this ROOT URI again:
 > https://labs.waterdata.usgs.gov/sta/v1.1/
+
+### URI Components
+The first step in performing CRUD actions on resources is to address the target resource(s) via URI. The service root URI, the resource path, and the query options are the three major URI components used here. Furthermore, the service root URI is made up of two parts: (1) the SensorThings service's location and (2) the version number. 
+
+The version number is formatted as shown : "v"majorversionnumber + "." + minorversionnumber
+
+Example URI 
+<p align='center'>
+  <img src='https://user-images.githubusercontent.com/94603960/205021951-4a42cd63-765e-433b-9797-fdea27fb94a1.png' height='250'>
+</p>
+
+Clients can address to different types of resources by appending the resource path after the service root URI, such as an entity set, an entity, a property, or a navigation property. Finally, after the resource path, clients can use query options to further process the addressed resources, such as sorting by properties or filtering with criteria.
+
+#### Resource Path
+The resource path follows the service root URI and can be used to access various entities.
+
+| Usage of Resource Path |  URI | Description |
+| -------- | ----------- | -------------------- |
+| no resource path | https://labs.waterdata.usgs.gov/sta/v1.1/ | List all the Entity types in a JSON format |
+| address an entity set | https://labs.waterdata.usgs.gov/sta/v1.1/Observations | List the Observed Properties of all entities |
+| addresses to an specific entity | https://labs.waterdata.usgs.gov/sta/v1.1/Observations('991a6f6c-db7e-11ec-808f-d73c88214e23') | List only the specified entity from a collection of entity set |
+| address to a property | https://labs.waterdata.usgs.gov/sta/v1.1/Observations('991a6f6c-db7e-11ec-808f-d73c88214e23')/result | List the property of the specified entity from a collection of entity set |
+| address to the property value | https://labs.waterdata.usgs.gov/sta/v1.1/Observations('991a6f6c-db7e-11ec-808f-d73c88214e23')/result/$value | List only the value of the specified entity property from a collection of entity set |
+
+Each and every entity set holds one or more relationship with other entity set. This relationship can be accessed via navigation and association links. The service then returns one or many entities that hold a certain relationship with the specified entity.
+
+| Usage of Resource Path |  URI | Description |
+| -------- | ----------- | -------------------- |
+| address to a navigation property | https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('0dbbd0a0480c46bd91e67181455231ca')/Observations | request the linked entities by addressing to a navigation property of an entity |
+| address to an association property | https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('0dbbd0a0480c46bd91e67181455231ca')/Observations/$ref | request the linked entities’ selfLinks by addressing to an association link of an entity |
+
+Note : users can use navigation properties to link from one entity set to another, users can further extend the resource path with unique identifiers, properties, or links
 
 ### Entities
 
@@ -462,33 +494,7 @@ Example link : https://labs.waterdata.usgs.gov/sta/v1.1/FeaturesOfInterest('7a5b
 },
 ```
 
-<details><summary>TERMINOLOGIES</summary>
-<p>
-
-***REST*** : REpresentational State Transfer, is an architectural style for providing standards between computer systems on the web, allowing systems to communicate more easily with one another.
-
-***HTTP*** : Hypertext Transfer Protocol is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes.(https://developer.mozilla.org/en-US/docs/Web/HTTP)
-
-***URI*** : A Uniform Resource Identifier is a unique sequence of characters that identifies a logical or physical resource used by web technologies. In short, URI is a unique id for the resources.
-  
-</p>
-</details>
-
-### URI Components
-The first step in performing CRUD actions on resources is to address the target resource(s) via URI. The service root URI, the resource path, and the query options are the three major URI components used here. Furthermore, the service root URI is made up of two parts: (1) the SensorThings service's location and (2) the version number. 
-
-The version number is formatted as shown : "v"majorversionnumber + "." + minorversionnumber
-
-Example URI 
-<p align='center'>
-  <img src='https://user-images.githubusercontent.com/94603960/205021951-4a42cd63-765e-433b-9797-fdea27fb94a1.png' height='250'>
-</p>
-
-Clients can address to different types of resources by appending the resource path after the service root URI, such as an entity set, an entity, a property, or a navigation property. Finally, after the resource path, clients can use query options to further process the addressed resources, such as sorting by properties or filtering with criteria.
-
-When we talk about the entities before, we have seen a lot of examples. 
-
-### Query Operations
+#### Query Operations
 The use of query options allows for the refinement of requests in order to obtain the necessary information about SensorThings entities in a simple and efficient manner. SensorThings query options are divided into two categories. The first group specifies the properties that the request will return. This group's query options are `$expand` and `$select`. The second group is responsible for limiting, filtering, or re-ordering the request results. This group includes the functions `$orderby`, `$top`, `$skip`, `$count`, and `$filter`.
 
 | Operations | Description | Result |
@@ -500,6 +506,18 @@ The use of query options allows for the refinement of requests in order to obtai
 | `$skip` | provides the number of the collection's items that must be excluded from the outcome for the query | /v1.1/Observations?$skip=5 |
 | `$count` | to retrieve the total number of items in a collection matching the requested entity | /v1.1/Things?$count=true |
 | `$filter` | filters a collection of entities that are addressed by a request URL| v1.1/Observations?$filter=Datastream/id eq 1 |
+
+<details><summary>TERMINOLOGIES</summary>
+<p>
+
+***REST*** : REpresentational State Transfer, is an architectural style for providing standards between computer systems on the web, allowing systems to communicate more easily with one another.
+
+***HTTP*** : Hypertext Transfer Protocol is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes.(https://developer.mozilla.org/en-US/docs/Web/HTTP)
+
+***URI*** : A Uniform Resource Identifier is a unique sequence of characters that identifies a logical or physical resource used by web technologies. In short, URI is a unique id for the resources.
+  
+</p>
+</details>
 
 # Practical Session
 
