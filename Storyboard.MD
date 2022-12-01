@@ -234,6 +234,8 @@ Lets take a look into this ROOT URL again:
 
 Common Property of an Entity:
 
+The OGC SensorThings API service organizes similar entity types into entity sets. Each entity has an unique id as well as one-to-many properties. Furthermore, when an entity has a relationship with entities from other entity sets, this type of relationship is expressed using navigation properties (i.e., navigationLink and associationLink).
+
 | Property | Description | Multiplicity and Use | Example |
 | -------- | ----------- | -------------------- | ------- |
 | `id` | ID is a system-generated unique identifier of an entity | One (Mandatory) | USGS-340422107370801 |
@@ -472,8 +474,32 @@ Example link : https://labs.waterdata.usgs.gov/sta/v1.1/FeaturesOfInterest('7a5b
 </p>
 </details>
 
-### SensorThings API - Query Operations
+### URI Components
+The first step in performing CRUD actions on resources is to address the target resource(s) via URI. The service root URI, the resource path, and the query options are the three major URI components used here. Furthermore, the service root URI is made up of two parts: (1) the SensorThings service's location and (2) the version number. 
 
+The version number is formatted as shown : "v"majorversionnumber + "." + minorversionnumber
+
+Example URI 
+<p align='center'>
+  <img src='https://user-images.githubusercontent.com/94603960/205021951-4a42cd63-765e-433b-9797-fdea27fb94a1.png' height='250'>
+</p>
+
+Clients can address to different types of resources by appending the resource path after the service root URI, such as an entity set, an entity, a property, or a navigation property. Finally, after the resource path, clients can use query options to further process the addressed resources, such as sorting by properties or filtering with criteria.
+
+When we talk about the entities before, we have seen a lot of examples. 
+
+### Query Operations
+The use of query options allows for the refinement of requests in order to obtain the necessary information about SensorThings entities in a simple and efficient manner. SensorThings query options are divided into two categories. The first group specifies the properties that the request will return. This group's query options are `$expand` and `$select`. The second group is responsible for limiting, filtering, or re-ordering the request results. This group includes the functions `$orderby`, `$top`, `$skip`, `$count`, and `$filter`.
+
+| Operations | Description | Result |
+| ---------- | ----------- | --- |
+| `$expand` | to request inline information for related entities in the entity collection requested | https://labs.waterdata.usgs.gov/sta/v1.1/Things?$expand=Datastreams |
+| `$select` | requests the service to return only the properties explicitly requested by the client | https://labs.waterdata.usgs.gov/sta/v1.1/Observations?$select=result,resultTime |
+| `$orderby` | sort the response based on properties of requested entity in the specified order | |
+| `$top` | specifies the limit on the number of items returned from a collection of entities | https://labs.waterdata.usgs.gov/sta/v1.1/Observations?$top=5 |
+| `$skip` | provides the number of the collection's items that must be excluded from the outcome for the query | https://labs.waterdata.usgs.gov/sta/v1.1/Observations?$skip=5 |
+| `$count` | to retrieve the total number of items in a collection matching the requested entity | https://labs.waterdata.usgs.gov/sta/v1.1/Things?$count=true |
+| `$filter` | filters a collection of entities that are addressed by a request URL| |
 
 # Practical Session
 
