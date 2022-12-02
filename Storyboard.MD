@@ -2,17 +2,15 @@
 
 ##### Table of Contents  
 1. [Understanding the Concepts](#understanding-the-Concepts)  
-2. [O&M model](#o&m-model)
+2. [O&M model](#o&M-model)
 3. [SensorThings API](#sensorthings-API)
 4. [Practical Session](#practical-session)
-
 
 # Understanding the Concepts
 
 ## Spatial Data Infrastructure
 
-The ability to access, process, and integrate data from various sources for mapping, visualisation, and other forms of representation and analysis is known as Interoperability. Often organisations such as the European Union share the data among themselves to insure data interoperability. But without specific standards, interoperability is not possible. To ensure the specific needs of each data and its formats, we have Spatial Data Infrastructure (SDI).
-A Spatial Data Infrastructure denotes a collection of technologies, policies and institutional arrangements to serve as a basis for discovery, access and processing of geospatial data to ensure interoperability and improved access to spatial data.
+The ability to access, process, and integrate data from various sources for mapping, visualisation, and other forms of representation and analysis is known as Interoperability. Often organisations such as the European Union share the data among themselves to insure data interoperability. But without specific standards, interoperability is not possible. To ensure the specific needs of each data and its formats, we have Spatial Data Infrastructure (SDI). A Spatial Data Infrastructure (SDI) denotes a collection of technologies, policies and institutional arrangements to serve as a basis for discovery, access and processing of geospatial data to ensure interoperability and improved access to spatial data.
 
 SDI's goals are to: 
 
@@ -20,38 +18,31 @@ SDI's goals are to:
 + Increase the benefits of using available spatial data, and 
 + Establish key partnerships between states, counties, cities, academia, and the private sector.
 
-OGC standards from the International Organization for Standardization (ISO) Technical Committee 211 are essential elements in SDIs around the world. This is because SDIs are data and service networks, and networks depend on open standards.
-
 Examples: 
 
 + Infrastructure for Spatial Information in the European Community (INSPIRE) is a European Union (EU) directive to establish a SDI via the Internet that allows for the standardised sharing of geographic information.
 
 + Global Earth Observation System of Systems (GEOSS) facilitates the sharing of environmental data and information collected from the large array of observing systems contributed by countries and organizations within GEO
 
-One such real time observation data would be sensor data. 
+One such real time observation data would be `sensor data`.
 
 ## Sensor Data
-Data that are collected from various heterogeneous internet of things (IoT) devices. Sensor data is the output of a device that detects and responds to some type of input from the physical environment. The output may be used to provide information or input to another system or to guide a process. Sensors can be used to detect just about any physical element. Here are a few examples of sensors, just to give an idea of the number and diversity of their applications:
+Sensor data is the output of a device that detects and responds to some type of input from the physical environment. The output may be used to provide information or input to another system or to guide a process. Sensors can be used to detect just about any physical element. Here are a few examples of sensors, just to give an idea of the number and diversity of their applications:
 
 + A photosensor detects the presence of visible light, infrared transmission (IR) and/or ultraviolet (UV) energy. 
 + A temperature sensor detects the land surface temperature on the ground.
 
-For example: In kaggle, a dataset sharing platform we have many sensor datasets. Air Quality Dataset is the most commonly used sensordata. This dataset contains the responses of a gas multisensor device deployed on the field in an Italian city.
-
 Did you know? 
 > Your smartphone is so smart that it can act as a mobile sensor
 
-Using Sensor data over other spatial data sources such as remote sensing imageries, CAD has numerous advantages.
-
-Sensors are called “things” in the Internet of Things ecosystem. A sensor network is a computer-accessible network of many, spatially distributed devices that use sensors to monitor environmental conditions such as temperature, pressure. A sensor web is a collection of sensor data and sensor networks that are accessible via the web and can be found and accessed through standard protocols (APIs).
+Using Sensor data over other spatial data sources such as remote sensing imageries, CAD has numerous advantages. It fills the gaps in the remote sensing data and gives accurate results. It also works 24/7 and can work in harsher climates. Sensors are called “things” in the Internet of Things ecosystem. A sensor network is a computer-accessible network of many, spatially distributed devices that use sensors to monitor environmental conditions such as temperature, pressure. A sensor web is a collection of sensor data and sensor networks that are accessible via the web and can be found and accessed through standard protocols (APIs).
 
 The Open Geospatial Consortium (OGC) aims to make heterogeneous sensor data available for discovery, access and use via interoperable formats and Web services. Much like Hyper Text Markup Language (HTML) and Hypertext Transfer Protocol (HTTP) standards enabled the exchange of any type of information on the Web. Through standardized formats and services the heterogeneity/complexity of different sensor types and measurement outputs is hidden from end-users.
 
 ## SWE
 
-The OGC's Sensor Web Enablement (SWE) standards enable developers to make all types of sensors, transducers and sensor data repositories discoverable, accessible and useable via the Web.(OGC) In particular, as main formats, the Observation & Measurement (O&M) standard defines how to model observations and the Sensor Model Language (SensorML) standard may be used to represent metadata about the observing sensor itself.
+The OGC's Sensor Web Enablement (SWE) standards enable developers to make all types of sensors, transducers and sensor data repositories discoverable, accessible and useable via the Web.(OGC) In particular, the Observation & Measurement (O&M) standard defines how to model observations and the Sensor Model Language (SensorML) standard represents metadata about the observing sensor itself.
 
-### SWE OGC Standards
 The SWE framework includes multiple formats for interoperable sensor data exchange, as well as Web Service specifications for sensor data access. The list below provides an overview of key SWE standards. A sufficient description of the standard is included where applicable. 
 
 <p align='center'>
@@ -103,8 +94,9 @@ Fig : The simplified version of Observation Entity diagram from Best Practises d
 According to OGC Standards[2],
 > an observation is an act associated with the process that measures an observed property at a specific feature of interest for a specific phenomenon time and records the results. 
 
-To define each entity separately, we will use a generic example: `temperature`. Table 1: Mandatory Properties of an Observation Model
+To define each entity separately, we will use a generic example: `temperature`. 
 
+Mandatory Properties of an Observation Model
 | Entity | Description | Example |
 | ------ | ----------- | --------------- |
 | `Observed Property / Phenomenon` | a property measured by a sensor | Temperature |
@@ -115,7 +107,7 @@ To define each entity separately, we will use a generic example: `temperature`. 
 
 Note: The temporal parameter in geospatial context is phenomenon time. If the Sensor is capable of post processing, then the time at which a result is posted following post processing would be Result Time.
 
-Table 2: Optional Properties of an Observation Model
+Optional Properties of an Observation Model
 | Entity | Description | Examples |
 | ------ | ----------- | -------- |
 | `Result Quality` | describes the quality of the result owing to the fact that sensor data can be faulty to some extent | 
@@ -133,7 +125,7 @@ Look at the exemplary dataset from the USGS hoisted in the FROST Server.
 
 #### QUIZ - (A drag and drop options that user use correctly mention the terms Eg question : When measuring the height of a tree, the height is the observed ObservableProperty, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest.) H5P format #### QUIZ observation examples
 
-### Classification of observation by result type
+#### Classification of observation by result type
 The Observation model approaches data from the perspective of the data user, emphasizing the semantics of the feature-of-interest and its properties. Whether the feature-of-interest is a discrete or continous observation.
 
 1. Observations whose result is constant
@@ -192,7 +184,7 @@ The following list presents examples of SOS usage:
 
 # SensorThings API
 
-## Fundamental Concepts
+### Fundamental Concepts
 
 The terms Internet of Things and Web of Things refer to approaches to integrating smart devices into the Internet. The Internet of Things (IoT) is a network of physical objects—"things"—embedded with sensors, software, and other technologies for connecting and exchanging data with other devices and systems via the internet. In the context of Sensorweb, the `things` here are `Sensors`. Physical things (e.g, Sensors) can share and collect data with minimal human intervention thanks to low-cost computing technologies. The Web of Things (WoT) is a set of standards developed by the World Wide Web Consortium (W3C) to improve the interoperability, and usability of the Internet of Things (IoT). From a technological standpoint, this means that the smart device (e.g., a sensor) is addressable via standard HTTP operations (GET, POST, PUT, etc.), enabling [RESTful](https://www.codecademy.com/article/what-is-rest) access to sensor data (Bröring et al, 2011 a). In short, WoT is a subset of IoT and is based on software standards like REST, HTTP, and URIs to allow devices to communicate with one another.
 
@@ -207,7 +199,7 @@ The SensorThings API may simplify connections between devices-to-devices and dev
 
 The OGC SensorThings API data model consists of two parts: (1) the Sensing part and (2) the Tasking part. The Sensing part allows IoT devices and applications to CREATE, READ, UPDATE, and DELETE (i.e., HTTP POST, GET, PATCH, and DELETE) IoT data and metadata in a SensorThings service.
 
-## SensorThings API - Sensing Part
+### SensorThings API - Sensing Part
 
 ![sta-entity](https://user-images.githubusercontent.com/94603960/204211187-c0b85e20-eb8d-4521-97f4-18b7823645cb.png)
 
@@ -226,7 +218,7 @@ The Sensing part is designed based on the OGC/ISO Observation and Measurement (O
 Lets take a look into this ROOT URI again:
 > https://labs.waterdata.usgs.gov/sta/v1.1/
 
-### URI Components
+#### URI Components
 The first step in performing CRUD actions on resources is to address the target resource(s) via URI. The service root URI, the resource path, and the query options are the three major URI components used here. Furthermore, the service root URI is made up of two parts: (1) the SensorThings service's location and (2) the version number. 
 
 The version number is formatted as shown : "v"majorversionnumber + "." + minorversionnumber
@@ -258,7 +250,7 @@ Each and every entity set holds one or more relationship with other entity set. 
 
 Note : users can use navigation properties to link from one entity set to another, users can further extend the resource path with unique identifiers, properties, or links
 
-### Entities
+#### Entities
 
 Common Property of an Entity:
 
