@@ -201,7 +201,9 @@ The OGC SensorThings API data model consists of two parts: (1) the Sensing part 
 
 ### SensorThings API - Sensing Part
 
-![sta-entity](https://user-images.githubusercontent.com/94603960/204211187-c0b85e20-eb8d-4521-97f4-18b7823645cb.png)
+<p align='center'>
+  <img src='https://user-images.githubusercontent.com/94603960/205271562-610cc297-2167-4aae-b9a2-e332a5b691ee.png' height='350' width='700'>
+</p>
 
 The Sensing part is designed based on the OGC/ISO Observation and Measurement (O&M) model. A Thing represents an IoT device or system. A Thing has a Location that is associated with one or more Datastreams. Each Datastream has many Observations from the Sensor and observes one ObservedProperty with one Sensor. Each Observation read by the Sensor identifies a single FeatureOfInterest. These relationships, when combined, provide a flexible standard way to describe and model any sensing system. It enables SensorThings to function as a unified data exchange system for heterogeneous devices across any organization. 
 
