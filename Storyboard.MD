@@ -392,7 +392,7 @@ A Sensor is an instrument that observes a property or phenomenon with the goal o
 | -------- | ----------- | -------------------- | ------- |
 | `name` | a label for Sensor entity | One (Mandatory) | USGS_Sensor |
 | `description` | short description of the corresponding Sensor entity | One (Mandatory) | The USGS Sensor |
-| `metadata` | The detailed description of the Sensor or system defined by encodingType. | One (Mandatory) |
+| `metadata` | The detailed description of the Sensor or system defined by encodingType. | One (Mandatory) | "" |
 
 A sensor Metadata Encoding type can be either pdf or SensorML has described above. Most sensor manufacturers provide their sensor datasheets in a PDF format. As a result, PDF is a Sensor encodingType supported by SensorThings API. The second Sensor encodingType is SensorML.
 
@@ -418,7 +418,7 @@ An ObservedProperty specifies the phenomenon of an Observation.
 | -------- | ----------- | -------------------- | ------- |
 | `name` | A label for the ObservedProperty | One (Mandatory) | Depth to water level, feet below land surface |
 | `description` | short description of the Observed Property | One (Mandatory) | Physical |
-| `definition` | The URI of the ObservedProperty. | One (Mandatory) | 
+| `definition` | The URI of the ObservedProperty. | One (Mandatory) | "" |
 
 Example link : https://labs.waterdata.usgs.gov/sta/v1.1/ObservedProperties('72019')
 
@@ -504,7 +504,9 @@ The use of query options allows for the refinement of requests in order to obtai
 </p>
 </details>
 
-# Practical Session
+# Practical Session 
+
+H5P format
 
 ## Reference
 [1] Best Practices for Using Sensor Web Technology by 52north, https://52north.github.io/sensor-web-tutorial/
