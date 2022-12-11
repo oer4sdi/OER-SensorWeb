@@ -197,7 +197,7 @@ The OGC SensorThings API data model consists of two parts: (1) the Sensing part 
 ### SensorThings API - Sensing Part
 
 <p align='center'>
-  <img src='https://user-images.githubusercontent.com/94603960/205271562-610cc297-2167-4aae-b9a2-e332a5b691ee.png' height='350' width='700'>
+  <img src='https://user-images.githubusercontent.com/94603960/206922956-283e9919-1f7a-4599-9b82-0b02d9996a61.png' height='350' width='700'>
 </p>
 
 The Sensing part is designed based on the OGC/ISO Observation and Measurement (O&M) model. A Thing represents an IoT device or system. A Thing has a Location that is associated with one or more Datastreams. Each Datastream has many Observations from the Sensor and observes one ObservedProperty with one Sensor. Each Observation read by the Sensor identifies a single FeatureOfInterest. These relationships, when combined, provide a flexible standard way to describe and model any sensing system. It enables SensorThings to function as a unified data exchange system for heterogeneous devices across any organization. 
@@ -503,6 +503,25 @@ The use of query options allows for the refinement of requests in order to obtai
   
 </p>
 </details>
+
+### Difference between SOS and SensorThings API
+
+| Terms | SensorThings API | Sensor Observation Service |
+| ----- | ---------------- | -------------------------- |
+| Encoding | JSON | XML |
+| Architecture Style | Resource Oriented Architecture | Service Oriented Architecture |
+| Binding | REST | SOAP |
+| Interoperability at service level | has functions that are similar to SOS | cannot interoperate with SensorThings API |
+| Inserting and Deleting sensors or observations | HTTP POST and DELETE(e.g., CRUD) | using SOS specific interfaces, e.g. DeleteSensor(), InsertObservation() |
+
+
+Not supported features in SOS that are supported in SensorThings API :
+| Features | SensorThings API |
+| ----- | ---------------- |
+| Pagination | $top, $skip, $nextLink |
+| Linked data support | JSON-LD |
+| Return properties subset and requesting queries | $select, $expand |
+
 
 # Practical Session 
 
