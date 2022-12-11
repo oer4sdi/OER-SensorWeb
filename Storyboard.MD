@@ -525,7 +525,198 @@ Not supported features in SOS that are supported in SensorThings API :
 
 # Practical Session 
 
-H5P format
+In this session we will learn how to create and read data in the Sensor Things API using an example (STA). We will use Postman for performing CRUD operations using API from 52°North GmbH.
+
+<details><summary> About Postman </summary>
+  <p>
+    From https://www.postman.com/, 'Postman is an API testing platform for creating HTTP requests and checking the response created.' 
+    To download visit postman official page: https://www.postman.com/downloads/ (Here we use postman desktop for our session)
+  </p>
+</details>
+
+After installing postman, Let's install 52North Sensorthings API in our local system. 
+To do that, 
+1) download the docker.yml file from [this github repository](https://github.com/52North/sensorweb-server-sta/blob/maintenance/3.x/docker-compose.yml)
+2) Navigate into the folder with the file in your system
+3) Run `docker-compose up` in the folder path
+4) With this file all the necessary front and backend actions are activated.
+5) Now, check if you have installed the library using : http://localhost:8081/v1.1/
+
+If you can view all the entities that we described above, then the library is running in your system. If not use this github repository `issues` for your doubts.
+
+Let's go !!!
+
+### Create Data
+A weather station at the 52°North GmbH office building, for example, measures the air temperature and UV intensity. Let’s use this as our exemplary dataset for this session.
+
+Root URL : http://localhost:8081/v1.1/
+
+To insert data the first step is to create a Thing with a HTTP POST request. <br/>
+a) Create Thing
+
++ Open the Postman application
++ Add Things to the URL : http://localhost:8081/v1.1/Things
++ The body of the request is a json document, as illustrated below. It includes the Thing's unique identifier, name, and description, as well as the Thing's properties:
+
+`
+{
+  "@iot.id": "weather_station_52",
+  "name": "Weather Station 52°North",
+  "description": "This is a weather station at the 52°North GmbH office building.",
+  "properties": {
+    "owner": "52°North GmbH"
+  }
+}
+`
+
++ Copy the json body specified above and paste it to the body space in Postman.
++ Click SEND. In the response, parameters as well as navigational links are created for the thing that we created. But if you select the navigational links, so data is specified. We need to create all the entities for navigational links to connect.
+
+b) Create Location <br/>
+After that a Location needs to be added. In this example the URI for the POST request looks like this: http://localhost:8081/v1.1/Locations
+
+The body of the request is a json document, as illustrated below. It includes the Location’s unique identifier, name, and description, as well as the Location's properties
+
+`
+{
+  "@iot.id": "building_127",
+  "name": "52°North",
+  "description": "office building of the 52°North GmbH",
+  "encodingType": "application/vnd.geo+json",
+  "location": {
+    "type": "Feature",
+    "geometry":{
+      "type": "Point",
+      "coordinates": [7.651968812254194,51.935101100104916]
+    }
+  },
+  "Things": [
+      {
+          "@iot.id": "weather_station_52"
+      }
+  ]
+}
+`
+
+1. Copy the json body specified above and paste it to the body space in Postman.
+2. Click SEND. The response includes the request parameters as well as links to the Location, the Thing, and the HistoricalLocations. The link to the Thing leads to the weather station that was previously added.
+
+c) Create Sensor
+In the next step a Sensor is created. In the following the URI for the POST request is shown: We have two parameters measured by the weather sensor ( temperature )
+
+1. Replace `Locations` and add to the url `Sensors`:http://localhost:8081/v1.1/Sensors
+
+The body of the request is a json document, as illustrated below. It includes the Sensor’s unique identifier, name, and description, as well as the Sensor’s properties:
+
+`{
+  "@iot.id": "thermometer_1",
+  "name": "Thermometer",
+  "description": "This thermometer measures the air temperature",
+  "encodingType": "application/pdf",
+  "metadata": "http://example.org/Thermometer.pdf"
+}`
+
+2. Copy the json body specified above and paste it to the body space in Postman.
+3. Click SEND. The response includes the request parameters as well as links to the Sensor and datastream.
+
+d) Create ObservedProperty <br/>
+1. To add an observedproperty of the 1st sensor, Replace Sensors and add to the URL ObservedProperties: http://localhost:8081/v1.1/ObservedProperties
+
+The body of the request contains a unique identifier, a description, a name and a link to the definition of the ObservedProperty:
+
+`{
+  "@iot.id": "air_temperature",
+  "description": "Air temperature is the bulk temperature of the air, not the surface (skin) temperature",
+  "name": "ir_temperature",
+  "definition": "https://vocab.nerc.ac.uk/collection/P07/current/CFSN0023/"
+}
+`
+
+2. Copy and Paste the request in the field of the Body section.
+3. Click SEND.
+
+e) Create Datastreams <br/>
+1. Replace `ObservedProperties` and add to the URL `Datastreams`: http://localhost:8081/v1.1/Datastreams
+
+2. Paste the request in the field of the Body section
+
+`{
+  "@iot.id": "thermometer_readings_102",
+  "name": "Thermometer Readings",
+  "description": "This is the reading of a thermometer.",
+  "unitOfMeasurement": {
+    "name": "degree Celsius",
+    "symbol": "°C",
+    "definition": "http://unitsofmeasure.org/ucum.html#para-30"
+  },
+  "observationType": "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement",
+  "Sensor": {
+      "@iot.id": "thermometer_1"
+  },
+  "ObservedProperty": {
+      "@iot.id": "air_temperature"
+  },
+  "Thing": {
+      "@iot.id": "weather_station_52"
+  }
+}`
+
+3. Click the send button
+
+f) Create FeatureOfInterest <br/>
+1. Replace `Datastreams` and add to the URL `FeaturesOfInterest` : http://localhost:8081/v1.1/FeaturesOfInterest
+
+2. Paste the request in the field of the Body section
+
+`{
+  "@iot.id": "muenster",
+  "name": "Muenster",
+  "description": "This is the city of Muenster.",
+  "encodingType": "application/vnd.geo+json",
+  "feature": {
+    "type": "Feature",
+    "geometry":{
+      "type": "Point",
+      "coordinates": [7.651968812254194,51.935101100104916]
+    }
+  }
+}`
+
+3. Click the Send button
+
+g) Create Observation <br/>
+1. Replace `FeatureOfInterest` and add to the URL `Observations`: http://localhost:8081/v1.1/Observations
+
+2. Paste the request in the field of the Body section
+`{
+  "phenomenonTime": "2021-08-17T15:57:53.00+02:00",
+  "resultTime": "2021-08-17T15:57:53.00+02:00",
+  "result": 16.4,
+  "Datastream": {
+      "@iot.id": "thermometer_readings_102"
+  },
+  "FeatureOfInterest": {
+      "@iot.id": "muenster"
+  }
+}`
+	
+3. Click the Send button, To make it possible to filter the Observations, add more observations
+
+`{
+  "phenomenonTime": "2021-08-17T16:58:16.00+02:00",
+  "resultTime": "2021-08-17T16:58:16.00+02:00",
+  "result": 16.2,
+  "Datastream": {
+      "@iot.id": "thermometer_readings_102"
+  },
+  "FeatureOfInterest": {
+      "@iot.id": "muenster"
+   }
+ }`
+ 
+ You have successfully learned how to create a data using SensorthingsAPI.
+
+##### Practise Quiz
 
 ## Reference
 [1] Best Practices for Using Sensor Web Technology by 52north, https://52north.github.io/sensor-web-tutorial/
