@@ -1,5 +1,15 @@
 # SensorWeb (Work in Progress!)
 
+This course is intended for students(graduates/undergradutes) who want to learn Sensor Web Enablement, SensorthingsAPI indepth. The course is structured into four chapters. Basic concepts are brushed up with relevant examples in chapter 1, then chapter 2 explains the data model of SensorWeb indepth. Chapter 3 and 4 are devoted to SensorThings API. Throughout this course, you have quizzes and exercises to finish before moving on to next chapter to test your understanding. By no means the quizzes determines the pass/fail grade. 
+
+#### Prerequisite
+
+One must satisfy these conditions before diving into the concepts:
++ Knowledge of how the internet and the World Wide Web operate from a server/client standpoint
++ Familiarity with JavaScript Object Notation (JSON).
+
+Now, I welcome you all for this journey
+
 ##### Table of Contents  
 1. [Understanding the Concepts](#understanding-the-Concepts)  
 2. [O&M model](#o&M-model)
@@ -529,7 +539,7 @@ In this session we will learn how to create and read data in the Sensor Things A
 
 <details><summary> About Postman </summary>
   <p>
-    From https://www.postman.com/, 'Postman is an API testing platform for creating HTTP requests and checking the response created.' <br/>
+    From https://www.postman.com/, "Postman is an API testing platform for creating HTTP requests and checking the response created" <br/>
     To download visit postman official page: https://www.postman.com/downloads/ (Here we use postman desktop for our session)
   </p>
 </details>
