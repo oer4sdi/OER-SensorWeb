@@ -520,10 +520,8 @@ The use of query options allows for the refinement of requests in order to obtai
 | ----- | ---------------- | -------------------------- |
 | Encoding | JSON | XML |
 | Architecture Style | Resource Oriented Architecture | Service Oriented Architecture |
-| Binding | REST | SOAP |
-| Interoperability at service level | has functions that are similar to SOS | cannot interoperate with SensorThings API |
-| Inserting and Deleting sensors or observations | HTTP POST and DELETE(e.g., CRUD) | using SOS specific interfaces, e.g. DeleteSensor(), InsertObservation() |
-
+| Inserting sensors or observations | HTTP POST and DELETE(e.g., CRUD) | Using SOS interface i.e, InsertSensor(), InsertObservation() |
+| Deleting existing sensors or observations | HTTP DELETE | Using SOS interface, DeleteSensor(). SOS doesn't have an option to delete observations | 
 
 Not supported features in SOS that are supported in SensorThings API :
 | Features | SensorThings API |
