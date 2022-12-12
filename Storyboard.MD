@@ -569,7 +569,10 @@ Open the Postman application
 https://user-images.githubusercontent.com/94603960/206924896-3cecd5e5-96b0-4c06-bb41-a7e7b2905642.mp4
 
 1. Now, Add Things to the URL : http://localhost:8081/v1.1/Things
-2. The body of the request is a json document, as illustrated below. It includes the Thing's unique identifier, name, and description, as well as the Thing's properties:
+
+Note: You must always specify `id`,`name`,`description` when creating entities. The `self.Link`,`Navigation.Links`,`association links` are all auto created after sending the response.
+
+2. The body of the request is a json document, as illustrated below. It includes the Thing's unique identifier, name, and description, as well as the Thing's properties(look into the entity table of Thing to know about the properties mentioned in the body)
 
 ```
 {
@@ -588,7 +591,7 @@ https://user-images.githubusercontent.com/94603960/206924896-3cecd5e5-96b0-4c06-
 b) Create Location <br/>
 After that a Location needs to be added. In this example the URI for the POST request looks like this: http://localhost:8081/v1.1/Locations
 
-The body of the request is a json document, as illustrated below. It includes the Location’s unique identifier, name, and description, as well as the Location's properties
+The body of the request is a json document, as illustrated below. It includes the Location’s unique identifier, name, and description, as well as the Location's properties(look into the entity table of Location to know about the properties mentioned in the body)
 
 ```
 {
@@ -619,7 +622,7 @@ In the next step a Sensor is created. In the following the URI for the POST requ
 
 1. Replace `Locations` and add to the url `Sensors`:http://localhost:8081/v1.1/Sensors
 
-The body of the request is a json document, as illustrated below. It includes the Sensor’s unique identifier, name, and description, as well as the Sensor’s properties:
+The body of the request is a json document, as illustrated below. It includes the Sensor’s unique identifier, name, and description, as well as the Sensor’s properties(look into the entity table of Sensor to know about the properties mentioned in the body)
 
 ```
 {
@@ -637,7 +640,7 @@ The body of the request is a json document, as illustrated below. It includes th
 d) Create ObservedProperty <br/>
 1. To add an observedproperty of the 1st sensor, Replace Sensors and add to the URL ObservedProperties: http://localhost:8081/v1.1/ObservedProperties
 
-The body of the request contains a unique identifier, a description, a name and a link to the definition of the ObservedProperty:
+The body of the request contains a unique identifier, a description, a name and a link to the definition of the ObservedProperty(look into the entity table of ObservedProperty to know about the properties mentioned in the body)
 
 ```
 {
@@ -654,7 +657,7 @@ The body of the request contains a unique identifier, a description, a name and 
 e) Create Datastreams <br/>
 1. Replace `ObservedProperties` and add to the URL `Datastreams`: http://localhost:8081/v1.1/Datastreams
 
-2. Paste the request in the field of the Body section
+2. Paste the request in the field of the Body section(look into the entity table of DataStreams to know about the properties mentioned in the body)
 
 ```
 {
@@ -684,7 +687,7 @@ e) Create Datastreams <br/>
 f) Create FeatureOfInterest <br/>
 1. Replace `Datastreams` and add to the URL `FeaturesOfInterest` : http://localhost:8081/v1.1/FeaturesOfInterest
 
-2. Paste the request in the field of the Body section
+2. Paste the request in the field of the Body section(look into the entity table of FeatureOfInterest to know about the properties mentioned in the body)
 
 ```
 {
@@ -707,7 +710,7 @@ f) Create FeatureOfInterest <br/>
 g) Create Observation <br/>
 1. Replace `FeatureOfInterest` and add to the URL `Observations`: http://localhost:8081/v1.1/Observations
 
-2. Paste the request in the field of the Body section
+2. Paste the request in the field of the Body section (look into the entity table of Observation to know about the properties mentioned in the body)
 ```
 {
   "phenomenonTime": "2021-08-17T15:57:53.00+02:00",
