@@ -576,11 +576,11 @@ Note: You must always specify `id`,`name`,`description` when creating entities. 
 
 ```
 {
-  "@iot.id": "weather_station_52",
-  "name": "Weather Station 52°North",
-  "description": "This is a weather station at the 52°North GmbH office building.",
+  "@iot.id": "weather_station_1",
+  "name": "Weather Station Berlin",
+  "description": "This is a weather station at the city of berlin.",
   "properties": {
-    "owner": "52°North GmbH"
+    "owner": "api.open-meteo.com"
   }
 }
 ```
@@ -595,20 +595,20 @@ The body of the request is a json document, as illustrated below. It includes th
 
 ```
 {
-  "@iot.id": "building_127",
-  "name": "52°North",
-  "description": "office building of the 52°North GmbH",
+  "@iot.id": "building_52",
+  "name": "Berliner Stadtwerke GmbH",
+  "description": "Office Building",
   "encodingType": "application/vnd.geo+json",
   "location": {
     "type": "Feature",
     "geometry":{
       "type": "Point",
-      "coordinates": [7.651968812254194,51.935101100104916]
+      "coordinates": [13.410854165177549,52.51559810321062]
     }
   },
   "Things": [
       {
-          "@iot.id": "weather_station_52"
+          "@iot.id": "weather_station_1"
       }
   ]
 }
@@ -661,7 +661,7 @@ e) Create Datastreams <br/>
 
 ```
 {
-  "@iot.id": "thermometer_readings_102",
+  "@iot.id": "thermometer_readings_20",
   "name": "Thermometer Readings",
   "description": "This is the reading of a thermometer.",
   "unitOfMeasurement": {
@@ -677,7 +677,7 @@ e) Create Datastreams <br/>
       "@iot.id": "air_temperature"
   },
   "Thing": {
-      "@iot.id": "weather_station_52"
+      "@iot.id": "weather_station_1"
   }
 }
 ```
@@ -691,15 +691,15 @@ f) Create FeatureOfInterest <br/>
 
 ```
 {
-  "@iot.id": "muenster",
-  "name": "Muenster",
-  "description": "This is the city of Muenster.",
+  "@iot.id": "berlin",
+  "name": "berlin",
+  "description": "This is the city of Berlin.",
   "encodingType": "application/vnd.geo+json",
   "feature": {
     "type": "Feature",
     "geometry":{
       "type": "Point",
-      "coordinates": [7.651968812254194,51.935101100104916]
+      "coordinates": [13.414064873302916,52.530875407490306]
     }
   }
 }
@@ -713,14 +713,14 @@ g) Create Observation <br/>
 2. Paste the request in the field of the Body section (look into the entity table of Observation to know about the properties mentioned in the body)
 ```
 {
-  "phenomenonTime": "2021-08-17T15:57:53.00+02:00",
-  "resultTime": "2021-08-17T15:57:53.00+02:00",
-  "result": 16.4,
+  "phenomenonTime": "2022-08-12T15:57:53.00+02:00",
+  "resultTime": "2022-08-12T15:57:53.00+02:00",
+  "result": 12.4,
   "Datastream": {
-      "@iot.id": "thermometer_readings_102"
+      "@iot.id": "thermometer_readings_20"
   },
   "FeatureOfInterest": {
-      "@iot.id": "muenster"
+      "@iot.id": "berlin"
   }
 }
 ```
@@ -728,14 +728,14 @@ g) Create Observation <br/>
 3. Click the Send button, To make it possible to filter the Observations, add more observations
 ```
 {
-  "phenomenonTime": "2021-08-17T16:58:16.00+02:00",
-  "resultTime": "2021-08-17T16:58:16.00+02:00",
-  "result": 16.2,
+  "phenomenonTime": "2022-08-12T16:58:16.00+02:00",
+  "resultTime": "2022-08-12T16:58:16.00+02:00",
+  "result": 10.3,
   "Datastream": {
-      "@iot.id": "thermometer_readings_102"
+      "@iot.id": "thermometer_readings_20"
   },
   "FeatureOfInterest": {
-      "@iot.id": "muenster"
+      "@iot.id": "berlin"
    }
  }
 ```
