@@ -561,7 +561,7 @@ a) Create Thing
 
 Open the Postman application
 
-https://user-images.githubusercontent.com/94603960/206924896-3cecd5e5-96b0-4c06-bb41-a7e7b2905642.mp4
+[How to use Postman](videos/PracticalSession1.mp4)
 
 1. Now, Add Things to the URL : http://localhost:8081/v1.1/Things
 
