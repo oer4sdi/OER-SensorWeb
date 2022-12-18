@@ -56,7 +56,7 @@ The OGC's Sensor Web Enablement (SWE) standards enable developers to make all ty
 The SWE framework includes multiple formats for interoperable sensor data exchange, as well as Web Service specifications for sensor data access. The list below provides an overview of key SWE standards. A sufficient description of the standard is included where applicable. 
 
 <p align='center'>
-  <img src='https://user-images.githubusercontent.com/94603960/205253934-b634cd9f-856d-4178-a390-c7be2bf240ab.png' width='550' height='300'>
+  <img src='Img/swe-components.png' width='550' height='300'>
 </p>
 
 The table below explains briefly about the OGC Standards, in the upcoming chapters we can discuss some of the concepts that are relevant for this course indepth.
@@ -97,7 +97,7 @@ Did you Know ?
 
 #### UML Diagram of Observations
 <p align='center'>
-  <img src='https://user-images.githubusercontent.com/94603960/204206653-b5fae81b-74f3-4ab5-aac2-6e885dc7c385.png' height='300'>
+  <img src='Img/o&m uml.png' height='300'>
 </p>
 Fig : The simplified version of Observation Entity diagram from Best Practises documentation[1]
 
@@ -142,7 +142,7 @@ The Observation model approaches data from the perspective of the data user, emp
 
 Observations where the outcome of a observation may have a single value or multiple values, but if there are multiple values, those values do not change over the course of the observation with respect to either space or time.
 
-![o m-discrobs](https://user-images.githubusercontent.com/94603960/204206594-5803c760-8199-4d10-859d-165a7a80ac99.png)
+![o m-discrobs](Img/o&m-discrobs.png)
 
 Example,
 ```
@@ -159,7 +159,7 @@ This features would be Geometry type observation.
 
 Observations where the outcome of a observation includes multiple values that change with time, space, or both during the course of the observation. The value of a corresponding observation result shall therefore be a function or coverage(domain extent is the spatiotemporal extent of the feature), respectively. The target feature may be subjected to numerous observations using various sampling methods, so the sampling methods are associated with the act of observation rather than being inherent in the feature-of-interest. To model the coverage, a domain geometry decomposition with specialized sub-geometries is defined to represent the associated feature.
 
-![o m-contobs](https://user-images.githubusercontent.com/94603960/204206553-dacd1b3f-535d-4528-85cd-c07a9fcb9821.png)
+![o m-contobs](Img/o&m-contobs.png)
 
 What would be a best example for Continous Observation? 
 ```
@@ -207,7 +207,7 @@ The OGC SensorThings API data model consists of two parts: (1) the Sensing part 
 ### SensorThings API - Sensing Part
 
 <p align='center'>
-  <img src='https://user-images.githubusercontent.com/94603960/206922956-283e9919-1f7a-4599-9b82-0b02d9996a61.png' height='350' width='700'>
+  <img src='Img/sta-entities-abstract.png' height='350' width='700'>
 </p>
 
 The Sensing part is designed based on the OGC/ISO Observation and Measurement (O&M) model. A Thing represents an IoT device or system. A Thing has a Location that is associated with one or more Datastreams. Each Datastream has many Observations from the Sensor and observes one ObservedProperty with one Sensor. Each Observation read by the Sensor identifies a single FeatureOfInterest. These relationships, when combined, provide a flexible standard way to describe and model any sensing system. It enables SensorThings to function as a unified data exchange system for heterogeneous devices across any organization. 
@@ -232,7 +232,7 @@ The version number is formatted as shown : "v"majorversionnumber + "." + minorve
 
 Example URI 
 <p align='center'>
-  <img src='https://user-images.githubusercontent.com/94603960/205021951-4a42cd63-765e-433b-9797-fdea27fb94a1.png' height='250'>
+  <img src='Img/sta-root-uri.png' height='250'>
 </p>
 
 Clients can address to different types of resources by appending the resource path after the service root URI, such as an entity set, an entity, a property, or a navigation property. Finally, after the resource path, clients can use query options to further process the addressed resources, such as sorting by properties or filtering with criteria.
