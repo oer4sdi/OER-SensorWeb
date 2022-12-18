@@ -76,12 +76,11 @@ Some Standards are not considered to be OGC standards, nonetheless they are allo
 | SAS | a discussion paper published by the OGC that describes a web service interface for publishing and subscribing to sensor alerts |
 | WNS | a document describing the web service interface for [asynchronous](https://www.microfocus.com/documentation/silk-performer/205/en/silkperformer-205-webhelp-en/GUID-6CC17B5B-71B7-4703-B9E6-C81835A5335A.html) message or alert delivery from SAS and SPS or other web services long-running transactions. |
 
-### What is considered as a Sensor Data Source?
-#### Sensor data sources - deals with what sources are they? and which is ideal? how the above standards helps? ( QUIZ cum explanation ) - H5P format
+####  Quiz (Intro part 1 and 2) seperate modules H5P format
 
 # O&M model
 <p align='center'>
-  <img src='https://user-images.githubusercontent.com/94603960/201489207-bf9ca213-91a6-4502-8d46-ede5ed704f81.png'>
+  <img src='Img/o&m_generic.png'>
 </p>
 
 Fig : The simplified version of the Observation and Measurements (O&M) model's general schema diagram from Best practises documentation[1]
@@ -133,8 +132,6 @@ Look at the exemplary dataset from the USGS hoisted in the FROST Server.
 
 > https://labs.waterdata.usgs.gov/sta/v1.1/Observations
 
-#### QUIZ - (A drag and drop options that user use correctly mention the terms Eg question : When measuring the height of a tree, the height is the observed ObservableProperty, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest.) H5P format #### QUIZ observation examples
-
 #### Classification of observation by result type
 The Observation model approaches data from the perspective of the data user, emphasizing the semantics of the feature-of-interest and its properties. Whether the feature-of-interest is a discrete or continous observation.
 
@@ -167,7 +164,6 @@ Weather is unpredictable and is a good example for continous observation.
 'Temperature' for example, changes over space and time. Here temperature is a discretePointCoverage observation.
 Think of any continous observation?
 ```
-#### Quiz ( What is discrete and contimous obs)
 
 ## Sensor Observation Service
 
@@ -185,7 +181,7 @@ The following list presents examples of SOS usage:
 + The US National Oceanic and Atmospheric Administration (NOAA) provides quality controlled ocean data and information through its Integrated Ocean Observing System (IOOS®) SOS: 
 + Wales Air’s Sensor Observation Service (SOS) provides a machine readable access point for air pollution measurements hosted on Air quality Wales: https://airquality.gov.wales/sos-waq/service?service=SOS&request=GetCapabilities
 
-![SOS](https://user-images.githubusercontent.com/94603960/201588754-4a0c348c-f3fc-43d4-bd4d-5cd16f794dbc.png)
+![SOS](Img/sos.png)
 
 SWE specifications such as SOS; SPS, and SES are powerful for use cases that are broad and often complex(e.g. disaster management or early warning systems). However, use cases that do not require the full functionality of SWE's data altering, sensor discovery, tasking, and event handling may be easier to realize with the Web of Things approach by treating sensor objects as things. (Liang et al.) The SWE framework is a well-established approach for integrating sensors with the Web. A smart device, according to Bröring et al. (2011 b), may respond to data requests using SWE-standardized formats. To be more specific, sensor metadata should be encoded using SensorML, and observation data as O&M. With these format constraints, any other application/component may retrieve the smart device's sensor data in an interoperable, standardized manner. The SensorThings API is an open standard, builds on Web protocols and the OGC Sensor Web Enablement standards, and applies an easy-to-use REST-like style.
 
@@ -530,6 +526,7 @@ Not supported features in SOS that are supported in SensorThings API :
 | Linked data support | JSON-LD |
 | Return properties subset and requesting queries | $select, $expand |
 
+#### Quiz 1 and 2 (seperate modules) H5P format
 
 # Practical Session 
 
