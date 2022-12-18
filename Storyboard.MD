@@ -141,6 +141,8 @@ Observations where the outcome of a observation may have a single value or multi
 
 ![o m-discrobs](Img/o&m-discrobs.png)
 
+Fig: simplified diagram of o&m discrete observations from best practises documentation[1]
+
 Example,
 ```
 A well known example would be Flip-a-Coin, where the odds are always 'HEAD' or 'TAIL' - This would be a Boolean type observation.
@@ -157,6 +159,8 @@ This features would be Geometry type observation.
 Observations where the outcome of a observation includes multiple values that change with time, space, or both during the course of the observation. The value of a corresponding observation result shall therefore be a function or coverage(domain extent is the spatiotemporal extent of the feature), respectively. The target feature may be subjected to numerous observations using various sampling methods, so the sampling methods are associated with the act of observation rather than being inherent in the feature-of-interest. To model the coverage, a domain geometry decomposition with specialized sub-geometries is defined to represent the associated feature.
 
 ![o m-contobs](Img/o&m-contobs.png)
+
+Fig: simplified diagram of o&m continous observations from best practises documentation[1]
 
 What would be a best example for Continous Observation? 
 ```
@@ -182,6 +186,8 @@ The following list presents examples of SOS usage:
 + Wales Air’s Sensor Observation Service (SOS) provides a machine readable access point for air pollution measurements hosted on Air quality Wales: https://airquality.gov.wales/sos-waq/service?service=SOS&request=GetCapabilities
 
 ![SOS](Img/sos.png)
+
+Fig: modified SOS diagram from OGC elearning site[3]
 
 SWE specifications such as SOS; SPS, and SES are powerful for use cases that are broad and often complex(e.g. disaster management or early warning systems). However, use cases that do not require the full functionality of SWE's data altering, sensor discovery, tasking, and event handling may be easier to realize with the Web of Things approach by treating sensor objects as things. (Liang et al.) The SWE framework is a well-established approach for integrating sensors with the Web. A smart device, according to Bröring et al. (2011 b), may respond to data requests using SWE-standardized formats. To be more specific, sensor metadata should be encoded using SensorML, and observation data as O&M. With these format constraints, any other application/component may retrieve the smart device's sensor data in an interoperable, standardized manner. The SensorThings API is an open standard, builds on Web protocols and the OGC Sensor Web Enablement standards, and applies an easy-to-use REST-like style.
 
@@ -739,7 +745,11 @@ You have successfully learned how to create a data using SensorthingsAPI.
 ## Reference
 [1] Best Practices for Using Sensor Web Technology by 52north, https://52north.github.io/sensor-web-tutorial/
 [2] OGC Abstract Specification - Geographic information — Observations and measurements,Cox, Simon (2013), http://portal.opengeospatial.org/files/?artifact_id=41579.
+[3] OGC Elearning site, http://opengeospatial.github.io/e-learning/sos/text/index.html
 
 ### Icon Attribution
 Icon by <a href="https://freeicons.io/profile/205927">Flatart</a>, <a href="https://freeicons.io/profile/8908">EDT.Graphics</a>, <a href="https://freeicons.io/profile/75801">Hilmy Abiyyu Asad</a>, <a href="https://freeicons.io/profile/88863">WANICON</a>, <a href="https://freeicons.io/profile/122327">Ginkaewicons</a> on <a href="https://freeicons.io">freeicons.io</a>
+
+### Data Attribution
+USGS Water labs hoisted in Frost server, https://labs.waterdata.usgs.gov/index.html
                                 
