@@ -558,7 +558,7 @@ If you can view all the entities that we described above, then the library is ru
 Let's go !!!
 
 ### Create Data
-A weather station at the 52°North GmbH office building, for example, measures the air temperature and UV intensity. Let’s use this as our exemplary dataset for this session.
+A weather station at the berlin stadwerke office building, for example, measures the air temperature. Let’s use this as our exemplary dataset for this session.
 
 Root URL : http://localhost:8081/v1.1/
 
@@ -567,7 +567,7 @@ a) Create Thing
 
 Open the Postman application
 
-[How to use Postman](videos/PracticalSession1.mp4)
+For the Initial setting: [How to use Postman](videos/PracticalSession1.mp4)
 
 1. Now, Add Things to the URL : http://localhost:8081/v1.1/Things
 
@@ -586,8 +586,8 @@ Note: You must always specify `id`,`name`,`description` when creating entities. 
 }
 ```
 
-3. Copy the json body specified above and paste it to the body space in Postman.
-4. Click SEND. In the response, parameters as well as navigational links are created for the thing that we created. But if you select the navigational links, so data is specified. We need to create all the entities for navigational links to connect.
+3. Copy the json body that was mentioned above, and then paste it into Postman's body space.
+4. Press SEND. For the thing we created, parameters and navigational links are created in the response. However, if you choose one of the directional links, the no data is specified. For navigational links to connect, all the necessary entities must be created.
 
 b) Create Location <br/>
 After that a Location needs to be added. In this example the URI for the POST request looks like this: http://localhost:8081/v1.1/Locations
@@ -618,7 +618,7 @@ The body of the request is a json document, as illustrated below. It includes th
 1. Copy the json body specified above and paste it to the body space in Postman.
 2. Click SEND. The response includes the request parameters as well as links to the Location, the Thing, and the HistoricalLocations. The link to the Thing leads to the weather station that was previously added.
 
-c) Create Sensor
+c) Create Sensor <br/>
 In the next step a Sensor is created. In the following the URI for the POST request is shown: We have two parameters measured by the weather sensor ( temperature )
 
 1. Replace `Locations` and add to the url `Sensors`:http://localhost:8081/v1.1/Sensors
@@ -743,9 +743,9 @@ g) Create Observation <br/>
 You have successfully learned how to create a data using SensorthingsAPI.
 
 ## Reference
-[1] Best Practices for Using Sensor Web Technology by 52north, https://52north.github.io/sensor-web-tutorial/
-[2] OGC Abstract Specification - Geographic information — Observations and measurements,Cox, Simon (2013), http://portal.opengeospatial.org/files/?artifact_id=41579.
-[3] OGC Elearning site, http://opengeospatial.github.io/e-learning/sos/text/index.html
+[1] Best Practices for Using Sensor Web Technology by 52north, https://52north.github.io/sensor-web-tutorial/ <br/>
+[2] OGC Abstract Specification - Geographic information — Observations and measurements,Cox, Simon (2013), http://portal.opengeospatial.org/files/?artifact_id=41579. <br/>
+[3] OGC Elearning site, http://opengeospatial.github.io/e-learning/sos/text/index.html <br/>
 
 ### Icon Attribution
 Icon by <a href="https://freeicons.io/profile/205927">Flatart</a>, <a href="https://freeicons.io/profile/8908">EDT.Graphics</a>, <a href="https://freeicons.io/profile/75801">Hilmy Abiyyu Asad</a>, <a href="https://freeicons.io/profile/88863">WANICON</a>, <a href="https://freeicons.io/profile/122327">Ginkaewicons</a> on <a href="https://freeicons.io">freeicons.io</a>
