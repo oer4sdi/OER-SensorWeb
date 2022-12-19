@@ -234,7 +234,7 @@ The version number is formatted as shown : "v"majorversionnumber + "." + minorve
 
 Example URI 
 <p align='center'>
-  <img src='Img/root-uri.svg' height='250'>
+  <img src='Img/root-url.svg' height='250'>
 </p>
 
 Clients can address to different types of resources by appending the resource path after the service root URI, such as an entity set, an entity, a property, or a navigation property. Finally, after the resource path, clients can use query options to further process the addressed resources, such as sorting by properties or filtering with criteria.
