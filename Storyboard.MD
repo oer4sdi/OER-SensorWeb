@@ -76,7 +76,7 @@ Some Standards are not considered to be OGC standards, nonetheless they are allo
 | SAS | a discussion paper published by the OGC that describes a web service interface for publishing and subscribing to sensor alerts |
 | WNS | a document describing the web service interface for [asynchronous](https://www.microfocus.com/documentation/silk-performer/205/en/silkperformer-205-webhelp-en/GUID-6CC17B5B-71B7-4703-B9E6-C81835A5335A.html) message or alert delivery from SAS and SPS or other web services long-running transactions. |
 
-####  Quiz (Intro part 1 and 2) seperate modules H5P format
+####  Quiz (Intro part 1) seperate modules H5P format
 
 # O&M model
 <p align='center'>
@@ -168,6 +168,15 @@ Weather is unpredictable and is a good example for continous observation.
 'Temperature' for example, changes over space and time. Here temperature is a discretePointCoverage observation.
 Think of any continous observation?
 ```
+Sources of Sensors
+
+With sensors, we have different types depending on its location, Stationary in-situ, Mobile in-situ, Stationary Remote sensors. From Best practises documentation[1] a simple explanation on the sources of sensors are briefly described here. Look into the documentation to know more.
+Lets see each one with an apt example, <br/>
+**Stationary in-situ** : As the name suggests these sensors have fixed positions which is directly associated with the FeatureOfInterest. <br/>
+**Mobile in-situ** : Mobile sensors vary in space rather than being fixed at a specific geo-location. As a result, the sensor's or procedure's location changes with time. <br/>
+**Stationary Remote** : A remote sensor is not physically connected to its associated featureOfInterest, in contrast to in-situ sensors. However, the sensor's or procedure's own geo-reference is constant (stationary). <br/>
+
+####  Quiz (Intro part 2) seperate modules H5P format
 
 ## Sensor Observation Service
 
