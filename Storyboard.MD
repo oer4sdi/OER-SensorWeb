@@ -547,14 +547,20 @@ Not supported features in SOS that are supported in SensorThings API :
 
 In this session we will learn how to create and read data in the Sensor Things API using an example (STA). We will use Postman for performing CRUD operations using API from 52°North GmbH.
 
-<details><summary> About Postman </summary>
-  <p>
-    From https://www.postman.com/, "Postman is an API testing platform for creating HTTP requests and checking the response created" <br/>
-    To download visit postman official page: https://www.postman.com/downloads/ (Here we use postman desktop for our session)
-  </p>
-</details>
+### Setup the environment
 
-After installing postman, Let's install 52North Sensorthings API in our local system. 
+#### Install Postman (Step 1)
+From https://www.postman.com/, "Postman is an API testing platform for creating HTTP requests and checking the response created" <br/>
+    
+    To download visit postman official page: https://www.postman.com/downloads/ (Here we use postman desktop for our session)
+    
+#### Install Docker (Step 2)
+From [IBM](https://www.ibm.com/topics/docker), "Docker is an open source platform that enables developers to build, deploy, run, update and manage containers required to run that code in any environment.
+	
+	To download visit docker official page: https://docs.docker.com/get-docker/ (You can see guides tailored to your Operating System)
+	
+#### Install STA (Step 3)
+After installing postman and docker, Let's install 52North Sensorthings API in our local system. <br/>
 To do that, 
 1) download the docker.yml file from [this github repository](https://github.com/52North/sensorweb-server-sta/blob/maintenance/3.x/docker-compose.yml)
 2) Navigate into the folder with the file in your system
@@ -564,7 +570,7 @@ To do that,
 
 If you can view all the entities that we described above, then the library is running in your system. If not use this github repository `issues` for your doubts.
 
-Let's go !!!
+Whew! That was a tiring task. Now that you have the software environment ready in your pc. Let's go !!!
 
 ### Create Data
 A weather station at the berlin stadwerke office building, for example, measures the air temperature. Let’s use this as our exemplary dataset for this session.
