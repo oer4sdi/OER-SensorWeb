@@ -76,7 +76,7 @@ Some Standards are not considered to be OGC standards, nonetheless they are allo
 | SAS | a discussion paper published by the OGC that describes a web service interface for publishing and subscribing to sensor alerts |
 | WNS | a document describing the web service interface for [asynchronous](https://www.microfocus.com/documentation/silk-performer/205/en/silkperformer-205-webhelp-en/GUID-6CC17B5B-71B7-4703-B9E6-C81835A5335A.html) message or alert delivery from SAS and SPS or other web services long-running transactions. |
 
-####  Quiz (Intro part 1 and 2) seperate modules H5P format
+####  Quiz (Intro part 1) seperate modules H5P format
 
 # O&M model
 <p align='center'>
@@ -168,6 +168,15 @@ Weather is unpredictable and is a good example for continous observation.
 'Temperature' for example, changes over space and time. Here temperature is a discretePointCoverage observation.
 Think of any continous observation?
 ```
+Sources of Sensors
+
+With sensors, we have different types depending on its location, Stationary in-situ, Mobile in-situ, Stationary Remote sensors. From Best practises documentation[1] a simple explanation on the sources of sensors are briefly described here. Look into the documentation to know more.
+Lets see each one with an apt example, <br/>
+**Stationary in-situ** : As the name suggests these sensors have fixed positions which is directly associated with the FeatureOfInterest. <br/>
+**Mobile in-situ** : Mobile sensors vary in space rather than being fixed at a specific geo-location. As a result, the sensor's or procedure's location changes with time. <br/>
+**Stationary Remote** : A remote sensor is not physically connected to its associated featureOfInterest, in contrast to in-situ sensors. However, the sensor's or procedure's own geo-reference is constant (stationary). <br/>
+
+####  Quiz (Intro part 2) seperate modules H5P format
 
 ## Sensor Observation Service
 
@@ -538,14 +547,20 @@ Not supported features in SOS that are supported in SensorThings API :
 
 In this session we will learn how to create and read data in the Sensor Things API using an example (STA). We will use Postman for performing CRUD operations using API from 52°North GmbH.
 
-<details><summary> About Postman </summary>
-  <p>
-    From https://www.postman.com/, "Postman is an API testing platform for creating HTTP requests and checking the response created" <br/>
-    To download visit postman official page: https://www.postman.com/downloads/ (Here we use postman desktop for our session)
-  </p>
-</details>
+### Setup the environment
 
-After installing postman, Let's install 52North Sensorthings API in our local system. 
+#### Install Postman (Step 1)
+From https://www.postman.com/, "Postman is an API testing platform for creating HTTP requests and checking the response created" <br/>
+    
+    To download visit postman official page: https://www.postman.com/downloads/ (Here we use postman desktop for our session)
+    
+#### Install Docker (Step 2)
+From [IBM](https://www.ibm.com/topics/docker), "Docker is an open source platform that enables developers to build, deploy, run, update and manage containers required to run that code in any environment.
+	
+	To download visit docker official page: https://docs.docker.com/get-docker/ (You can see guides tailored to your Operating System)
+	
+#### Install STA (Step 3)
+After installing postman and docker, Let's install 52North Sensorthings API in our local system. <br/>
 To do that, 
 1) download the docker.yml file from [this github repository](https://github.com/52North/sensorweb-server-sta/blob/maintenance/3.x/docker-compose.yml)
 2) Navigate into the folder with the file in your system
@@ -555,10 +570,10 @@ To do that,
 
 If you can view all the entities that we described above, then the library is running in your system. If not use this github repository `issues` for your doubts.
 
-Let's go !!!
+Whew! That was a tiring task. Now that you have the software environment ready in your pc. Let's go !!!
 
 ### Create Data
-A weather station at the 52°North GmbH office building, for example, measures the air temperature and UV intensity. Let’s use this as our exemplary dataset for this session.
+A weather station at the berlin stadwerke office building, for example, measures the air temperature. Let’s use this as our exemplary dataset for this session.
 
 Root URL : http://localhost:8081/v1.1/
 
@@ -567,7 +582,7 @@ a) Create Thing
 
 Open the Postman application
 
-[How to use Postman](videos/PracticalSession1.mp4)
+For the Initial setting: [How to use Postman](videos/PracticalSession1.mp4)
 
 1. Now, Add Things to the URL : http://localhost:8081/v1.1/Things
 
@@ -586,8 +601,8 @@ Note: You must always specify `id`,`name`,`description` when creating entities. 
 }
 ```
 
-3. Copy the json body specified above and paste it to the body space in Postman.
-4. Click SEND. In the response, parameters as well as navigational links are created for the thing that we created. But if you select the navigational links, so data is specified. We need to create all the entities for navigational links to connect.
+3. Copy the json body that was mentioned above, and then paste it into Postman's body space.
+4. Press SEND. For the thing we created, parameters and navigational links are created in the response. However, if you choose one of the directional links, the no data is specified. For navigational links to connect, all the necessary entities must be created.
 
 b) Create Location <br/>
 After that a Location needs to be added. In this example the URI for the POST request looks like this: http://localhost:8081/v1.1/Locations
@@ -618,7 +633,7 @@ The body of the request is a json document, as illustrated below. It includes th
 1. Copy the json body specified above and paste it to the body space in Postman.
 2. Click SEND. The response includes the request parameters as well as links to the Location, the Thing, and the HistoricalLocations. The link to the Thing leads to the weather station that was previously added.
 
-c) Create Sensor
+c) Create Sensor <br/>
 In the next step a Sensor is created. In the following the URI for the POST request is shown: We have two parameters measured by the weather sensor ( temperature )
 
 1. Replace `Locations` and add to the url `Sensors`:http://localhost:8081/v1.1/Sensors
@@ -743,9 +758,9 @@ g) Create Observation <br/>
 You have successfully learned how to create a data using SensorthingsAPI.
 
 ## Reference
-[1] Best Practices for Using Sensor Web Technology by 52north, https://52north.github.io/sensor-web-tutorial/
-[2] OGC Abstract Specification - Geographic information — Observations and measurements,Cox, Simon (2013), http://portal.opengeospatial.org/files/?artifact_id=41579.
-[3] OGC Elearning site, http://opengeospatial.github.io/e-learning/sos/text/index.html
+[1] Best Practices for Using Sensor Web Technology by 52north, https://52north.github.io/sensor-web-tutorial/ <br/>
+[2] OGC Abstract Specification - Geographic information — Observations and measurements,Cox, Simon (2013), http://portal.opengeospatial.org/files/?artifact_id=41579. <br/>
+[3] OGC Elearning site, http://opengeospatial.github.io/e-learning/sos/text/index.html <br/>
 
 ### Icon Attribution
 Icon by <a href="https://freeicons.io/profile/205927">Flatart</a>, <a href="https://freeicons.io/profile/8908">EDT.Graphics</a>, <a href="https://freeicons.io/profile/75801">Hilmy Abiyyu Asad</a>, <a href="https://freeicons.io/profile/88863">WANICON</a>, <a href="https://freeicons.io/profile/122327">Ginkaewicons</a> on <a href="https://freeicons.io">freeicons.io</a>
