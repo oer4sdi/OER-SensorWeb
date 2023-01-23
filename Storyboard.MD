@@ -8,6 +8,8 @@ One must satisfy these conditions before diving into the concepts:
 + Knowledge of how the internet and the World Wide Web operate from a server/client standpoint
 + Familiarity with JavaScript Object Notation (JSON).
 
+**Time Duration: 45min**
+
 Now, I welcome you all for this journey
 
 ##### Table of Contents  
