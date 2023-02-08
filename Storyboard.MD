@@ -594,11 +594,11 @@ Note: You must always specify `id`,`name`,`description` when creating entities. 
 
 ```
 {
-  "@iot.id": "weather_station_1",
-  "name": "Weather Station Berlin",
-  "description": "This is a weather station at the city of berlin.",
+  "@iot.id": "Weather_Station_7",
+  "name": "Weather Station Home",
+  "description": "This is a weather station at a house in the city of berlin.",
   "properties": {
-    "owner": "api.open-meteo.com"
+    "owner": "tommy"
   }
 }
 ```
@@ -614,8 +614,8 @@ The body of the request is a json document, as illustrated below. It includes th
 ```
 {
   "@iot.id": "building_52",
-  "name": "Berliner Stadtwerke GmbH",
-  "description": "Office Building",
+  "name": "tommy_house",
+  "description": "Home Building",
   "encodingType": "application/vnd.geo+json",
   "location": {
     "type": "Feature",
@@ -626,7 +626,7 @@ The body of the request is a json document, as illustrated below. It includes th
   },
   "Things": [
       {
-          "@iot.id": "weather_station_1"
+          "@iot.id": "Weather_Station_7"
       }
   ]
 }
@@ -644,9 +644,9 @@ The body of the request is a json document, as illustrated below. It includes th
 
 ```
 {
-  "@iot.id": "thermometer_1",
-  "name": "Thermometer",
-  "description": "This thermometer measures the air temperature",
+  "@iot.id": "temperature_7",
+  "name": "DHT11_sensor",
+  "description": "This sensor measures the ambient temperature",
   "encodingType": "application/pdf",
   "metadata": "http://example.org/Thermometer.pdf"
 }
@@ -679,9 +679,9 @@ e) Create Datastreams <br/>
 
 ```
 {
-  "@iot.id": "thermometer_readings_20",
-  "name": "Thermometer Readings",
-  "description": "This is the reading of a thermometer.",
+  "@iot.id": "temperature_readings_7",
+  "name": "Temperature Readings",
+  "description": "This is the reading of a DHT11 sensor.",
   "unitOfMeasurement": {
     "name": "degree Celsius",
     "symbol": "°C",
@@ -689,13 +689,13 @@ e) Create Datastreams <br/>
   },
   "observationType": "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement",
   "Sensor": {
-      "@iot.id": "thermometer_1"
+      "@iot.id": "temperature_7"
   },
   "ObservedProperty": {
-      "@iot.id": "air_temperature"
+      "@iot.id": "ambient_temperature"
   },
   "Thing": {
-      "@iot.id": "weather_station_1"
+      "@iot.id": "Weather_Station_7"
   }
 }
 ```
@@ -735,7 +735,7 @@ g) Create Observation <br/>
   "resultTime": "2022-08-12T15:57:53.00+02:00",
   "result": 12.4,
   "Datastream": {
-      "@iot.id": "thermometer_readings_20"
+      "@iot.id": "thermometer_readings_7"
   },
   "FeatureOfInterest": {
       "@iot.id": "berlin"
@@ -750,7 +750,7 @@ g) Create Observation <br/>
   "resultTime": "2022-08-12T16:58:16.00+02:00",
   "result": 10.3,
   "Datastream": {
-      "@iot.id": "thermometer_readings_20"
+      "@iot.id": "thermometer_readings_7"
   },
   "FeatureOfInterest": {
       "@iot.id": "berlin"
