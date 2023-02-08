@@ -636,12 +636,13 @@ The body of the request is a json document, as illustrated below. It includes th
 2. Click SEND. The response includes the request parameters as well as links to the Location, the Thing, and the HistoricalLocations. The link to the Thing leads to the weather station that was previously added.
 
 c) Create Sensor <br/>
-In the next step a Sensor is created. In the following the URI for the POST request is shown: We have two parameters measured by the weather sensor ( temperature )
+In the next step a Sensor is created. In the following the URI for the POST request is shown: We have two parameters measured by the DHT11 sensor (temperature and humidity)
 
 1. Replace `Locations` and add to the url `Sensors`:http://localhost:8081/v1.1/Sensors
 
 The body of the request is a json document, as illustrated below. It includes the Sensor’s unique identifier, name, and description, as well as the Sensor’s properties(look into the entity table of Sensor to know about the properties mentioned in the body)
 
+For temperature 
 ```
 {
   "@iot.id": "temperature_7",
@@ -650,7 +651,18 @@ The body of the request is a json document, as illustrated below. It includes th
   "encodingType": "application/pdf",
   "metadata": "http://example.org/Thermometer.pdf"
 }
+``` 
+For humidity
 ```
+{
+  "@iot.id": "humidity_7",
+  "name": "DHT11_sensor",
+  "description": "This sensor measures the ambient humidity",
+  "encodingType": "application/pdf",
+  "metadata": "http://example.org/Humidity.pdf"
+}
+```
+Note: send requests seperately
 
 2. Copy the json body specified above and paste it to the body space in Postman.
 3. Click SEND. The response includes the request parameters as well as links to the Sensor and datastream.
@@ -660,12 +672,22 @@ d) Create ObservedProperty <br/>
 
 The body of the request contains a unique identifier, a description, a name and a link to the definition of the ObservedProperty(look into the entity table of ObservedProperty to know about the properties mentioned in the body)
 
+For temperature
 ```
 {
   "@iot.id": "air_temperature",
   "description": "Air temperature is the bulk temperature of the air, not the surface (skin) temperature",
   "name": "ir_temperature",
   "definition": "https://vocab.nerc.ac.uk/collection/P07/current/CFSN0023/"
+}
+```
+For humidity
+```
+{
+  "@iot.id": "humidity",
+  "description": "",
+  "name": "ir_humidity",
+  "definition": "https://vocab.nerc.ac.uk/collection/P07/current/CFSN0413/"
 }
 ```
 
@@ -677,6 +699,7 @@ e) Create Datastreams <br/>
 
 2. Paste the request in the field of the Body section(look into the entity table of DataStreams to know about the properties mentioned in the body)
 
+For temperature
 ```
 {
   "@iot.id": "temperature_readings_7",
@@ -693,6 +716,29 @@ e) Create Datastreams <br/>
   },
   "ObservedProperty": {
       "@iot.id": "ambient_temperature"
+  },
+  "Thing": {
+      "@iot.id": "Weather_Station_7"
+  }
+}
+```
+For humidity
+```
+{
+  "@iot.id": "humidity_readings_7",
+  "name": "Humidity Readings",
+  "description": "This is the reading of a DHT11 sensor.",
+  "unitOfMeasurement": {
+    "name": "percentage",
+    "symbol": "%",
+    "definition": "http://unitsofmeasure.org/ucum.html#para-30"
+  },
+  "observationType": "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement",
+  "Sensor": {
+      "@iot.id": "humidity_7"
+  },
+  "ObservedProperty": {
+      "@iot.id": "humidity"
   },
   "Thing": {
       "@iot.id": "Weather_Station_7"
@@ -729,13 +775,30 @@ g) Create Observation <br/>
 1. Replace `FeatureOfInterest` and add to the URL `Observations`: http://localhost:8081/v1.1/Observations
 
 2. Paste the request in the field of the Body section (look into the entity table of Observation to know about the properties mentioned in the body)
+
+For temperature observation
 ```
 {
   "phenomenonTime": "2022-08-12T15:57:53.00+02:00",
   "resultTime": "2022-08-12T15:57:53.00+02:00",
   "result": 12.4,
   "Datastream": {
-      "@iot.id": "thermometer_readings_7"
+      "@iot.id": "temperature_readings_7"
+  },
+  "FeatureOfInterest": {
+      "@iot.id": "berlin"
+  }
+}
+```
+For humidity observation <br/>
+Note: The timings need not be the same, since the sensor measures both the readings at the same time, we specify the same time to both observations 
+```
+{
+  "phenomenonTime": "2022-08-12T15:57:53.00+02:00",
+  "resultTime": "2022-08-12T15:57:53.00+02:00",
+  "result": 67,
+  "Datastream": {
+      "@iot.id": "humidity_readings_7"
   },
   "FeatureOfInterest": {
       "@iot.id": "berlin"
@@ -750,13 +813,15 @@ g) Create Observation <br/>
   "resultTime": "2022-08-12T16:58:16.00+02:00",
   "result": 10.3,
   "Datastream": {
-      "@iot.id": "thermometer_readings_7"
+      "@iot.id": "temperature_readings_7"
   },
   "FeatureOfInterest": {
       "@iot.id": "berlin"
    }
  }
 ```
+likewise for humidity. 
+
 You have successfully learned how to create a data using SensorthingsAPI.
 
 ## Reference
