@@ -17,6 +17,12 @@ This course is intended for students(graduates/undergradutes) who want to learn 
 ## License
 The OER Module is under the CC-SA-BY 4.0 license that complies with the FAIR Principles. To know more about the license click [here](LICENSE.MD)
 
+## Icon Attribution
+Icon by <a href="https://freeicons.io/profile/205927">Flatart</a>, <a href="https://freeicons.io/profile/8908">EDT.Graphics</a>, <a href="https://freeicons.io/profile/75801">Hilmy Abiyyu Asad</a>, <a href="https://freeicons.io/profile/88863">WANICON</a>, <a href="https://freeicons.io/profile/122327">Ginkaewicons</a> on <a href="https://freeicons.io">freeicons.io</a>
+
+## Data Attribution
+USGS Water labs hoisted in Frost server, https://labs.waterdata.usgs.gov/index.html
+
 ## Authors and funding
 This OER module has been developed at the Institute for Geoinformatics, University of Münster in colloboration with 52North.org. Authors are Sandhya Rajendran(main idea, technical tutorial) mentored along with Simon and contributions from Thomas Kujawa and Albert Remke.
 
