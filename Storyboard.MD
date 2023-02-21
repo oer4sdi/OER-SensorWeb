@@ -2,7 +2,7 @@
 
 This course is intended for students(graduates/undergradutes) who want to learn Sensor Web Enablement, SensorthingsAPI indepth. The course is structured into four chapters. Basic concepts are brushed up with relevant examples in chapter 1, then chapter 2 explains the data model of SensorWeb indepth. Chapter 3 and 4 are devoted to SensorThings API. Throughout this course, you have quizzes and exercises to finish before moving on to next chapter to test your understanding. By no means the quizzes determines the pass/fail grade. 
 
-#### Prerequisite
+## Prerequisite
 
 One must satisfy these conditions before diving into the concepts:
 + Knowledge of how the internet and the World Wide Web operate from a server/client standpoint
@@ -12,7 +12,7 @@ One must satisfy these conditions before diving into the concepts:
 
 Now, I welcome you all for this journey
 
-##### Table of Contents  
+## Table of Contents  
 1. [Understanding the Concepts](#understanding-the-Concepts)  
 2. [O&M model](#o&M-model)
 3. [SensorThings API](#sensorthings-API)
@@ -24,8 +24,7 @@ Now, I welcome you all for this journey
 
 The ability to access, process, and integrate data from various sources for mapping, visualisation, and other forms of representation and analysis is known as Interoperability. Often organisations such as the European Union share the data among themselves to insure data interoperability. But without specific standards, interoperability is not possible. To ensure the specific needs of each data and its formats, we have Spatial Data Infrastructure (SDI). A Spatial Data Infrastructure (SDI) denotes a collection of technologies, policies and institutional arrangements to serve as a basis for discovery, access and processing of geospatial data to ensure interoperability and improved access to spatial data.
 
-SDI's goals are to: 
-
+SDI's goals are to: <br/>
 + Lower geographic information costs while making geographic data more accessible, 
 + Increase the benefits of using available spatial data, and 
 + Establish key partnerships between states, counties, cities, academia, and the private sector.
@@ -33,7 +32,6 @@ SDI's goals are to:
 Examples: 
 
 + Infrastructure for Spatial Information in the European Community (INSPIRE) is a European Union (EU) directive to establish a SDI via the Internet that allows for the standardised sharing of geographic information.
-
 + Global Earth Observation System of Systems (GEOSS) facilitates the sharing of environmental data and information collected from the large array of observing systems contributed by countries and organizations within GEO
 
 One such real time observation data would be `sensor data`.
@@ -89,14 +87,12 @@ Fig : The simplified version of the Observation and Measurements (O&M) model's g
 
 > Observation and Measurements standard defines models and XML schemas for observations as well as features involved in sampling when making observations.
 
-Because [IP-based](https://en.wikipedia.org/wiki/Internet_Protocol) sensors are becoming more affordable, anyone can gather and refine detailed environmental information about the world around us, both locally and globally. This way citizens with any background can use these sensors to generate publically available data. Of course, as with everything based on the Internet, as the amount of information and the diversity of the sources producing it grows, so does the quality range of the available information. Organizations that previously deployed and maintained their own sensor networks with proprietary data and control interfaces tailored to their specific software and hardware systems are transitioning to open standards. Even if they do not intend to publish their data on the Internet, they do intend to communicate via IP-based networks.
-
-Each and every sensor data sources can have different formats and information. This pose an issue when exchanging sensor data. To overcome this interoperability issue, O&M becomes a common standardized data model for handling measurement events in various types of sensors, ranging from thermometers inside a closed process to satellites images of the Earth from space. O&M creates a high-level framework for representing sensor observations, measurements, procedures, and metadata, for the implementation of SWE-enabled architectures. O&M, in conjunction with other SWE framework open standards such as SensorML and Sensor Observation Service (SOS), provides a system-independent, internet-enabled method of data exchange between different parts of sensor networks and other systems using sensor information.
+Because [IP-based](https://en.wikipedia.org/wiki/Internet_Protocol) sensors are becoming more affordable, anyone can gather and refine detailed environmental information about the world around us, both locally and globally. This way, citizens of any background can use these sensors to generate publicly available data. Of course, as with anything based on the Internet, as the amount of information and the variety of sources grows, so does the quality range of the available information. Organizations that maintain their own sensor networks specific to their software and hardware systems are transitioning to open standards. Even if they do not intend to publish their data on the Internet, they do intend to communicate via IP-based networks. Each and every sensor data source can have different formats and information. This poses an issue when exchanging sensor data. To address this interoperability issue, O&M evolves into a common, standardized data model for handling measurement events in a wide range of sensors, from thermometers within a closed process to satellite images of the Earth from space. O&M creates a high-level framework for representing sensor observations, measurements, procedures, and metadata for the implementation of SWE-enabled architectures. O&M, in conjunction with other SWE framework open standards such as SensorML and Sensor Observation Service (SOS), provides a system-independent, internet-enabled method of data exchange between different parts of sensor networks and other systems using sensor information.
 
 Did you Know ? 
-> The O&M concepts serve as the foundation for the EU-wide INSPIRE data models for meteorological, climatological, and air quality information, and the structure and capabilities of various environmental observation networks.
+> The O&M concepts serve as the foundation for the EU-wide INSPIRE data models for meteorological, climatological, and air quality information, as well as the structure and capabilities of various environmental observation networks.
 
-#### UML Diagram of Observations
+## UML Diagram of Observations
 <p align='center'>
   <img src='Img/o&m-entities.svg' height='300'>
 </p>
@@ -126,7 +122,7 @@ Optional Properties of an Observation Model
 | `Parameter` | describe any event-specific parameter(could be an environmental, an instrument setting or input) | Altitude |
 | `Process` | The process that performs the measurement |  change in resistance of the electric current in a sensor measures temperature |
 
-Note:
+Note: <br/>
 1. The Parameter is not a feature of interest or an observation procedure. A `park` may be the feature of interest in the temperature case, but since temperature varies with altitude, `altitude` may be an event-specific parameter.
 2. A human observer, a simulator, or a process or algorithm applied are all examples of Process instances.
 
@@ -134,7 +130,7 @@ Look at the exemplary dataset from the USGS hoisted in the FROST Server.
 
 > https://labs.waterdata.usgs.gov/sta/v1.1/Observations
 
-#### Classification of observation by result type
+### Classification of observation by result type
 The Observation model approaches data from the perspective of the data user, emphasizing the semantics of the feature-of-interest and its properties. Whether the feature-of-interest is a discrete or continous observation.
 
 1. Observations whose result is constant
@@ -170,7 +166,7 @@ Weather is unpredictable and is a good example for continous observation.
 'Temperature' for example, changes over space and time. Here temperature is a discretePointCoverage observation.
 Think of any continous observation?
 ```
-Sources of Sensors
+#### Sources of Sensors
 
 With sensors, we have different types depending on its location, Stationary in-situ, Mobile in-situ, Stationary Remote sensors. From Best practises documentation[1] a simple explanation on the sources of sensors are briefly described here. Look into the documentation to know more.
 Lets see each one with an apt example, <br/>
@@ -191,8 +187,7 @@ Latest version specification can be downloaded from,
 The SOS Implementation Standard is a key component of the SWE architecture, defining network-centric data representations and operations for accessing and integrating sensor data. This observation data may have been collected by in-situ sensors (e.g. river gauges), moving sensor platforms (e.g. satellites or
 unmanned aerial vehicles) or networks of static sensors (e.g. seismic arrays).
 
-The following list presents examples of SOS usage:
-
+The following list presents examples of SOS usage: <br/>
 + The US National Oceanic and Atmospheric Administration (NOAA) provides quality controlled ocean data and information through its Integrated Ocean Observing System (IOOS®) SOS: 
 + Wales Air’s Sensor Observation Service (SOS) provides a machine readable access point for air pollution measurements hosted on Air quality Wales: https://airquality.gov.wales/sos-waq/service?service=SOS&request=GetCapabilities
 
@@ -200,11 +195,11 @@ The following list presents examples of SOS usage:
 
 Fig: modified SOS diagram from OGC elearning site[3]
 
-SWE specifications such as SOS; SPS, and SES are powerful for use cases that are broad and often complex(e.g. disaster management or early warning systems). However, use cases that do not require the full functionality of SWE's data altering, sensor discovery, tasking, and event handling may be easier to realize with the Web of Things approach by treating sensor objects as things. (Liang et al.) The SWE framework is a well-established approach for integrating sensors with the Web. A smart device, according to Bröring et al. (2011 b), may respond to data requests using SWE-standardized formats. To be more specific, sensor metadata should be encoded using SensorML, and observation data as O&M. With these format constraints, any other application/component may retrieve the smart device's sensor data in an interoperable, standardized manner. The SensorThings API is an open standard, builds on Web protocols and the OGC Sensor Web Enablement standards, and applies an easy-to-use REST-like style.
+SWE specifications such as SOS, SPS, and SES are powerful for use cases that are broad and often complex (e.g., disaster management or early warning systems). However, use cases that do not require the full functionality of SWE's data altering, sensor discovery, tasking, and event handling may be easier to realize with the Web of Things approach by treating sensor objects as things (Liang et al.). The SWE framework is a well-established approach for integrating sensors with the Web. A smart device, according to Bröring et al. (2011 b), may respond to data requests using SWE-standardized formats. To be more specific, sensor metadata should be encoded using SensorML and observation data as O&M. With these format constraints, any other application or component may retrieve the smart device's sensor data in an interoperable, standardized manner. The SensorThings API is an open standard that builds on Web protocols and the OGC Sensor Web Enablement standards and applies an easy-to-use REST-like style.
 
 # SensorThings API
 
-### Fundamental Concepts
+## Fundamental Concepts
 
 The terms Internet of Things and Web of Things refer to approaches to integrating smart devices into the Internet. The Internet of Things (IoT) is a network of physical objects—"things"—embedded with sensors, software, and other technologies for connecting and exchanging data with other devices and systems via the internet. In the context of Sensorweb, the `things` here are `Sensors`. Physical things (e.g, Sensors) can share and collect data with minimal human intervention thanks to low-cost computing technologies. The Web of Things (WoT) is a set of standards developed by the World Wide Web Consortium (W3C) to improve the interoperability, and usability of the Internet of Things (IoT). From a technological standpoint, this means that the smart device (e.g., a sensor) is addressable via standard HTTP operations (GET, POST, PUT, etc.), enabling [RESTful](https://www.codecademy.com/article/what-is-rest) access to sensor data (Bröring et al, 2011 a). In short, WoT is a subset of IoT and is based on software standards like REST, HTTP, and URIs to allow devices to communicate with one another.
 
@@ -213,11 +208,9 @@ The OGC SensorThings API is recommended for organizations that require web-based
 Github repository for OGC sensorthings API:
 > https://github.com/opengeospatial/sensorthings
 
-The SensorThings API may simplify connections between devices-to-devices and devices-to-applications by utilizing efficient REST binding, including a reduced JSON encoding, and the MQTT protocol for sensor access making it a lightweight SWE approach. 
+The SensorThings API may simplify connections between devices-to-devices and devices-to-applications by utilizing efficient REST binding, including a reduced JSON encoding, and the MQTT protocol for sensor access making it a lightweight SWE approach. The OGC SensorThings API data model consists of two parts: (1) the Sensing part and (2) the Tasking part. The Sensing part allows IoT devices and applications to CREATE, READ, UPDATE, and DELETE (i.e., HTTP POST, GET, PATCH, and DELETE) IoT data and metadata in a SensorThings service.
 
-The OGC SensorThings API data model consists of two parts: (1) the Sensing part and (2) the Tasking part. The Sensing part allows IoT devices and applications to CREATE, READ, UPDATE, and DELETE (i.e., HTTP POST, GET, PATCH, and DELETE) IoT data and metadata in a SensorThings service.
-
-### SensorThings API - Sensing Part
+## SensorThings API - Sensing Part
 
 <p align='center'>
   <img src='Img/sta-entities-abstract.svg' height='350' width='700'>
@@ -263,14 +256,14 @@ The resource path follows the service root URI and can be used to access various
 
 Each and every entity set holds one or more relationship with other entity set. This relationship can be accessed via navigation and association links. The service then returns one or many entities that hold a certain relationship with the specified entity.
 
-| Usage of Resource Path |  URI | Description |
-| ---------------------- | ---- | ------------|
-| address to a navigation property | https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('0dbbd0a0480c46bd91e67181455231ca')/Observations | request the linked entities by addressing to a navigation property of an entity |
-| address to an association property | https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('0dbbd0a0480c46bd91e67181455231ca')/Observations/$ref | request the linked entities’ selfLinks by addressing to an association link of an entity |
++ address to a navigation property
+> https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('0dbbd0a0480c46bd91e67181455231ca')/Observations 
++ address to an association property
+> https://labs.waterdata.usgs.gov/sta/v1.1/Datastreams('0dbbd0a0480c46bd91e67181455231ca')/Observations/$ref 
 
 Note : users can use navigation properties to link from one entity set to another, users can further extend the resource path with unique identifiers, properties, or links
 
-#### Entities
+### Entities
 
 Common Property of an Entity:
 
@@ -420,6 +413,7 @@ A Sensor is an instrument that observes a property or phenomenon with the goal o
 A sensor Metadata Encoding type can be either pdf or SensorML has described above. Most sensor manufacturers provide their sensor datasheets in a PDF format. As a result, PDF is a Sensor encodingType supported by SensorThings API. The second Sensor encodingType is SensorML.
 
 Example link : https://labs.waterdata.usgs.gov/sta/v1.1/Sensors('USGS_Sensor')
+
 ```
 {
 "description": "The USGS Sensor",
@@ -433,6 +427,7 @@ Example link : https://labs.waterdata.usgs.gov/sta/v1.1/Sensors('USGS_Sensor')
 "Datastreams@iot.navigationLink": "https://labs.waterdata.usgs.gov/sta/v1.1/Sensors('USGS_Sensor')/Datastreams"
 }
 ```
+
 f) ObservedProperty
 
 An ObservedProperty specifies the phenomenon of an Observation.
@@ -462,6 +457,7 @@ g) Observation
 An Observation is the act of measuring or otherwise determining the value of a property [OGC 10-004r3 and ISO 19156:2011] Check out the Observation and Measurement Model that we discussed in this article.
 
 Example link : https://labs.waterdata.usgs.gov/sta/v1.1/Observations('0ce7bd6c-7e0c-11ec-a1c2-d357d8a6e8ba')
+
 ```
 {
 "@iot.id": "0ce7bd6c-7e0c-11ec-a1c2-d357d8a6e8ba",
@@ -502,7 +498,7 @@ Example link : https://labs.waterdata.usgs.gov/sta/v1.1/FeaturesOfInterest('7a5b
 },
 ```
 
-#### Query Operations
+### Query Operations
 The use of query options allows for the refinement of requests in order to obtain the necessary information about SensorThings entities in a simple and efficient manner. SensorThings query options are divided into two categories. The first group specifies the properties that the request will return. This group's query options are `$expand` and `$select`. The second group is responsible for limiting, filtering, or re-ordering the request results. This group includes the functions `$orderby`, `$top`, `$skip`, `$count`, and `$filter`.
 
 | Operations | Description | Result |
@@ -536,12 +532,10 @@ The use of query options allows for the refinement of requests in order to obtai
 | Inserting sensors or observations | HTTP POST and DELETE(e.g., CRUD) | Using SOS interface i.e, InsertSensor(), InsertObservation() |
 | Deleting existing sensors or observations | HTTP DELETE | Using SOS interface, DeleteSensor(). SOS doesn't have an option to delete observations | 
 
-Not supported features in SOS that are supported in SensorThings API :
-| Features | SensorThings API |
-| ----- | ---------------- |
-| Pagination | $top, $skip, $nextLink |
-| Linked data support | JSON-LD |
-| Return properties subset and requesting queries | $select, $expand |
+Not supported features in SOS that are supported in SensorThings API : <br/>
++ Pagination : $top, $skip, $nextLink
++ Linked data support : JSON-LD
++ Return properties subset and requesting queries : $select, $expand
 
 #### Quiz 1 and 2 (seperate modules) H5P format
 
@@ -582,9 +576,7 @@ Root URL : http://localhost:8081/v1.1/
 To insert data the first step is to create a Thing with a HTTP POST request. <br/>
 a) Create Thing
 
-Open the Postman application
-
-For the Initial setting: [How to use Postman](videos/PracticalSession1.mp4)
+Open the Postman application. For the Initial setting: [How to use Postman](videos/PracticalSession1.mp4)
 
 1. Now, Add Things to the URL : http://localhost:8081/v1.1/Things
 
@@ -603,7 +595,7 @@ Note: You must always specify `id`,`name`,`description` when creating entities. 
 }
 ```
 
-3. Copy the json body that was mentioned above, and then paste it into Postman's body space.
+3. Copy the json body that was mentioned above, and then paste it into Postman's body space. <br/>
 4. Press SEND. For the thing we created, parameters and navigational links are created in the response. However, if you choose one of the directional links, the no data is specified. For navigational links to connect, all the necessary entities must be created.
 
 b) Create Location <br/>
