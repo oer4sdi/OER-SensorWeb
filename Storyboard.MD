@@ -1,9 +1,7 @@
 # SensorWeb (Work in Progress!)
-
-This course is intended for students(graduates/undergradutes) who want to learn Sensor Web Enablement, SensorthingsAPI indepth. The course is structured into four chapters. Basic concepts are brushed up with relevant examples in chapter 1, then chapter 2 explains the data model of SensorWeb indepth. Chapter 3 and 4 are devoted to SensorThings API. Throughout this course, you have quizzes and exercises to finish before moving on to next chapter to test your understanding. By no means the quizzes determines the pass/fail grade. 
+This module is designed for students (graduates and undergrads) who want to learn Sensor Web Enablement and SensorthingsAPI in depth. The module is divided into four chapters. In chapter 1, basic concepts are reinforced with relevant examples, and in chapter 2, the SensorWeb data model is thoroughly explained. The SensorThings API is the subject of Chapters 3 and 4. Throughout this course, you will be given quizzes and exercises to complete before moving on to the next chapter to test your understanding. The quizzes do not determine the pass/fail grade.
 
 ## Prerequisite
-
 One must satisfy these conditions before diving into the concepts:
 + Knowledge of how the internet and the World Wide Web operate from a server/client standpoint
 + Familiarity with JavaScript Object Notation (JSON).
@@ -13,31 +11,24 @@ One must satisfy these conditions before diving into the concepts:
 Now, I welcome you all for this journey
 
 ## Table of Contents  
-1. [Understanding the Concepts](#understanding-the-Concepts)  
+1. [Introduction](#introduction)  
 2. [O&M model](#o&M-model)
 3. [SensorThings API](#sensorthings-API)
 4. [Practical Session](#practical-session)
 
-# Understanding the Concepts
+# Introduction
 
 ## Spatial Data Infrastructure
 
 The ability to access, process, and integrate data from various sources for mapping, visualisation, and other forms of representation and analysis is known as Interoperability. Often organisations such as the European Union share the data among themselves to insure data interoperability. But without specific standards, interoperability is not possible. To ensure the specific needs of each data and its formats, we have Spatial Data Infrastructure (SDI). A Spatial Data Infrastructure (SDI) denotes a collection of technologies, policies and institutional arrangements to serve as a basis for discovery, access and processing of geospatial data to ensure interoperability and improved access to spatial data.
 
-SDI's goals are to: <br/>
-+ Lower geographic information costs while making geographic data more accessible, 
-+ Increase the benefits of using available spatial data, and 
-+ Establish key partnerships between states, counties, cities, academia, and the private sector.
-
-Examples: 
-
-+ Infrastructure for Spatial Information in the European Community (INSPIRE) is a European Union (EU) directive to establish a SDI via the Internet that allows for the standardised sharing of geographic information.
+Examples: <br/>
 + Global Earth Observation System of Systems (GEOSS) facilitates the sharing of environmental data and information collected from the large array of observing systems contributed by countries and organizations within GEO
 
 One such real time observation data would be `sensor data`.
 
 ## Sensor Data
-Sensor data is the output of a device that detects and responds to some type of input from the physical environment. The output may be used to provide information or input to another system or to guide a process. Sensors can be used to detect just about any physical element. Here are a few examples of sensors, just to give an idea of the number and diversity of their applications:
+Sensor Data is the output of a device that detects and responds to some type of input from the physical environment. The output may be used to provide information or input to another system or to guide a process. Sensors can be used to detect just about any physical element. Here are a few examples of Sensors, just to give an idea of the number and diversity of their applications:
 
 + A photosensor detects the presence of visible light, infrared transmission (IR) and/or ultraviolet (UV) energy. 
 + A temperature sensor detects the land surface temperature on the ground.
@@ -45,9 +36,7 @@ Sensor data is the output of a device that detects and responds to some type of 
 Did you know? 
 > Your smartphone is so smart that it can act as a mobile sensor
 
-Using Sensor data over other spatial data sources such as remote sensing imageries, CAD has numerous advantages. It fills the gaps in the remote sensing data and gives accurate results. It also works 24/7 and can work in harsher climates. Sensors are called “things” in the Internet of Things ecosystem. A sensor network is a computer-accessible network of many, spatially distributed devices that use sensors to monitor environmental conditions such as temperature, pressure. A sensor web is a collection of sensor data and sensor networks that are accessible via the web and can be found and accessed through standard protocols (APIs).
-
-The Open Geospatial Consortium (OGC) aims to make heterogeneous sensor data available for discovery, access and use via interoperable formats and Web services. Much like Hyper Text Markup Language (HTML) and Hypertext Transfer Protocol (HTTP) standards enabled the exchange of any type of information on the Web. Through standardized formats and services the heterogeneity/complexity of different sensor types and measurement outputs is hidden from end-users.
+Using Sensor Data over other spatial data sources such as remote sensing imageries, CAD, orthophotos have numerous advantages. It fills the gaps in the remote sensing data and gives accurate results. It also works 24/7 and can work in harsher climates. Sensors are referred to as "things" within the Internet of Things ecosystem. A Sensor Network is a network of many, spatially distributed devices that use Sensors to monitor environmental conditions like temperature and pressure. A Sensor Web is a collection of Sensor Data and Sensor Networks that can be found and accessed via standard protocols and are accessible via the web (APIs).Through interoperable formats and Web services, the Open Geospatial Consortium (OGC) aims to make heterogeneous Sensor Data discoverable, accessible, and usable. Standards such as Hyper Text Markup Language (HTML) and Hypertext Transfer Protocol (HTTP) enabled the exchange of any type of information on the Internet. The heterogeneity/complexity of different sensor types and measurement outputs is hidden from end users through standardized formats and services.
 
 ## SWE
 
